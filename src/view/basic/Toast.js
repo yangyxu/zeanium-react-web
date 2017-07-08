@@ -18,8 +18,12 @@ var Toast = React.createClass({
 	},
 	render: function(){
 		return (
-			<div className={'rt-toast ' + this.state.type} data-active={this.state.active}>
-				<i className="toast-close rt-hover-self-loading fa fa-close" onClick={()=>this.setState({ active: false })} />
+			<div className={'rt-toast ' + this.state.type} data-active={this.state.active} >
+				{
+					/*
+						<i className="toast-close rt-hover-self-loading fa fa-close" onClick={()=>this.setState({ active: false })} />
+					*/
+				}
 				{this.state.content}
 			</div>
 		);

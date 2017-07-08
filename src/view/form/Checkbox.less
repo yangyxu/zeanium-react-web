@@ -16,18 +16,25 @@
         display: none;
     }
     .mark{
-        /*display: inline-block;*/
+        display: flex;
+        justify-content: center;
+        align-items: center;;
         border-radius: 3px;
         border: 1px solid transparent;
         width: 16px;
         height: 16px;
         font-size: 16px;
         margin-right: 3px;
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
         .icon{
             opacity: 0;
+            font-size: 12px;
             -webkit-transition: all .3s;
             -moz-transition: all .3s;
             -o-transition: all .3s;
+        }
+        &:hover{
+            box-shadow:0 0 10px #2db7f5;
         }
     }
 
