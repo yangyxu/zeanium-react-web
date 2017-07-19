@@ -27,7 +27,7 @@ module.exports = React.createClass({
 				end={(this.props.footerView?this.props.end:0)}
 				unit="px"
 				hStyle={this.props.hStyle}
-				bStyle={zn.extend({borderTop: '1px solid #3d3d3d', width: 'auto'}, )} >
+				bStyle={this.props.bStyle} >
 				<div className="page-header" style={{ lineHeight: ((this.props.height-2) + 'px') }}>
 					{this.props.canBack && <i className="back fa fa-arrow-left" onClick={this.__onBack} />}
 					<div className="title">{this.props.title}</div>

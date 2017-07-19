@@ -1,0 +1,38 @@
+.zn-animate-move-to-bottom {
+    -webkit-animation: moveToBottom .6s ease both;
+	-moz-animation: moveToBottom .6s ease both;
+	animation: moveToBottom .6s ease both;
+}
+
+.zn-animate-move-to-bottom-easing {
+    -webkit-animation: moveToBottom .7s ease-in-out both;
+	-moz-animation: moveToBottom .7s ease-in-out both;
+	animation: moveToBottom .7s ease-in-out both;
+}
+
+.zn-animate-move-to-bottom-fade {
+    -webkit-animation: moveToBottomFade .7s ease both;
+	-moz-animation: moveToBottomFade .7s ease both;
+	animation: moveToBottomFade .7s ease both;
+}
+
+@-webkit-keyframes moveToBottom {
+	to { -webkit-transform: translateY(100%); }
+}
+@-moz-keyframes moveToBottom {
+	to { -moz-transform: translateY(100%); }
+}
+@keyframes moveToBottom {
+	to { transform: translateY(100%); }
+}
+
+
+@-webkit-keyframes moveToBottomFade {
+	to { opacity: 0.3; -webkit-transform: translateY(100%); }
+}
+@-moz-keyframes moveToBottomFade {
+	to { opacity: 0.3; -moz-transform: translateY(100%); }
+}
+@keyframes moveToBottomFade {
+	to { opacity: 0.3; transform: translateY(100%); }
+}

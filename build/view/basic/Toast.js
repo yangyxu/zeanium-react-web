@@ -17,14 +17,9 @@ var Toast = React.createClass({
 		};
 	},
 	render: function render() {
-		var _this = this;
-
 		return React.createElement(
 			'div',
 			{ className: 'rt-toast ' + this.state.type, 'data-active': this.state.active },
-			React.createElement('i', { className: 'toast-close rt-hover-self-loading fa fa-close', onClick: function onClick() {
-					return _this.setState({ active: false });
-				} }),
 			this.state.content
 		);
 	}

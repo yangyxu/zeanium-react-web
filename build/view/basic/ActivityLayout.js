@@ -85,7 +85,7 @@ module.exports = React.createClass({
 				{ style: _styles.header },
 				_children[0]
 			),
-			React.createElement(
+			this.props.barWidth && React.createElement(
 				Layout.Body,
 				{ style: _styles.body },
 				this.__bodyRender()

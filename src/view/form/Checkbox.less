@@ -1,6 +1,12 @@
 @import "../../less/rt.variables.less";
 
 
+.rt-checkbox-group{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 .rt-status(@color: @rt-color-default){
     &>.mark{
         color: @color !important;
@@ -9,9 +15,9 @@
 }
 
 .rt-checkbox {
-    float: left;
-    cursor: pointer;
+    display: inline-flex;
     color: #434242;
+    cursor: pointer;
     &>input{
         display: none;
     }
@@ -24,7 +30,7 @@
         width: 16px;
         height: 16px;
         font-size: 16px;
-        margin-right: 3px;
+        margin: 3px;
         box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
         .icon{
             opacity: 0;

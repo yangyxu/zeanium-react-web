@@ -1,0 +1,37 @@
+.zn-animate-move-to-left{
+    -webkit-animation: moveToLeft .6s ease both;
+	-moz-animation: moveToLeft .6s ease both;
+	animation: moveToLeft .6s ease both;
+}
+
+.zn-animate-move-to-left-easing {
+    -webkit-animation: moveToLeft .7s ease-in-out both;
+	-moz-animation: moveToLeft .7s ease-in-out both;
+	animation: moveToLeft .7s ease-in-out both;
+}
+
+.zn-animate-move-to-left-fade {
+	-webkit-animation: moveToLeftFade .7s ease both;
+	-moz-animation: moveToLeftFade .7s ease both;
+	animation: moveToLeftFade .7s ease both;
+}
+
+@-webkit-keyframes moveToLeft {
+	to { -webkit-transform: translateX(-100%); }
+}
+@-moz-keyframes moveToLeft {
+	to { -moz-transform: translateX(-100%); }
+}
+@keyframes moveToLeft {
+	to { transform: translateX(-100%); }
+}
+
+@-webkit-keyframes moveToLeftFade {
+	to { opacity: 0.3; -webkit-transform: translateX(-100%); }
+}
+@-moz-keyframes moveToLeftFade {
+	to { opacity: 0.3; -moz-transform: translateX(-100%); }
+}
+@keyframes moveToLeftFade {
+	to { opacity: 0.3; transform: translateX(-100%); }
+}

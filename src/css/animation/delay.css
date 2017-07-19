@@ -1,0 +1,48 @@
+/* animation delay classes */
+.zn-animate-delay100 {
+	-webkit-animation-delay: .1s;
+	-moz-animation-delay: .1s;
+	animation-delay: .1s;
+}
+
+.zn-animate-delay180 {
+	-webkit-animation-delay: .180s;
+	-moz-animation-delay: .180s;
+	animation-delay: .180s;
+}
+
+.zn-animate-delay200 {
+	-webkit-animation-delay: .2s;
+	-moz-animation-delay: .2s;
+	animation-delay: .2s;
+}
+
+.zn-animate-delay300 {
+	-webkit-animation-delay: .3s;
+	-moz-animation-delay: .3s;
+	animation-delay: .3s;
+}
+
+.zn-animate-delay400 {
+	-webkit-animation-delay: .4s;
+	-moz-animation-delay: .4s;
+	animation-delay: .4s;
+}
+
+.zn-animate-delay500 {
+	-webkit-animation-delay: .5s;
+	-moz-animation-delay: .5s;
+	animation-delay: .5s;
+}
+
+.zn-animate-delay700 {
+	-webkit-animation-delay: .7s;
+	-moz-animation-delay: .7s;
+	animation-delay: .7s;
+}
+
+.zn-animate-delay1000 {
+	-webkit-animation-delay: 1s;
+	-moz-animation-delay: 1s;
+	animation-delay: 1s;
+}

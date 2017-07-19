@@ -80,7 +80,7 @@ module.exports = React.createClass({
 		return (
 			<Layout {...this.props} className={zn.react.classname('rt-activity-layout', this.props.className)}>
 				<Layout.Header style={_styles.header}>{_children[0]}</Layout.Header>
-				<Layout.Body style={_styles.body}>{this.__bodyRender()}</Layout.Body>
+				{this.props.barWidth && <Layout.Body style={_styles.body}>{this.__bodyRender()}</Layout.Body>}
 				<Layout.Footer style={_styles.footer}>{_children[1]}</Layout.Footer>
 			</Layout>
 		);
