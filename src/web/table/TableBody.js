@@ -1,6 +1,5 @@
 var React = require('react');
 var TableRow = require('./TableRow');
-var Loading = require('../loader/DataLoader');
 
 module.exports = React.createClass({
 	displayName:'TableBody',
@@ -147,7 +146,7 @@ module.exports = React.createClass({
 			return <tbody>
 				<tr>
 					<td style={{position:'absolute', width: '100%'}}>
-						<Loading loader="arrow-circle" content="Loading ......" />
+						<zn.react.DataLoader loader="arrow-circle" content="Loading ......" />
 					</td>
 				</tr>
 			</tbody>;

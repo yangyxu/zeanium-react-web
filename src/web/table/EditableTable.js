@@ -1,6 +1,4 @@
 var React = require('react');
-var Table = require('./Table');
-var Icon = require('../basic/Icon');
 module.exports = React.createClass({
 	getDefaultProps: function (){
 		return {
@@ -39,7 +37,7 @@ module.exports = React.createClass({
 	__tableHeaderRender: function (item, index, columnSize){
 		if(index == columnSize-1){
 			return <div style={{textAlign: 'center'}}>
-				<Icon title='Add Row(Insert Last Row)' icon="fa-plus" onClick={this.__onRowAdd} />
+				<zn.react.Icon title='Add Row(Insert Last Row)' icon="fa-plus" onClick={this.__onRowAdd} />
 			</div>;
 		}
 	},
@@ -47,10 +45,10 @@ module.exports = React.createClass({
 		switch (columnIndex) {
 			case this.props.headers.length:
 				return <div style={{textAlign: 'center'}}>
-					<Icon title="Delete Row(Delete This Row)" icon="fa-minus" onClick={()=>this.__onRowDelete(rowIndex, columnIndex, data, item, value)} />
+					<zn.react.Icon title="Delete Row(Delete This Row)" icon="fa-minus" onClick={()=>this.__onRowDelete(rowIndex, columnIndex, data, item, value)} />
 					{
 						/*
-							<Icon title="Append Row(Append To This Row Before)" icon="fa-plus" onClick={()=>this.__onRowAppend(rowIndex, columnIndex, data, item, value)} />
+							<zn.react.Icon title="Append Row(Append To This Row Before)" icon="fa-plus" onClick={()=>this.__onRowAppend(rowIndex, columnIndex, data, item, value)} />
 						*/
 					}
 				</div>;
@@ -58,7 +56,7 @@ module.exports = React.createClass({
 	},
 	render: function(){
 		return (
-			<Table
+			<zn.react.Table
 				ref="dstable"
 				singleSelect={false}
 				editable={true}

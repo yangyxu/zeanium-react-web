@@ -1,7 +1,6 @@
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var React = require('react');
-var Checkbox = require('../form/Checkbox');
 var TableFilter = require('./TableFilter');
 
 module.exports = React.createClass({
@@ -23,7 +22,7 @@ module.exports = React.createClass({
 		if (!_content) {
 			switch (item.type) {
 				case 'checkbox':
-					_content = React.createElement(Checkbox, _extends({}, item, { onChange: this.__onCheckBoxChange }));
+					_content = React.createElement(zn.react.Checkbox, _extends({}, item, { onChange: this.__onCheckBoxChange }));
 					break;
 				default:
 					_content = React.createElement(

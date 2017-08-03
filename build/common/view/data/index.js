@@ -1,3 +1,3 @@
-module.exports = zn.arrayValueToObject(['Pager', 'PagerView', 'PagingList', 'PullRefreshList', 'ListView', 'TreeListView', 'Table', 'Steps', 'EditableTable'], function (value, index) {
+module.exports = zn.arrayValueToObject(['ListView', 'Pager', 'PagerView', 'PagingList', 'PullRefreshList', 'Steps', 'TreeListView'], function (value, index) {
     return require('./' + value + '.js');
 });

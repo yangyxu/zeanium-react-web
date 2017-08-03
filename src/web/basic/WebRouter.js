@@ -25,8 +25,8 @@ var Router = React.createClass({
 	}
 });
 
-var URLRouter = React.createClass({
-	displayName:'URLRouter',
+var WebRouter = React.createClass({
+	displayName:'WebRouter',
 	getDefaultProps: function (){
 		return {
 			animate: false
@@ -107,6 +107,6 @@ var URLRouter = React.createClass({
 	}
 });
 
-URLRouter.Router = Router;
+WebRouter.Router = Router;
 
-module.exports = URLRouter;
+module.exports = WebRouter;

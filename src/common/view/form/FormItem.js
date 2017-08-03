@@ -3,7 +3,7 @@ var RTList = require('../basic/RTList');
 var RTFlexItem = require('../basic/RTFlexItem');
 var inputs = require('./inputs.js');
 
-module.exports = React.createClass({
+var FormItem = React.createClass({
 	displayName:'FormItem',
 	getDefaultProps: function (){
 		return {
@@ -48,11 +48,7 @@ module.exports = React.createClass({
 		var _input = null,
 			_type = this.props.type;
 		if(zn.is(_type, 'string')){
-			if(_type=='EditableTable'){
-				_input = require('../data/EditableTable.js');
-			}else {
-				_input = inputs[_type];
-			}
+			_input = inputs[_type];
 		}else {
 			_input = _type;
 		}
@@ -70,3 +66,6 @@ module.exports = React.createClass({
 		);
 	}
 });
+
+FormItem.inputs = inputs;
+module.exports = FormItem;

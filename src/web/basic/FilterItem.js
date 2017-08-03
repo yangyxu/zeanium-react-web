@@ -1,9 +1,4 @@
 var React = require('react');
-var RTFlexItem = require('../basic/RTFlexItem');
-var Dropdown = require('../basic/Dropdown');
-var ListView = require('../data/ListView.js');
-var inputs = require('../form/inputs.js');
-
 var OPTS = {
 	'=': { text: '等于', value: '=', icon: 'fa-exchange' },
 	'>': { text: '大于', value: '>', icon: 'fa-angle-left' },
@@ -86,22 +81,22 @@ module.exports = React.createClass({
 		return <span><i style={{width: 16, height: 16}} className={'fa ' + item.icon} />{item.text}</span>;
 	},
 	__popoverRender: function (){
-		return <ListView itemRender={this.__listItemRender} data={this.__getData()} value={this.state.opt} onItemClick={this.__onListItemClick} style={{border:'none',backgroundColor:'#FFF'}} />;
+		return <zn.react.ListView itemRender={this.__listItemRender} data={this.__getData()} value={this.state.opt} onItemClick={this.__onListItemClick} style={{border:'none',backgroundColor:'#FFF'}} />;
 	},
 	render: function(){
-		var Input = inputs[this.props.type];
+		var Input = zn.react.FormItem.inputs[this.props.type];
 		return (
-			<RTFlexItem
+			<zn.react.RTFlexItem
 				{...this.props}
 				className={'rt-filter-item ' + this.props.className + ' '+ this.state.status + ' ' +(this.props.fullWidth?'full':'')} >
-				<Dropdown
+				<zn.react.Dropdown
 					className="filter-dropdown"
 					popoverRender={this.__popoverRender}
 					popoverWidth={this.props.popoverWidth} >
 					<i className={"filter-icon fa " + this.state.optIcon} />
-				</Dropdown>
+				</zn.react.Dropdown>
 				{Input && <Input ref="input" {...this.props} disabled={this.state.disabled} value={this.state.value} className="filter-input" />}
-			</RTFlexItem>
+			</zn.react.RTFlexItem>
 		);
 	}
 });

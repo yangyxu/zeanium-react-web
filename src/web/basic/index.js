@@ -1,5 +1,6 @@
 module.exports = zn.arrayValueToObject([
-    'URLRouter',
+    'FilterItem',
+    'WebRouter',
     'XlsxImporter',
 ], function (value){
     return require('./' + value + '.js');

@@ -3,7 +3,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 var React = require('react');
 var Pager = require('./Pager');
 var ActivityLayout = require('../basic/ActivityLayout');
-var pagerviews = require('./pagerviews.js');
 module.exports = React.createClass({
 	displayName: 'PagerView',
 	getDefaultProps: function getDefaultProps() {
@@ -47,7 +46,11 @@ module.exports = React.createClass({
 		return this.refs.view.setValue(value), this;
 	},
 	render: function render() {
-		var View = pagerviews[this.props.view];
+		var View = this.props.view;
+		if (typeof this.props.view == 'string') {
+			View = zn.react[this.props.view];
+		}
+
 		if (!View || !this.props.data) {
 			return null;
 		}

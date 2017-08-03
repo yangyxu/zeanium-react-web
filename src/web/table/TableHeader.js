@@ -1,5 +1,4 @@
 var React = require('react');
-var Checkbox = require('../form/Checkbox');
 var TableFilter = require('./TableFilter');
 
 module.exports = React.createClass({
@@ -23,7 +22,7 @@ module.exports = React.createClass({
 		if(!_content){
 			switch (item.type) {
 				case 'checkbox':
-					_content = <Checkbox {...item} onChange={this.__onCheckBoxChange} />;
+					_content = <zn.react.Checkbox {...item} onChange={this.__onCheckBoxChange} />;
 					break;
 				default:
 					_content = <div onClick={()=>this.__onColClick(item, index)}>

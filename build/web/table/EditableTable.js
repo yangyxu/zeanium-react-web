@@ -1,6 +1,4 @@
 var React = require('react');
-var Table = require('./Table');
-var Icon = require('../basic/Icon');
 module.exports = React.createClass({
 	displayName: 'exports',
 
@@ -39,7 +37,7 @@ module.exports = React.createClass({
 			return React.createElement(
 				'div',
 				{ style: { textAlign: 'center' } },
-				React.createElement(Icon, { title: 'Add Row(Insert Last Row)', icon: 'fa-plus', onClick: this.__onRowAdd })
+				React.createElement(zn.react.Icon, { title: 'Add Row(Insert Last Row)', icon: 'fa-plus', onClick: this.__onRowAdd })
 			);
 		}
 	},
@@ -51,14 +49,14 @@ module.exports = React.createClass({
 				return React.createElement(
 					'div',
 					{ style: { textAlign: 'center' } },
-					React.createElement(Icon, { title: 'Delete Row(Delete This Row)', icon: 'fa-minus', onClick: function onClick() {
+					React.createElement(zn.react.Icon, { title: 'Delete Row(Delete This Row)', icon: 'fa-minus', onClick: function onClick() {
 							return _this.__onRowDelete(rowIndex, columnIndex, data, item, value);
 						} })
 				);
 		}
 	},
 	render: function render() {
-		return React.createElement(Table, {
+		return React.createElement(zn.react.Table, {
 			ref: 'dstable',
 			singleSelect: false,
 			editable: true,

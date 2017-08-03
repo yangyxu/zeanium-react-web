@@ -1,13 +1,11 @@
 module.exports = zn.arrayValueToObject([
+    'ListView',
     'Pager',
     'PagerView',
     'PagingList',
     'PullRefreshList',
-    'ListView',
-    'TreeListView',
-    'Table',
     'Steps',
-    'EditableTable'
+    'TreeListView'
 ], function (value, index){
     return require('./'+value+'.js');
 });

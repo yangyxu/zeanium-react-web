@@ -2,7 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var Link = require('./Link');
 
-var Node = React.createClass({
+module.exports = React.createClass({
 	displayName: 'Node',
 	getDefaultProps: function getDefaultProps() {
 		return {
@@ -249,5 +249,3 @@ var Node = React.createClass({
 		);
 	}
 });
-
-module.exports = Node;

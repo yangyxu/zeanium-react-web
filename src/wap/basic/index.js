@@ -1,9 +1,11 @@
 module.exports = zn.arrayValueToObject([
     'FullPage',
     'LineLock',
-    'Router',
+    'ListFilter',
+    'PullRefresh',
     'TabBar',
     'TabFilter',
+    'WapRouter'
 ], function (value){
     return require('./' + value + '.js');
 });

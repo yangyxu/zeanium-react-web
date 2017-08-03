@@ -65,7 +65,7 @@ module.exports = zn.react.Application = zn.Class({
             return this.render && this.render.call(this, this.gets());
         },
         update: function (view){
-            var _Router = zn.react.isMobile()?zn.react.Router:zn.react.URLRouter;
+            var _Router = zn.react.isMobile()?zn.react.WapRouter:zn.react.WebRouter;
             var _view = view || this.__getRenderView() || <_Router home={this.get('home')} routers={this._routers} />,
                 _container = this.get('container');
             _container = zn.type(_container)=='string'?document.getElementById(_container):_container;

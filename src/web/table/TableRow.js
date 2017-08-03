@@ -1,8 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Checkbox = require('../form/Checkbox');
-var inputs = require('../form/inputs.js');
-var Icon = require('../basic/Icon');
 
 module.exports = React.createClass({
 	displayName:'TableRow',
@@ -110,10 +107,10 @@ module.exports = React.createClass({
 			switch (item.type) {
 				case 'checkbox':
 					_value = _value==undefined ? this.props.checked : _value;
-					_content = this.state.editable?<Icon icon="fa-edit" />:<Checkbox onChange={this.__onCheckBoxChange} checked={_value} />;
+					_content = this.state.editable?<zn.react.Icon icon="fa-edit" />:<zn.react.Checkbox onChange={this.__onCheckBoxChange} checked={_value} />;
 					break;
 				default:
-					var inputs = require('../form/inputs.js');
+					var inputs = zn.react.FormItem.inputs;
 					var _Input = (inputs[item.type]||inputs['Input'])
 					_content = this.state.editable?<_Input {...item} value={_value} text={_value} onChange={(value, input, event)=>this.__onTableColumnChange(this.props.index, index, value, input, event, item)} />:<span>{_value}</span>;
 					break;

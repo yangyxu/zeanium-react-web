@@ -1,7 +1,7 @@
 require('./zn.react.js');
 require('./zn.react.Application.js');
 require('./util/index.js');
-['global', 'basic', 'data', 'form', 'graph', 'loader'].forEach(function (path, index) {
+['basic', 'data', 'form', 'loader'].forEach(function (path, index) {
     path = './view/' + path + '/index.js';
     zn.overwrite(zn.react, require(path));
 });

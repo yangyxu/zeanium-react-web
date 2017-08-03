@@ -2,7 +2,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var React = require('react');
 var TableRow = require('./TableRow');
-var Loading = require('../loader/DataLoader');
 
 module.exports = React.createClass({
 	displayName: 'TableBody',
@@ -155,7 +154,7 @@ module.exports = React.createClass({
 					React.createElement(
 						'td',
 						{ style: { position: 'absolute', width: '100%' } },
-						React.createElement(Loading, { loader: 'arrow-circle', content: 'Loading ......' })
+						React.createElement(zn.react.DataLoader, { loader: 'arrow-circle', content: 'Loading ......' })
 					)
 				)
 			);

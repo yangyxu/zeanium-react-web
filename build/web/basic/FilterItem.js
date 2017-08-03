@@ -1,11 +1,6 @@
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var React = require('react');
-var RTFlexItem = require('../basic/RTFlexItem');
-var Dropdown = require('../basic/Dropdown');
-var ListView = require('../data/ListView.js');
-var inputs = require('../form/inputs.js');
-
 var OPTS = {
 	'=': { text: '等于', value: '=', icon: 'fa-exchange' },
 	'>': { text: '大于', value: '>', icon: 'fa-angle-left' },
@@ -93,16 +88,16 @@ module.exports = React.createClass({
 		);
 	},
 	__popoverRender: function __popoverRender() {
-		return React.createElement(ListView, { itemRender: this.__listItemRender, data: this.__getData(), value: this.state.opt, onItemClick: this.__onListItemClick, style: { border: 'none', backgroundColor: '#FFF' } });
+		return React.createElement(zn.react.ListView, { itemRender: this.__listItemRender, data: this.__getData(), value: this.state.opt, onItemClick: this.__onListItemClick, style: { border: 'none', backgroundColor: '#FFF' } });
 	},
 	render: function render() {
-		var Input = inputs[this.props.type];
+		var Input = zn.react.FormItem.inputs[this.props.type];
 		return React.createElement(
-			RTFlexItem,
+			zn.react.RTFlexItem,
 			_extends({}, this.props, {
 				className: 'rt-filter-item ' + this.props.className + ' ' + this.state.status + ' ' + (this.props.fullWidth ? 'full' : '') }),
 			React.createElement(
-				Dropdown,
+				zn.react.Dropdown,
 				{
 					className: 'filter-dropdown',
 					popoverRender: this.__popoverRender,

@@ -1,7 +1,6 @@
 var React = require('react');
 var Pager = require('./Pager');
 var ActivityLayout = require('../basic/ActivityLayout');
-var pagerviews = require('./pagerviews.js');
 module.exports = React.createClass({
 	displayName:'PagerView',
 	getDefaultProps: function (){
@@ -47,7 +46,11 @@ module.exports = React.createClass({
 		return this.refs.view.setValue(value), this;
 	},
 	render: function () {
-		var View = pagerviews[this.props.view];
+		var View = this.props.view;
+		if(typeof this.props.view == 'string'){
+			View = zn.react[this.props.view];
+		}
+
 		if(!View||!this.props.data){
 			return null;
 		}

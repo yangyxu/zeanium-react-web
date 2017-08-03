@@ -1,3 +1,3 @@
-module.exports = zn.arrayValueToObject(['FullPage', 'LineLock', 'Router', 'TabBar', 'TabFilter'], function (value) {
+module.exports = zn.arrayValueToObject(['FullPage', 'LineLock', 'ListFilter', 'PullRefresh', 'TabBar', 'TabFilter', 'WapRouter'], function (value) {
     return require('./' + value + '.js');
 });

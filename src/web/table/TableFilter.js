@@ -1,6 +1,4 @@
 var React = require('react');
-var FilterItem = require('../filter/FilterItem');
-var Icon = require('../basic/Icon');
 
 module.exports = React.createClass({
 	displayName:'TableFilter',
@@ -63,11 +61,11 @@ module.exports = React.createClass({
 		var _content = null;
 		switch (item.type) {
 			case 'checkbox':
-				_content = <Icon icon="fa-filter" />;
+				_content = <zn.react.Icon icon="fa-filter" />;
 				break;
 			case 'action':
 				item.textAlign = 'center';
-				_content = <Icon onClick={this.__onFilter} icon="fa-search" />
+				_content = <zn.react.Icon onClick={this.__onFilter} icon="fa-search" />
 				break;
 			default:
 				if(item.filter){
@@ -80,8 +78,7 @@ module.exports = React.createClass({
 							onEnter: this.__onFilterItemChange
 						}
 					}
-
-					_content = <FilterItem
+					_content = <zn.react.FilterItem
 									popoverWidth={80}
 									opts={['like','=']}
 									name={item.name}
