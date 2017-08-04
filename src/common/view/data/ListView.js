@@ -13,7 +13,7 @@ var ListView = React.createClass({
 			value: null,
 			textKey: 'text',
 			valueKey: 'value',
-			noborder: true,
+			noborder: false,
 			selectMode: 'radio'  //radio, checkbox, none
 		}
 	},
