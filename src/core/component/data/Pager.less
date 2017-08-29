@@ -1,0 +1,52 @@
+@import "../../../rt.variables.less";
+
+@color: #606B86;
+@active-color: #9BA5BE;
+@disable-color: #c7c7c7;
+.rt-pager{
+    overflow: hidden;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    color: @color;
+    .pages {
+        list-style-type: none;
+        display: inline-block;
+        vertical-align: middle;
+        padding: 0;
+        margin: 5px 5px;
+        border-radius: 3px;
+        border: 1px solid @color;
+        &>li {
+            display: inline-block;
+            cursor: not-allowed;
+            &.page{
+                padding: 2px 8px;
+                text-align: center;
+                color: @disable-color;
+                &:first-child{
+
+                }
+                &.enabled{
+                    border-color: @color;
+                    color: @color;
+                    cursor: pointer;
+                    &:hover{
+                        opacity: 0.8;
+                    }
+                }
+                &.active{
+                    background-color: @active-color;
+                    color: #FFF;
+                }
+            }
+        }
+    }
+    .count{
+        border-radius: 3px;
+        margin: 0px 4px;
+        padding: 2px 5px;
+        border: 1px solid @color;
+    }
+
+}

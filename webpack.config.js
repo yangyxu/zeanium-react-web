@@ -3,10 +3,11 @@ var webpack = require('webpack');
 var path = require('path');
 var zn = require('zeanium-node');
 var config = require('./webpack.init.js');
+
 module.exports = zn.overwrite({
     context: path.join(process.cwd(), 'src'),
     entry: {
-        "index": ['./common/index.js'],
+        "index": ['./core/index.js'],
         "index.web": ['./web/index.js'],
         "index.wap": ['./wap/index.js']
     },

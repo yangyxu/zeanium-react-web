@@ -1,43 +1,22 @@
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var webpack = require('webpack');
 var path = require('path');
-var argv = process.argv;
-var pageIndex = argv.indexOf('--page'),
-    page = (pageIndex !== -1) ? argv[pageIndex+1] : '',
-    uglifyIndex = argv.indexOf('--uglify'),
-    context = [process.cwd(), 'src'],
-    entry = {
-        "index": ['./_entry.js']
+var zn = require('zeanium-node');
+var config = require('./webpack.init.js');
+
+module.exports = zn.extend({
+    context: path.join(process.cwd(), 'src'),
+    entry: {
+        "index": ['_entry.js']
     },
-    plugins = [
-        new ExtractTextPlugin("[name].css")
-    ];
-if(page){
-    entry = {};
-    entry[page] = ['./_entry.js'];
-    context.push(page);
-}
-
-if(uglifyIndex!=-1){
-    plugins.push(new webpack.optimize.UglifyJsPlugin({
-        compress: {
-            warnings: false
-        }
-    }));
-}
-
-module.exports = {
-    context: path.join.apply(null, context),
-    entry: entry,
+    output: {
+        path: path.join(process.cwd(), 'dist'),
+        filename: '[name].js'
+    },
     externals: {
         "react": "React",
         "react-dom": "ReactDOM"
     },
-    output: {
-        path: path.join(process.cwd(), 'www', 'dist'),
-        filename: '[name].js'
-    },
-    plugins: plugins,
     module: {
         // Disable handling of unknown requires
         unknownContextRegExp: /$^/,
@@ -52,7 +31,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.js[x]?$/,
-                exclude: /(node_modules|bower_components)/,
+                exclude: /(node_modules)/,
                 loader: 'babel',
                 query: {
                     presets: ['es2015','react'],
@@ -74,5 +53,13 @@ module.exports = {
                 loader: 'url-loader?limit=8192'
             }
         ]
-    }
-};
+    },
+    plugins: [
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        }),
+        new ExtractTextPlugin("[name].css")
+    ]
+}, config);

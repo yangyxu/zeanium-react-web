@@ -1,0 +1,41 @@
+.rt-file-uploader{
+    .icon{
+        width: 64px;
+        height: 64px;
+        line-height: 64px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        border: 2px dashed #ccc;
+        color: #a0a0a0;
+    }
+    .file-list{
+        .file{
+            overflow: hidden;
+            position: relative;
+            float: left;
+            margin: 0px 5px 5px 0px;
+            .fa-remove{
+                position: absolute;
+                top: 0px;
+                right: 0px;
+                margin: 5px;
+                &:hover{
+                    color: red;
+                }
+            }
+            img{
+                width: 96px;
+                height: 96px;
+            }
+            a{
+                font-size: 12px;
+                text-decoration: none;
+                &:hover{
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

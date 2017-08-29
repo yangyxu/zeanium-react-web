@@ -1,0 +1,27 @@
+@base-color: #bdbdbd;
+
+.rt-search{
+    padding: 4px;
+    display: flex;
+    position: relative;
+    color: @base-color;
+    &.foucs{
+        .search-icon{
+            color: #03A9F4;
+        }
+    }
+    .search-icon{
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        margin-top: -8px;
+        cursor: pointer;
+    }
+    .search-input{
+        flex: 1;
+        border: 1px solid @base-color;
+        border-radius: 25px;
+        padding-left: 22px;
+        width: 100%;
+    }
+}

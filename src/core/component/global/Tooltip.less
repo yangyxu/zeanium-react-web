@@ -1,0 +1,80 @@
+.rt-tooltip-old{
+    position: fixed;
+    width: 400px;
+    height: 238px;
+    left: 50%;
+    top: 50%;
+    margin-top: -119px;
+    margin-left: -200px;
+    background-color: #F3F3F3;
+    border-radius: 6px;
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.4);
+    &::before{
+        content: '';
+        position: absolute;
+        left: -14px;
+        top: 28px;
+        border-style: solid;
+        border-width: 10px 14px 10px 0;
+        border-color: rgba(0, 0, 0, 0) #f3f3f3 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+    }
+
+    &>.close{
+        cursor: pointer;
+        &::before, &::after{
+            content: "";
+            position: absolute;
+            height: 13px;
+            width: 13px;
+            top: 26px;
+            right: 31px;
+            border-top: 2px solid #7c7c7c;
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+        }
+        &::before{
+            right: 40px;
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+    }
+}
+
+.rt-tooltip{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    background-color: #3d4245;
+    color: #FFF;
+    border-radius: 3px;
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.4);
+    padding: 5px 8px;
+    max-width: 240px;
+
+
+    &.arrow-top::before{
+        content: '';
+        position: absolute;
+        left: -10px;
+        top: 8px;
+        border-style: solid;
+        border-width: 8px 10px 8px 0;
+        border-color: rgba(0, 0, 0, 0) #3d4245 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+    }
+
+    &.arrow-left::before{
+        content: '';
+        position: absolute;
+        left: -10px;
+        top: 8px;
+        border-style: solid;
+        border-width: 8px 10px 8px 0;
+        border-color: rgba(0, 0, 0, 0) #3d4245 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+    }
+}

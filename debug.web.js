@@ -1,2 +1,3 @@
-require('./src/common/index.js')
+require('./src/core/index.js');
+require('./src/wap/index.js');
 module.exports = require('./src/web/index.js');

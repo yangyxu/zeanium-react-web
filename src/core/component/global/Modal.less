@@ -1,0 +1,111 @@
+@import "../../../rt.variables.less";
+
+.rt-modal {
+    position: absolute;
+    z-index: 11000;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    -webkit-transition-property: -webkit-transform, opacity;
+    transition-property: transform, opacity;
+    color: #3d4145;
+    visibility: hidden;
+    &.modal-in{
+        opacity: 1;
+        visibility: visible;
+        -webkit-transition-duration: 400ms;
+        transition-duration: 400ms;
+    }
+    &.modal-out{
+        opacity: 0;
+        visibility: hidden;
+        z-index: 10999;
+        -webkit-transition-duration: 400ms;
+        transition-duration: 400ms;
+    }
+
+    &.overlay{
+        background-color: rgba(0, 0, 0, 0.3);
+        overflow: auto;
+    }
+
+    @media (max-width: 780px) {
+        .modal-middle {
+            width: 80% !important;
+            margin-left: -40% !important;
+        }
+    }
+
+    .rt-animate>*:first-child{
+        position: absolute;
+    }
+
+    .modal-top, .modal-bottom, .modal-left, .modal-right, .modal-middle, .modal-full{
+        position: absolute;
+        overflow: hidden;
+        box-shadow: 0 0 9px 0 rgba(0,0,0,.3);
+        /*
+        box-shadow: 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24), inset 0 4px 6px -4px rgba(0,0,0,.24); google solution
+        */
+    }
+
+    .modal-top{
+        top: 0px;
+        width: 100% !important;
+    }
+
+    .modal-bottom{
+        bottom: 0px;
+        width: 100% !important;
+    }
+
+    .modal-left{
+        left: 0px;
+        height: 100% !important;
+    }
+
+    .modal-right{
+        right: 0px;
+        height: 100% !important;
+    }
+
+    .modal-middle{
+        position: relative;
+        top: 50%;
+        left: 50%;
+        width: 540px;
+        margin-left: -270px;
+        .close{
+            /*
+            background-color: #e6e6e6;*/
+            right: 0px;
+            top: 0px;
+        }
+    }
+
+    .modal-full{
+        position: absolute;
+        height: 100% !important;
+        width: 100% !important;
+        background-color: #FFF;
+
+        .close{
+            right: 0px;
+            top: 0px;
+        }
+    }
+
+    .modal-middle, .modal-full{
+        .close{
+            position: absolute;
+            padding: 10px;
+            color: #f00;
+            font-size: 20px;
+            cursor: pointer;
+            &:hover, &:active{
+                color: #d9534f;
+                opacity: 0.8;
+            }
+        }
+    }
+}

@@ -1,0 +1,34 @@
+@import "../../../rt.variables.less";
+
+.rt-list-view.rt-list-view-popover {
+    color: @rt-base-color;
+    width: auto !important;
+    background-color: #FFF;
+    overflow: auto;
+    max-height: 240px;
+    .rt-item {
+        line-height: 20px;
+        padding: 6px;
+        text-align: left;
+        .fa{
+            margin: 3px;
+        }
+
+        &:first-child{
+            margin-top: 5px;
+        }
+
+        &:last-child{
+            margin-bottom: 5px;
+        }
+
+        &[data-checked="true"]{
+            color: #FFF;
+            background-color: @rt-color-primary !important;
+        }
+
+        &:hover{
+            background-color: #eee;
+        }
+    }
+}

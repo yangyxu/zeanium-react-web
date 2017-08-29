@@ -1,0 +1,116 @@
+@import "../../../rt.variables.less";
+
+.rt-alert {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: #e8e8e8;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 240px;
+    margin-left: -120px;
+
+    .alert-inner{
+        display: flex;
+        flex-direction: column;
+        min-height: 64px;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        padding: 10px 20px;
+        .alert-title{
+            font-weight: 500;
+            font-size: 17px;
+            line-height: 28px;
+            text-align: center;
+        }
+        .alert-content{
+            line-height: 20px;
+            padding: 5px;
+            width: 100%;
+            text-align: center;
+            .alert-input{
+                width: 90%;
+            }
+        }
+
+        &::after{
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            right: auto;
+            top: auto;
+            height: 1px;
+            width: 100%;
+            background-color: #b5b5b5;
+            display: block;
+            z-index: 15;
+            -webkit-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
+        }
+    }
+
+    .alert-btns{
+        line-height: 40px;
+        overflow: hidden;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        flex-direction: row;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        cursor: pointer;
+        .alert-btn{
+            text-align: center;
+            flex: 1;
+            font-weight: bold;
+            color: #0894ec;
+            border-left: 1px solid #b5b5b5;
+            &:first-child{
+                border-left: 0px;
+            }
+            &:active{
+                opacity: 0.8;
+                background-color: #efefef;
+            }
+        }
+
+    }
+
+    @media (max-width: 780px) {
+        .rt-alert {
+            width: 80% !important;
+            margin-left: -40% !important;
+        }
+    }
+}
+
+.rt-dialog{
+    background-color: #FFF;
+    .dialog-header{
+        height: 40px;
+        line-height: 40px;
+        color: #777070;
+        font-weight: bold;
+        text-align: left;
+        padding: 0px 10px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.075);
+        box-shadow: 0 1px 3px 0 rgba(0,37,55,.05);
+    }
+    .dialog-body{
+        padding: 4px;
+    }
+
+    &.fixed{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        max-height: 480px;
+        .dialog-body{
+            flex: 1;
+            overflow: auto;
+        }
+    }
+}
