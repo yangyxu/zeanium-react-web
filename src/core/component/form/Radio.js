@@ -22,7 +22,7 @@ var RadioItem = React.createClass({
 	},
 	render: function(){
 		return (
-			<RTItem {...this.props} className={'rt-radio-item ' + this.props.className}>
+			<RTItem {...this.props} className={'zr-radio-item ' + this.props.className}>
 				<input type='radio' name={this.props.name} value={this.props.value} defaultChecked={this.props.checked} />
 				<i className='icon fa fa-circle' />
 				{this.__renderContent()}
@@ -74,7 +74,7 @@ var Radio = React.createClass({
 	render: function(){
 		return (
 			<RTList {...this.props}
-				className={'rt-radio ' + this.props.className}
+				className={'zr-radio ' + this.props.className}
 				itemRender={this.__itemRender}/>
 		);
 	}

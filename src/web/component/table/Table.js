@@ -70,7 +70,7 @@ module.exports = React.createClass({
 		}
 		this._columnSize = _items.length;
 		return (
-			<table style={this.props.style} className={"rt-table " + this.props.className} data-fixed={this.props.fixed} cellPadding="0" cellSpacing="0">
+			<table style={this.props.style} className={"zr-table " + this.props.className} data-fixed={this.props.fixed} cellPadding="0" cellSpacing="0">
 				<TableColgroup {...this.props} items={_items} />
 				{this.props.showHeader && <TableHeader
 					ref="header"

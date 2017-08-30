@@ -14,7 +14,7 @@ var Toast = React.createClass({
 	},
 	render: function(){
 		return (
-			<div className={zn.react.classname('rt-toast toast-in', this.props.type)} >
+			<div className={zn.react.classname('zr-toast toast-in', this.props.type)} >
 				{this.props.content}
 			</div>
 		);
@@ -25,7 +25,7 @@ module.exports = zn.toast = zn.Class({
 	static: true,
 	methods: {
 		init: function (){
-			this._dom = zn.dom.createRootElement("div", { class: "rt-toast-container" });
+			this._dom = zn.dom.createRootElement("div", { class: "zr-toast-container" });
 		},
 		open: function (type, content, delay){
 			var _dom = document.createElement('div');

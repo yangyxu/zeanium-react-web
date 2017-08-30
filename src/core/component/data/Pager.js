@@ -172,7 +172,7 @@ module.exports = React.createClass({
 	render:function(){
 		var titles = this.getTitles;
 		return (
-			<nav className={"rt-pager " + this.props.className}>
+			<nav className={"zr-pager " + this.props.className}>
 				<ul className="pages">
 					<Page className="btn-first-page"
 						  key="btn-first-page"

@@ -32,7 +32,7 @@ module.exports = React.createClass({
 		return _content;
 	},
 	getParent: function (target){
-		if(target.classList.contains('rt-dropdown')){
+		if(target.classList.contains('zr-dropdown')){
 			return target;
 		}else {
 			return this.getParent(target.parentNode);
@@ -51,7 +51,7 @@ module.exports = React.createClass({
 		this._children = _children;
 
 		return (
-			<div className={zn.react.classname("rt-dropdown", this.props.className)} style={this.props.style}>
+			<div className={zn.react.classname("zr-dropdown", this.props.className)} style={this.props.style}>
 				{_children[0]}
 			</div>
 		);

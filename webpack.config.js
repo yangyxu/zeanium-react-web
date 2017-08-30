@@ -1,10 +1,22 @@
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var webpack = require('webpack');
 var path = require('path');
-var zn = require('zeanium-node');
 var config = require('./webpack.init.js');
+var _overwrite = function (target){
+    var _target = target||{};
+    for(var i = 1, _len = arguments.length; i < _len; i++){
+        var _args = arguments[i];
+        for(var _key in _args){
+            if(_args.hasOwnProperty(_key) && _target[_key]===undefined){
+                _target[_key] = _args[_key];
+            }
+        }
+    }
 
-module.exports = zn.overwrite({
+    return _target;
+}
+
+module.exports = _overwrite({
     context: path.join(process.cwd(), 'src'),
     entry: {
         "index": ['./core/index.js'],

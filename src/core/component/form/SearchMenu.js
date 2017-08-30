@@ -41,14 +41,14 @@ module.exports = React.createClass({
 		return <div>
 			<div></div>
 			<ListView {...this.props}
-				className="rt-list-view-popover"
+				className="zr-list-view-popover"
 				value={this.state.value}
 				onItemClick={this.__onListItemClick} />
 		</div>;
 	},
 	render: function(){
 		return (
-			<Dropdown {...this.props} popoverRender={this.__popoverRender} className={"rt-search-menu " + this.props.className} >
+			<Dropdown {...this.props} popoverRender={this.__popoverRender} className={"zr-search-menu " + this.props.className} >
 				<div className="menu-view">
 					<div className className="text">{this.__textRender()}</div>
 					<span className="trigger"><i className="fa fa-angle-down" /></span>

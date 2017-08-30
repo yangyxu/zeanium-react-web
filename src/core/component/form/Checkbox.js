@@ -42,7 +42,7 @@ module.exports = React.createClass({
 	},
 	render: function(){
 		return (
-			<RTItem {...this.props} className={'rt-checkbox ' + this.props.className} checked={this.state.checked} onClick={this.__onClick}>
+			<RTItem {...this.props} className={'zr-checkbox ' + this.props.className} checked={this.state.checked} onClick={this.__onClick}>
 				<input name={this.props.name} type='checkbox' defaultChecked={this.state.checked} />
 				<span className="mark"><i className='icon fa fa-check' /></span>
 				{this.__renderContent()}

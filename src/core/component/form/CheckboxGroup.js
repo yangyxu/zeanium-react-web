@@ -54,7 +54,7 @@ module.exports = React.createClass({
 	render: function(){
 		return (
 			<RTList {...this.props}
-				className={'rt-checkbox-group ' + this.props.className}
+				className={'zr-checkbox-group ' + this.props.className}
 				itemRender={this.__itemRender}/>
 		);
 	}

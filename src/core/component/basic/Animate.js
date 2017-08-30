@@ -56,7 +56,7 @@ module.exports = React.createClass({
 	render: function(){
 		return (
 			<div className={zn.react.classname(
-					"rt-animate",
+					"zr-animate",
 					((this.state.active||this.state.animating)?'active':''),
 					((!!this.props.onTop&&this.state.animation)?'ontop':''),
 					this.props.className,

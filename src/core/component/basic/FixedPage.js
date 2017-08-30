@@ -32,7 +32,7 @@ module.exports = React.createClass({
 			_begin += 10;
 		}
 		return (
-			<FixedLayout className={zn.react.classname('rt-fixed-page', zn.react.isMobile()?'page-mobile':'page-pc', this.props.className)}
+			<FixedLayout className={zn.react.classname('zr-fixed-page', zn.react.isMobile()?'page-mobile':'page-pc', this.props.className)}
 				direction="top-bottom"
 				begin={_begin}
 				end={(this.props.footerView?this.props.end:0)}
@@ -42,7 +42,7 @@ module.exports = React.createClass({
 					{this.props.canBack && <i className={"back fa " + this.props.icon} onClick={this.__onBack} />}
 					<div className="title">{this.props.title}</div>
 					<div className="btns">
-						<ButtonGroup className="rt-flex" items={this.props.toolbarItems} onClick={this.props.onToolbarClick} />
+						<ButtonGroup className="zr-flex" items={this.props.toolbarItems} onClick={this.props.onToolbarClick} />
 					</div>
 				</div>
 				<div className="page-body">{this.props.children}</div>

@@ -62,7 +62,7 @@ module.exports = React.createClass({
 		xhr.addEventListener("load", this.__ajaxUploadComplete, false);
 		xhr.addEventListener("error", this.__ajaxUploadError, false);
 		xhr.addEventListener("abort", this.__ajaxUploadAbort, false);
-		xhr.open("POST", Store.fixURL(this.props.action||''), "true");
+		xhr.open("POST", zn.http.fixURL(this.props.action||''), "true");
 		xhr.send(data);
 	},
 	__ajaxUploadProgress: function (evt){
@@ -94,11 +94,11 @@ module.exports = React.createClass({
 	},
 	render: function(){
 		return (
-			<form className={"rt-ajax-uploader " + this.props.className}
+			<form className={"zr-ajax-uploader " + this.props.className}
 				style={this.props.style}
 				data-loading={this.state.loading}
 				encType="multipart/form-data"
-				action={Store.fixURL(this.props.action||'')}
+				action={zn.http.fixURL(this.props.action||'')}
 				method="POST">
 				{this.props.children}
 				{this.props.size && <span className="size">{this.props.size}</span>}

@@ -1,7 +1,7 @@
-@import "../../../rt.variables.less";
+@import "../../../zr.variables.less";
 @default-color: #121212;
 
-.rt-status(@color: @default-color){
+.zr-status(@color: @default-color){
     color: @color !important;
     &>.icon{
         border-color: @color !important;
@@ -9,13 +9,13 @@
 }
 
 
-.rt-radio{
+.zr-radio{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-.rt-radio-item {
+.zr-radio-item {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -41,17 +41,17 @@
         }
     }
 
-    .rt-status(@default-color);
+    .zr-status(@default-color);
 
     &[data-checked="true"]{
         .icon::before{
             opacity: 1;
         }
-        .rt-status(@rt-checked-color);
+        .zr-status(@zr-checked-color);
     }
 
     &[data-disabled="true"]{
-        .rt-status(@rt-disabled-color);
+        .zr-status(@zr-disabled-color);
     }
 
 }

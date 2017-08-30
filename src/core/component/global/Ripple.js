@@ -5,15 +5,15 @@ module.exports = zn.ripple = zn.Class({
         },
         __addRippleEffect: function (event) {
             var _target = event.target;
-            if(!_target.classList.contains('rt-action-ripple')){
+            if(!_target.classList.contains('zr-action-ripple')){
                 return false;
             }
             var _rect = _target.getBoundingClientRect(),
-                _ripple = _target.querySelector('.rt-ripple');
+                _ripple = _target.querySelector('.zr-ripple');
 
             if (!_ripple) {
                 _ripple = document.createElement('span');
-                _ripple.className = 'rt-ripple';
+                _ripple.className = 'zr-ripple';
                 _ripple.style.height = _ripple.style.width = Math.max(_rect.width, _rect.height) + 'px';
                 _target.appendChild(_ripple);
             }

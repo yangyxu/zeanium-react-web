@@ -48,7 +48,7 @@ module.exports = React.createClass({
 
 	render: function(){
 		return (
-			<ul className={zn.react.classname('rt-tab-bar')} >
+			<ul className={zn.react.classname('zr-tab-bar')} >
 				{
 					this.props.items.map(function (item, index){
 						item.index = index;

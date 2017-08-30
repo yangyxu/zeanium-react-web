@@ -27,7 +27,7 @@ module.exports = React.createClass({
 	},
 	render: function(){
 		return (
-			<textarea className={"rt-rich-editor " + this.props.className} style={this.props.style} name={this.props.name} />
+			<textarea className={"zr-rich-editor " + this.props.className} style={this.props.style} name={this.props.name} />
 		);
 	}
 });

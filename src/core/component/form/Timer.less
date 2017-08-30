@@ -1,18 +1,18 @@
-@import "../../../rt.variables.less";
+@import "../../../zr.variables.less";
 
-.rt-status(@color: @rt-base-color){
+.zr-status(@color: @zr-base-color){
     border-color: @color;
     color: @color;
 }
 
-.rt-timer {
+.zr-timer {
     display: flex;
     flex-direction: row;
     input{
         flex: 1;
         overflow: hidden;
         border: 0.1rem solid #c7c7c7;
-        color: @rt-base-color;
+        color: @zr-base-color;
         border-radius: 0.3rem;
         padding: 0.3rem 0.8rem;
         margin: 0px;
@@ -26,7 +26,7 @@
         &:focus, &:active {
             outline: 0 none;
             outline: thin dotted \9;
-            border-color: @rt-color-primary !important;
+            border-color: @zr-color-primary !important;
         }
     }
 }

@@ -20,7 +20,7 @@ module.exports = React.createClass({
 	},
 	render: function(){
 		return (
-			<textarea className={"rt-textarea " + this.props.className}
+			<textarea className={"zr-textarea " + this.props.className}
 						required={this.props.required}
 						placeholder={this.props.placeholder}
 						{...this.props.attrs}

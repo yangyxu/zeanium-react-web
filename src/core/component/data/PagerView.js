@@ -60,7 +60,7 @@ module.exports = React.createClass({
 			pageSize: this.props.pageSize
 		});
 		return (
-			<div className={zn.react.classname("rt-pager-view", "rt-flex-layout column", this.props.className)}>
+			<div className={zn.react.classname("zr-pager-view", "zr-flex-layout column", this.props.className)}>
 				<div className="layout-body">
 					<View {...this.props} onData={this.__onTableData} dataHandler={this.__dataHandler} ref="view" />
 				</div>

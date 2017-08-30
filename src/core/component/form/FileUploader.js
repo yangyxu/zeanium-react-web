@@ -106,7 +106,7 @@ module.exports = React.createClass({
 		var _values = this.state.value.split(',');
 		var _editable = (this.props.editable && !this.props.disabled && !this.props.readonly);
 		return (
-			<div className="rt-file-uploader">
+			<div className="zr-file-uploader">
 				{_editable && <AjaxUploader
 					{...this.props}
 					onChange={this.__onChange}
@@ -120,7 +120,7 @@ module.exports = React.createClass({
 						_values.map(function (item, index){
 							if(item){
 								return <li key={index} className="file">
-									{ _editable && <i className="fa fa-remove rt-hover-self-loading" onClick={()=>this.__onRemove(item, index)} />}
+									{ _editable && <i className="fa fa-remove zr-hover-self-loading" onClick={()=>this.__onRemove(item, index)} />}
 									{this.__renderContent(item)}
 								</li>;
 							}

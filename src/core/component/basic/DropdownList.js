@@ -14,7 +14,7 @@ module.exports = React.createClass({
 	},
 	render: function(){
 		return (
-			<Dropdown {...this.props} className={"rt-dropdown-list " + this.props.className} >
+			<Dropdown {...this.props} className={"zr-dropdown-list " + this.props.className} >
 				<div className="dropdown-list-trigger">
 					{this.props.children}
 				</div>

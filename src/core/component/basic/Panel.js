@@ -12,8 +12,8 @@ var Panel = React.createClass({
 	},
 	render: function(){
 		return (
-			<div className={"rt-panel  " + this.props.className} style={this.props.style}>
-				{this.props.enableClose && <i onClick={this.props.onClose} className="rt-panel-close fa fa-close"></i>}
+			<div className={"zr-panel  " + this.props.className} style={this.props.style}>
+				{this.props.enableClose && <i onClick={this.props.onClose} className="zr-panel-close fa fa-close"></i>}
 				{this.props.children}
 			</div>
 		);
@@ -28,7 +28,7 @@ Panel.Header = React.createClass({
 		}
 	},
 	render: function(){
-		return <div className={"rt-panel-header " + this.props.className} style={this.props.style} >
+		return <div className={"zr-panel-header " + this.props.className} style={this.props.style} >
 			{
 				this.props.icon && <i className={"icon fa " + this.props.icon} />
 			}
@@ -48,7 +48,7 @@ Panel.Body = React.createClass({
 		}
 	},
 	render: function(){
-		return <div className={"rt-panel-body " + this.props.className} style={this.props.style} >
+		return <div className={"zr-panel-body " + this.props.className} style={this.props.style} >
 			{this.props.children}
 		</div>;
 	}

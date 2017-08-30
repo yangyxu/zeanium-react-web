@@ -8,8 +8,8 @@ var Preloader = React.createClass({
 	},
 	render: function(){
 		return (
-			<div className={zn.react.classname('rt-preloader', this.props.className)} >
-				<i className="fa fa-spinner rt-self-loading" />
+			<div className={zn.react.classname('zr-preloader', this.props.className)} >
+				<i className="fa fa-spinner zr-self-loading" />
 				<span>{this.props.title}</span>
 			</div>
 		);

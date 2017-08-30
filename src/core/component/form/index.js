@@ -1,4 +1,5 @@
 module.exports = zn.arrayValueToObject([
+    'AjaxUploader',
     'AutoComplete',
     'Checkbox',
     'CheckboxGroup',

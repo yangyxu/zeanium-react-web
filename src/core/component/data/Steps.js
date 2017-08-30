@@ -6,8 +6,8 @@ var Steps = React.createClass({
 	displayName:'Steps',
 	getDefaultProps: function (){
 		return {
-			className: 'rt-steps',
-			itemClassName: 'rt-steps-item',
+			className: 'zr-steps',
+			itemClassName: 'zr-steps-item',
 			float: 'none',
 			disabled: false,
 			value: null,
@@ -112,7 +112,7 @@ var Steps = React.createClass({
 		return (
 			<RTList
 				{...this.props}
-				className={'rt-list-view ' + (this.props.noborder?'noborder':'') + ' ' + this.props.className}
+				className={'zr-list-view ' + (this.props.noborder?'noborder':'') + ' ' + this.props.className}
 				itemRender={this.__itemRender} />
 		);
 	}

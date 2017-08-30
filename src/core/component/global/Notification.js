@@ -24,7 +24,7 @@ var Notification = React.createClass({
 	},
 	render: function(){
 		return (
-			<div className={zn.react.classname('rt-notification notification-in', this.props.type)} >
+			<div className={zn.react.classname('zr-notification notification-in', this.props.type)} >
 				<div className="icon">
 					<i className={"fa " + TYPE_ICONS[this.props.type||'info']} />
 				</div>
@@ -41,7 +41,7 @@ module.exports = zn.notification = zn.Class({
 	static: true,
 	methods: {
 		init: function (){
-			this._dom = zn.dom.createRootElement("div", { class: 'rt-notification-container' });
+			this._dom = zn.dom.createRootElement("div", { class: 'zr-notification-container' });
 		},
 		open: function (type, content, delay){
 			var _dom = document.createElement('div');

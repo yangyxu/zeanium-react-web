@@ -74,13 +74,13 @@ module.exports = React.createClass({
 	__onSubmitCallbackHandler: function (data, xhr){
 		this.loading(false);
 		if(this.props.submitCallback(data)!==false){
-			var _result = this.props.onSubmitSuccess && this.props.onSubmitSuccess(data, xhr, this);
+			var _result = this.props.onSubmitSuccess && this.props.onSubmitSuccess(data, this, xhr);
 			if(_result!==false){
 				zn.modal.close();
 				zn.notification.success('操作成功');
 			}
 		}else {
-			var _result = this.props.onSubmitError && this.props.onSubmitError(data, xhr, this);
+			var _result = this.props.onSubmitError && this.props.onSubmitError(data, this, xhr);
 			if(_result!==false){
 				zn.notification.error('操作失败！');
 			}
@@ -187,7 +187,13 @@ module.exports = React.createClass({
 		}
 	},
 	reset: function (){
-		console.log('Form reset');
+		for(var name in this._items){
+			if(!this._items[name]){
+				continue;
+			}
+
+			this._items[name].setValue('');
+		}
 	},
 	render: function(){
 		var _btns = this.props.buttons || this.props.btns;
@@ -198,7 +204,7 @@ module.exports = React.createClass({
 			var _hiddens = this.state.hiddens;
 			return (
 				<form
-					className={zn.react.classname('rt-form', this.props.className)}
+					className={zn.react.classname('zr-form', this.props.className)}
 					encType="multipart/form-data"
 					method="POST"
 					style={this.props.style}>
@@ -213,7 +219,7 @@ module.exports = React.createClass({
 			);
 		}else {
 			return (
-				<div className={zn.react.classname('rt-form', this.props.className)} style={this.props.style}>
+				<div className={zn.react.classname('zr-form', this.props.className)} style={this.props.style}>
 					<RTList {...this.props} className="form-items" style={null} itemRender={this.__itemRender} />
 					<ButtonGroup {..._btns} className={zn.react.classname("form-buttons flex", this.props.buttonsClassName)} onClick={this.__onBtnsClick} />
 				</div>

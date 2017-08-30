@@ -95,7 +95,7 @@ var WebRouter = React.createClass({
 	},
 	render: function(){
 		return (
-			<div className={zn.react.classname("rt-url-router", this.props.className)} >
+			<div className={zn.react.classname("zr-url-router", this.props.className)} >
 				{this.state.view && <this.state.view {...this.state.argv} />}
 			</div>
 		);

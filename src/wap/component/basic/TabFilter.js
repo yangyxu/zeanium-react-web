@@ -16,7 +16,7 @@ module.exports = React.createClass({
 	},
 	render: function(){
 		return (
-			<div className="rt-tab-filter">
+			<div className="zr-tab-filter">
 				<div className="keys">
 
 				</div>

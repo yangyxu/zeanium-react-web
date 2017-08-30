@@ -1,6 +1,6 @@
-@import "../../../rt.variables.less";
+@import "../../../zr.variables.less";
 
-.rt-status(@color: @rt-color-primary){
+.zr-status(@color: @zr-color-primary){
     background-color: @color;
     border-color: @color;
     color: #FFF;
@@ -9,7 +9,7 @@
     }
 }
 
-.rt-plain-status(@color: @rt-color-primary){
+.zr-plain-status(@color: @zr-color-primary){
     background-color: transparent !important;
     border-color: transparent !important;
     color: @color !important;
@@ -18,7 +18,7 @@
     }
 }
 
-.rt-button {
+.zr-button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,8 +27,8 @@
     cursor: pointer;
     padding: 3px 10px !important;
     border-radius: 2px;
-    height: @rt-btn-height;
-    line-height: @rt-btn-height;
+    height: @zr-btn-height;
+    line-height: @zr-btn-height;
 
     &:hover{
         box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
@@ -38,38 +38,38 @@
     }
 
     &.plain{
-        .rt-plain-status(@rt-color-primary);
+        .zr-plain-status(@zr-color-primary);
     }
 
-    .rt-status(@rt-color-primary);
+    .zr-status(@zr-color-primary);
 
 
     &.black{
-        .rt-status(@rt-color-black);
+        .zr-status(@zr-color-black);
     }
 
     &.default{
-        .rt-status(@rt-color-default);
+        .zr-status(@zr-color-default);
     }
 
     &.primary{
-        .rt-status(@rt-color-primary);
+        .zr-status(@zr-color-primary);
     }
 
     &.success{
-        .rt-status(@rt-color-success);
+        .zr-status(@zr-color-success);
     }
 
     &.info{
-        .rt-status(@rt-color-info);
+        .zr-status(@zr-color-info);
     }
 
     &.warning{
-        .rt-status(@rt-color-warning);
+        .zr-status(@zr-color-warning);
     }
 
     &.danger{
-        .rt-status(@rt-color-danger);
+        .zr-status(@zr-color-danger);
     }
 
 
@@ -83,15 +83,15 @@
     }
 
     &[data-checked="true"]{
-        .rt-status(@rt-checked-color);
+        .zr-status(@zr-checked-color);
     }
 
     &[data-disabled="true"]{
-        .rt-status(@rt-disabled-color);
+        .zr-status(@zr-disabled-color);
     }
 
     &[data-loading="true"]{
-        .rt-status(@rt-disabled-color);
+        .zr-status(@zr-disabled-color);
         color: #8d8d8d !important;
         &::after{
             content: "\f110";

@@ -48,7 +48,7 @@ module.exports = React.createClass({
 	},
 	render: function(){
 		return (
-			<div className={zn.react.classname("rt-search", this.props.className, this.state.focus?'foucs':'')}>
+			<div className={zn.react.classname("zr-search", this.props.className, this.state.focus?'foucs':'')}>
 				<i onClick={this.__onIconClick} className={"search-icon fa " + (this.state.searching?"searching":"fa-search")} />
 				<input {...this.props}
 					value={this.state.value}

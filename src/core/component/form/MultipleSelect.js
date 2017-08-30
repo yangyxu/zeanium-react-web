@@ -2,11 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 module.exports = React.createClass({
-	displayName:'Select',
-	propTypes: {
-		textKey: React.PropTypes.string,
-		valueKey: React.PropTypes.string
-	},
+	displayName:'MultipleSelect',
 	getDefaultProps: function () {
 		return {
 			className: '',

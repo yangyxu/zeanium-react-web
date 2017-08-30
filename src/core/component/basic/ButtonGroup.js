@@ -24,7 +24,7 @@ module.exports = React.createClass({
 	render: function(){
 		return (
 			<RTList {...this.props}
-				className={'rt-button-group ' + this.props.className}
+				className={'zr-button-group ' + this.props.className}
 				itemRender={this.__itemRender}/>
 		);
 	}

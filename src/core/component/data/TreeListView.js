@@ -93,7 +93,7 @@ var TreeListViewItem = React.createClass({
 	},
 	render: function(){
 		return (
-			<RTItem className={"rt-tree-list-view-item " + this.props.className} >
+			<RTItem className={"zr-tree-list-view-item " + this.props.className} >
 				<div className="item-row-title" data-selected={this.state.selected} onClick={this.__onClick}>
 					{this.renderIcon()}
 					{this.renderContent()}
@@ -188,7 +188,7 @@ var TreeListView = React.createClass({
 	},
 	render:function(){
 		return (
-			<RTList {...this.props} className={'rt-tree-list-view ' + this.props.className} onClick={null} itemRender={this.__itemRender} onLoaded={this.__onLoaded} />
+			<RTList {...this.props} className={'zr-tree-list-view ' + this.props.className} onClick={null} itemRender={this.__itemRender} onLoaded={this.__onLoaded} />
 		);
 	}
 });

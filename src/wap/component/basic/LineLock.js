@@ -223,7 +223,7 @@ module.exports = React.createClass({
     },
     render: function (){
         return (
-            <div className="rt-line-lock">
+            <div className="zr-line-lock">
                 <canvas ref="canvas" width={this.props.width} height={this.props.height} />
             </div>
         );

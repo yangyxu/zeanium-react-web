@@ -11,7 +11,7 @@ module.exports = React.createClass({
 	render: function(){
 
 		return (
-			<div className={zn.react.classname("rt-watcher",this.props.className)}>
+			<div className={zn.react.classname("zr-watcher",this.props.className)}>
 				<div className="frame-face"></div>
 				<ul>
 					{

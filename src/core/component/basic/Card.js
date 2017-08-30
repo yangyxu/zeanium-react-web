@@ -4,7 +4,7 @@ module.exports = React.createClass({
 	displayName:'Card',
 	render:function(){
 		return (
-			<div className={zn.react.classname('rt-card', this.props.className)} style={zn.extend({ width: this.props.width },this.props.style)}>
+			<div className={zn.react.classname('zr-card', this.props.className)} style={zn.extend({ width: this.props.width },this.props.style)}>
 				<div className="card-header">
 					{this.props.icon && <i className={'icon fa ' + this.props.icon} />}
 					{this.props.title && <span className="title">{this.props.title}</span>}

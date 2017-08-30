@@ -5,9 +5,9 @@ module.exports = zn.modal = zn.Class({
 	static: true,
 	methods: {
 		init: function (){
-			this._dom = zn.dom.createRootElement("div", { class: "rt-modal" });
+			this._dom = zn.dom.createRootElement("div", { class: "zr-modal" });
 			zn.dom.on(this._dom, 'click', function (event){
-				if(this.config.isMode && event.target.classList.contains('rt-modal')){
+				if(this.config.isMode && event.target.classList.contains('zr-modal')){
 					this.close();
 				}
 			}.bind(this), false);
@@ -99,7 +99,7 @@ module.exports = zn.modal = zn.Class({
 			}
 
 			this.content = this._dom.firstChild;
-			if(this.content.classList.contains('rt-animate')){
+			if(this.content.classList.contains('zr-animate')){
 				this.content = this.content.firstChild;
 			}
 
@@ -129,7 +129,7 @@ module.exports = zn.modal = zn.Class({
 		},
 		setClassName: function (className){
 			if(className){
-				this._dom.className = zn.react.classname('rt-modal', className)
+				this._dom.className = zn.react.classname('zr-modal', className)
 			}
 
 			return this;

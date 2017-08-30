@@ -48,7 +48,7 @@ var AutoComplete = React.createClass({
 			zn.react.Popover.render({
 				name: '_click',
 				content: <ListView selectMode="none" {...this.props}
-					className="rt-list-view-popover"
+					className="zr-list-view-popover"
 					onEachItem={(item, rtlist)=>this.__onEachListItem(item, _value, rtlist)}
 					onItemClick={this.__onListItemClick} />
 			}, function (popover, argv){
@@ -82,7 +82,7 @@ var AutoComplete = React.createClass({
 	},
 	render: function(){
 		return (
-			<div className={'rt-auto-complete ' + this.props.className} >
+			<div className={'zr-auto-complete ' + this.props.className} >
 				<i className="clear fa fa-times-circle" onClick={this.__onClearClick} />
 				<input value={this.state.text}
 					name={this.props.name}

@@ -63,7 +63,7 @@ module.exports = React.createClass({
 				disabled: false
 			});
 		}
-		Popover.close('_click');
+		zn.popover.close();
 	},
 	__getData: function (){
 		var _temps = [];
@@ -88,7 +88,7 @@ module.exports = React.createClass({
 		return (
 			<zn.react.RTFlexItem
 				{...this.props}
-				className={'rt-filter-item ' + this.props.className + ' '+ this.state.status + ' ' +(this.props.fullWidth?'full':'')} >
+				className={'zr-filter-item ' + this.props.className + ' '+ this.state.status + ' ' +(this.props.fullWidth?'full':'')} >
 				<zn.react.Dropdown
 					className="filter-dropdown"
 					popoverRender={this.__popoverRender}

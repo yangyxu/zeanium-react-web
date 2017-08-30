@@ -14,7 +14,7 @@ module.exports = React.createClass({
 	},
 	render:function(){
 		return (
-			<i onClick={this.__onClick} className={zn.react.classname('rt-icon fa', this.props.className, this.props.icon)} data-spin={this.props.spin} />
+			<i onClick={this.__onClick} className={zn.react.classname('zr-icon fa', this.props.className, this.props.icon)} data-spin={this.props.spin} />
 		);
 	}
 });

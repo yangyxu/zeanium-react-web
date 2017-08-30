@@ -1,13 +1,13 @@
-@import "../../../rt.variables.less";
+@import "../../../zr.variables.less";
 
 
-.rt-status(@color: @rt-color-primary){
+.zr-status(@color: @zr-color-primary){
     color: #FFF;
     border-color: @color;
     background-color: @color;
 }
 
-.rt-notification-container {
+.zr-notification-container {
     position: absolute;
     z-index: 12000;
     right: 20px;
@@ -15,10 +15,10 @@
 }
 
 @media (max-width: 320px) {
-    
+
 }
 
-.rt-notification {
+.zr-notification {
     position: relative;
     display: flex;
     flex-direction: row;
@@ -139,29 +139,29 @@
 
 
 
-    .rt-status(#9b59b6);
+    .zr-status(#9b59b6);
 
     &.heart{
-        .rt-status(#9b59b6);
+        .zr-status(#9b59b6);
     }
 
     &.secondary{
-        .rt-status(#34495e);
+        .zr-status(#34495e);
     }
 
     &.success{
-        .rt-status(#27ae60);
+        .zr-status(#27ae60);
     }
 
     &.info{
-        .rt-status(#3498db);
+        .zr-status(#3498db);
     }
 
     &.warning{
-        .rt-status(#f39c12);
+        .zr-status(#f39c12);
     }
 
     &.error{
-        .rt-status(#e74c3c);
+        .zr-status(#e74c3c);
     }
 }

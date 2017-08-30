@@ -31,7 +31,7 @@ module.exports = React.createClass({
 	},
 	render: function(){
 		return (
-			<div className={zn.react.classname('rt-item', this.props.className)} style={this.props.style}
+			<div className={zn.react.classname('zr-item', this.props.className)} style={this.props.style}
 					data-checked={this.props.checked}
 					data-disabled={this.props.disabled}
 					data-float={this.props.float}

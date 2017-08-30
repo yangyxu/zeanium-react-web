@@ -138,7 +138,7 @@ module.exports = React.createClass({
 		if(!this.state.data.length){
 			var _view = this.props.emptyView;
 			if(!_view){
-				_view = <div className='rt-empty-view'>
+				_view = <div className='zr-empty-view'>
 					<span>暂无数据</span>
 				</div>;
 			}
@@ -146,7 +146,7 @@ module.exports = React.createClass({
 			return null;
 		}
 		return (
-			<div {...this.props.attrs} style={this.props.style} className={zn.react.classname('rt-list', this.props.className)}>
+			<div {...this.props.attrs} style={this.props.style} className={zn.react.classname('zr-list', this.props.className)}>
 				{
 					this.state.data && this.state.data.map && this.state.data.map(this.__itemRender)
 				}

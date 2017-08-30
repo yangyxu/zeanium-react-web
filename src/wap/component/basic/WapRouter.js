@@ -59,7 +59,7 @@ var Route = React.createClass({
 	},
 	render: function () {
 		var _classname = zn.react.classname(
-			"rt-route zn-page",
+			"zr-route zn-page",
 			this.state.className,
 			((this.state.active||this.state.animating)?'zn-page-current':'')
 		);
@@ -177,7 +177,7 @@ var Router = React.createClass({
 	},
 	render: function(){
 		return (
-			<div className={zn.react.classname("rt-router zn-perspective", this.props.className)} >
+			<div className={zn.react.classname("zr-router zn-perspective", this.props.className)} >
 				<Route ref='page0' />
 				<Route ref='page1' />
 			</div>

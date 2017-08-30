@@ -36,7 +36,8 @@ var Tooltip = React.createClass({
 
 		if(_left<0){
 			_className = 'arrow-left';
-			_left = _target.x + _target.width + 16;
+			_left = _target.x + _target.width + 4;
+			_top = _target.y + 4;
 		}
 
 		this._dom.style.top = _top + 'px';
@@ -52,9 +53,8 @@ var Tooltip = React.createClass({
 		}
 	},
 	render: function(){
-		//<i className="rt-popup-arrow fa fa-close" />
 		return (
-			<div className={zn.react.classname("rt-tooltip rt-arrow center", this.props.className)} style={this.props.style}>
+			<div className={zn.react.classname("zr-tooltip zr-arrow center", this.props.className)} style={this.props.style}>
 				{this.props.content}
 			</div>
 		);
@@ -66,13 +66,15 @@ zn.tooltip = zn.Class({
 	static: true,
 	methods: {
 		init: function (){
-			this._dom = zn.dom.createRootElement("div", { class: "rt-tooltip-container" });
+			this._dom = zn.dom.createRootElement("div", { class: "zr-tooltip-container" });
 			window.addEventListener('mouseover', this.__onWindowMouseOver.bind(this), true);
 		},
 		__onWindowMouseOver: function (event){
 			var _target = event.target;
-			if(_target && _target.getAttribute('data-tooltip')){
-				if(this._tooltip && this._tooltip.props.target === _target){ return false; }
+			if(_target && _target.getAttribute && _target.getAttribute('data-tooltip')){
+				if(this._tooltip && this._tooltip.props.target !== _target){
+					this.close();
+				}
 				this.render(_target.getAttribute('data-tooltip'), { target: _target });
 			}else {
 				this.close();

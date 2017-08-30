@@ -1,20 +1,20 @@
-@import "../../../rt.variables.less";
+@import "../../../zr.variables.less";
 
 
-.rt-checkbox-group{
+.zr-checkbox-group{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-.rt-status(@color: @rt-color-default){
+.zr-status(@color: @zr-color-default){
     &>.mark{
         color: @color !important;
         border-color: @color !important;
     }
 }
 
-.rt-checkbox {
+.zr-checkbox {
     display: inline-flex;
     color: #434242;
     cursor: pointer;
@@ -44,17 +44,17 @@
         }
     }
 
-    .rt-status(@rt-color-default);
+    .zr-status(@zr-color-default);
 
     &[data-checked="true"]{
         .icon{
             opacity: 1;
         }
-        .rt-status(@rt-checked-color);
+        .zr-status(@zr-checked-color);
     }
 
     &[data-disabled="true"]{
-        .rt-status(@rt-disabled-color);
+        .zr-status(@zr-disabled-color);
     }
 
 }

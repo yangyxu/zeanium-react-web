@@ -57,7 +57,7 @@ var FormItem = React.createClass({
 		return (
 			<RTFlexItem
 				{...this.props}
-				className={zn.react.classname('rt-form-item', this.props.className, this.state.status, this.props.required?'required':'')} >
+				className={zn.react.classname('zr-form-item', this.props.className, this.state.status, this.props.required?'required':'')} >
 				{this.props.icon && <div className="icon"><i className={"fa " + this.props.icon} /></div>}
 				{this.props.title && <div className="title">{this.props.title}</div>}
 				{_input && <_input ref="input" {...this.props} className={this.props.inputClassName||''} onChange={this.__onInputChange} />}

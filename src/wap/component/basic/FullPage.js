@@ -220,7 +220,7 @@ var Slider = React.createClass({
     render: function (){
         var _transitionX = 1;
         return (
-            <div className={"rt-slider "}>
+            <div className={"zr-slider "}>
                 <div className={"slider-views "+""}
                     onTransitionEnd={this.__onTransitionEnd}
                     style={{WebkitTransform: 'translate3d(' + _transitionX + ',0,0)'}}>

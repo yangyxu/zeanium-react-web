@@ -17,7 +17,7 @@ module.exports = React.createClass({
 	},
 	render: function(){
 		return (
-			<div className="rt-input-popup">
+			<div className="zr-input-popup">
 
 			</div>
 		);

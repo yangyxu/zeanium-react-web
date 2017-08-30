@@ -73,7 +73,7 @@ var Popover = React.createClass({
 	},
 	render: function(){
 		return (
-			<div className={zn.react.classname('rt-popover', this.props.className)} style={this.props.style} >
+			<div className={zn.react.classname('zr-popover', this.props.className)} style={this.props.style} >
 				{this.props.closeable && <i className="popover-close fa fa-close" />}
 				{this.props.content}
 			</div>
@@ -85,9 +85,10 @@ module.exports = zn.popover = zn.Class({
 	static: true,
 	methods: {
 		init: function (){
-			this._dom = zn.dom.createRootElement("div", { class: "rt-popover-container" });
+			this._dom = zn.dom.createRootElement("div", { class: "zr-popover-container" });
 		},
 		render: function (content, options){
+			this.close();
 			this._popover = ReactDOM.render(<Popover {...options} content={content} />, this._dom);
 		},
 		close: function (){

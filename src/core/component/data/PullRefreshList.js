@@ -125,7 +125,7 @@ module.exports = React.createClass({
 		return <UI.DataLoader loader="timer" content="加载数据中..." />;
 	},
 	__renderNoData: function (){
-		return <div className="rt-no-data">暂无数据</div>
+		return <div className="zr-no-data">暂无数据</div>
 	},
 	__render: function (){
 		if(this.state.loading || !this.state.data){
@@ -154,7 +154,7 @@ module.exports = React.createClass({
 	__renderFooter: function (){
 		if(this.state.loadingMore){
 			return <div className="footer">
-				<i className="fa fa-spinner rt-self-loading" />
+				<i className="fa fa-spinner zr-self-loading" />
 				<span>加载中...</span>
 			</div>;
 		}
@@ -169,7 +169,7 @@ module.exports = React.createClass({
 	render: function () {
 		return (
 			<DownPuller ref="owner" onDownPullEnd={this.__onDownPullEnd} >
-				<div className={"rt-pull-refresh-list " + this.props.className }>
+				<div className={"zr-pull-refresh-list " + this.props.className }>
 					{this.__render()}
 					{this.__renderFooter()}
 				</div>

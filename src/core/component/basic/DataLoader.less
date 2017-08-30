@@ -1,8 +1,8 @@
-@import "../../../rt.variables.less";
+@import "../../../zr.variables.less";
 
 @base: #800010;
 
-.rt-loader-color(@color: @rt-color-primary){
+.zr-loader-color(@color: @zr-color-primary){
     &>.loader{
         &[data-loader^='ball'],
         &[data-loader='circle-clock'],
@@ -33,7 +33,7 @@
     }
 }
 
-.rt-data-loader {
+.zr-data-loader {
     margin: 10px auto;
 
     &>.loader{
@@ -46,5 +46,5 @@
         font-weight: bolder;
     }
 
-    .rt-loader-color(@base);
+    .zr-loader-color(@base);
 }

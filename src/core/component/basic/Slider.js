@@ -250,7 +250,7 @@ var Slider = React.createClass({
         }
 
         return (
-            <div className={'rt-slider '+(this.props.loop?'':'no-loop')} style={this.props.style} >
+            <div className={'zr-slider '+(this.props.loop?'':'no-loop')} style={this.props.style} >
                 <div className={'slider-views '+ (this.state.sliding?'sliding':'')}
                     onTransitionEnd={this.__onTransitionEnd}
                     style={{WebkitTransform: 'translate3d(' + _transitionX + ',0,0)'}}>

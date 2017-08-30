@@ -19,7 +19,7 @@ var Alert = React.createClass({
 	},
 	render: function(){
 		return (
-			<div className={zn.react.classname('rt-alert', this.props.className)} style={this.props.style} >
+			<div className={zn.react.classname('zr-alert', this.props.className)} style={this.props.style} >
 				<div className="alert-inner">
 					{this.props.title && <div className="alert-title">{this.props.title}</div>}
 					{this.props.content && <div className="alert-content" ref="alertContent">{this.props.content}</div>}
@@ -97,7 +97,7 @@ var Dialog = React.createClass({
 	},
 	render: function(){
 		return (
-			<div className={zn.react.classname('rt-dialog', this.props.className)} style={this.props.style} >
+			<div className={zn.react.classname('zr-dialog', this.props.className)} style={this.props.style} >
 				<div className="dialog-header">
 					{this.props.title && <div className="dialog-title">{this.props.title}</div>}
 				</div>

@@ -59,7 +59,7 @@ module.exports = React.createClass({
 		_children = _children.slice(0);
 		var _styles = this.__getStyles();   //h, v
 		return (
-			<div className={zn.react.classname("rt-basic-layout", "rt-fixed-layout", "direction-" + this.props.direction, this.props.className)}>
+			<div className={zn.react.classname("zr-basic-layout", "zr-fixed-layout", "direction-" + this.props.direction, this.props.className)}>
 				<div className="layout-header" style={_styles.header}>{_children[0]}</div>
 				<div className="layout-body" style={_styles.body}>{_children[1]}</div>
 				<div className="layout-footer" style={_styles.footer}>{_children[2]}</div>

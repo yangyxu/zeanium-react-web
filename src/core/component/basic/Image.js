@@ -37,7 +37,7 @@ module.exports = React.createClass({
 	},
 	render:function(){
 		return (
-			<img className={zn.react.classname("rt-image", this.props.className)} style={this.props.style} src={this.props.src} />
+			<img className={zn.react.classname("zr-image", this.props.className)} style={this.props.style} src={this.props.src} />
 		);
 	}
 });

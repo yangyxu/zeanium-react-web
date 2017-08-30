@@ -72,7 +72,7 @@ module.exports = React.createClass({
 	},
 	render: function(){
 		return (
-			<div className={"rt-progress-ring " + this.props.className} data-full={this.props.full} >
+			<div className={"zr-progress-ring " + this.props.className} data-full={this.props.full} >
 				<div className="progress-track" style={{ borderColor: this.props.trackColor }}></div>
 				<div className="progress-left" style={zn.extend({ borderColor: this.props.valueColor }, this.state.leftStyle)}></div>
 				<div className="progress-right" style={zn.extend({ borderColor: this.props.valueColor }, this.state.rightStyle)}></div>

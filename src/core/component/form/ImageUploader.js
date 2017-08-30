@@ -42,7 +42,7 @@ module.exports = React.createClass({
 		return (
 			<AjaxUploader
 				{...this.props}
-				className='rt-image-uploader'
+				className='zr-image-uploader'
 				onChange={this.__onChange}
 				onComplete={this.__onComplete}
 				multipart={false} >

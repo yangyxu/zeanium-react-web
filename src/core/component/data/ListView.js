@@ -6,7 +6,7 @@ module.exports = React.createClass({
 	displayName:'ListView',
 	getDefaultProps: function (){
 		return {
-			className: 'rt-list-view-default',
+			className: 'zr-list-view-default',
 			itemClassName: '',
 			float: 'none',
 			disabled: false,
@@ -135,7 +135,7 @@ module.exports = React.createClass({
 		return (
 			<RTList
 				{...this.props}
-				className={zn.react.classname('rt-list-view', this.props.className, (this.props.noborder?'noborder':''))}
+				className={zn.react.classname('zr-list-view', this.props.className, (this.props.noborder?'noborder':''))}
 				itemRender={this.__itemRender} />
 		);
 	}

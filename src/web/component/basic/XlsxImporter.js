@@ -91,7 +91,7 @@ module.exports = React.createClass({
 	},
 	render:function(){
 		return (
-			<div className='rt-xlsx-importer'>
+			<div className='zr-xlsx-importer'>
 				<zn.react.AjaxUploader
 					{...this.props}
 					hiddens={this.state.hiddens}

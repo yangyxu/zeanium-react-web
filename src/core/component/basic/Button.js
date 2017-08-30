@@ -38,8 +38,11 @@ module.exports = React.createClass({
 	render: function(){
 		return (
 			<RTItem {...this.props}
-				attrs={zn.extend({ "data-loading": this.state.loading }, this.props.attrs)}
-				className={zn.react.classname("rt-button rt-action-ripple", this.props.className, (this.props.status||this.props.type))}
+				attrs={zn.extend({
+					"data-loading": this.state.loading,
+					"data-tooltip": this.props.tooltip
+				}, this.props.attrs)}
+				className={zn.react.classname("zr-button zr-action-ripple", this.props.className, (this.props.status||this.props.type))}
 				onClick={this.__onClick} >
 				{this.__renderChildren()}
 			</RTItem>

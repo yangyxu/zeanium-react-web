@@ -16,7 +16,7 @@ module.exports = React.createClass({
 	},
 	render: function(){
 		return (
-			<div className={zn.react.classname('rt-label', this.props.className)} style={this.props.style} dangerouslySetInnerHTML={{__html: this.state.value}} />
+			<div className={zn.react.classname('zr-label', this.props.className)} style={this.props.style} dangerouslySetInnerHTML={{__html: this.state.value}} />
 		);
 	}
 });

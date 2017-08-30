@@ -25,7 +25,7 @@ module.exports = React.createClass({
 	render: function(){
 		var _data = (this.props.value||'').split(' ');
 		return (
-			<div className={"rt-timer " + this.props.className}>
+			<div className={"zr-timer " + this.props.className}>
 				<input type="date" defaultValue={_data[0]} ref="date" className="timer-date" name={this.props.name+'_date'} required={this.props.required} onChange={this.__onChange} />
 				<input type="time" defaultValue={_data[1]} ref="time" className="timer-time" name={this.props.name+'_time'} required={this.props.required} onChange={this.__onChange} />
 			</div>

@@ -101,7 +101,7 @@ module.exports = React.createClass({
 		if(!this._dragTemp){
 			var _self = this;
 			var _dragTemp = this._dragTemp = document.createElement('div');
-			_dragTemp.className = "rt-graph-node-line-temp";
+			_dragTemp.className = "zr-graph-node-line-temp";
 			zn.dom.setStyles(this._dragTemp, {
 				width: 8,
 				height: 8,
@@ -145,13 +145,13 @@ module.exports = React.createClass({
 		if(!dom||dom===document.body){ return; }
 		var _className = dom.className;
 		if(!_className){ return this.findNode(dom.parentNode); }
-		if(_className == 'rt-flow-canvas'){
+		if(_className == 'zr-flow-canvas'){
 			return;
 		}
 		if(!_className.indexOf){
 			return;
 		}
-		if(_className.indexOf('rt-graph-node') !== -1){
+		if(_className.indexOf('zr-graph-node') !== -1){
 			return dom.getAttribute('data-id');
 		} else {
 			return this.findNode(dom.parentNode);
@@ -235,7 +235,7 @@ module.exports = React.createClass({
 	},
 	render:function(){
 		return (
-			<div onContextMenu={this.__onContextMenu} ref={(ref)=>this._dom = ref} className={zn.react.classname('rt-graph-node', this.props.className)} data-id={this.getId()} data-highlight={this.state.highLight} data-selected={this.props.selected} style={this.props.style}>
+			<div onContextMenu={this.__onContextMenu} ref={(ref)=>this._dom = ref} className={zn.react.classname('zr-graph-node', this.props.className)} data-id={this.getId()} data-highlight={this.state.highLight} data-selected={this.props.selected} style={this.props.style}>
 				{this.props.render && this.props.render(this, this.props)}
 				{this.__editableRender()}
 			</div>

@@ -60,7 +60,9 @@ module.exports = zn.react.Application = zn.Class({
             }
 
             this._routers = _routers;
-            zn.react.session.setHome(this.get('home')).setMain(this.get('main')).setBasePath(this.get('path'));
+            zn.react.session.setHome(this.get('home'))
+                            .setMain(this.get('main'))
+                            .setBasePath(this.get('path'));
             zn.http.setHost(this.get('host'), this.get('port'));
         },
         onLoading: function (value){
@@ -82,7 +84,7 @@ module.exports = zn.react.Application = zn.Class({
             _container.style.width = '100%';
             _container.style.height = '100%';
             if(zn.react.isMobile()){
-                _container.classList.add('rt-mobile');
+                _container.classList.add('zr-mobile');
             }
             require('react-dom').render(_view, _container);
         }

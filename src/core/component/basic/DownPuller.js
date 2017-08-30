@@ -188,7 +188,7 @@ module.exports = React.createClass({
             case 4:
                 return (
                     <div className="tip down-refresh">
-                        <i className="fa fa-spinner rt-self-loading"/>
+                        <i className="fa fa-spinner zr-self-loading"/>
                         <span>正在加载中...</span>
                     </div>
                 );
@@ -198,7 +198,7 @@ module.exports = React.createClass({
     },
     render: function (){
         return (
-            <div className={"rt-down-puller " + this.props.className}>
+            <div className={"zr-down-puller " + this.props.className}>
                 {this.__downRender()}
                 <div className="content" style={this.__getContentStyles()}>
                     {this.props.children}

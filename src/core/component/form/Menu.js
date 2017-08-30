@@ -34,11 +34,11 @@ module.exports = React.createClass({
 		zn.popover.close();
 	},
 	__popoverRender: function (){
-		return <ListView {...this.props} style={this.props.listStyle} className={zn.react.classname("rt-list-view-popover", this.props.listClassName)} emptyView={true} value={this.state.value} onItemClick={this.__onListItemClick} />;
+		return <ListView {...this.props} style={this.props.listStyle} className={zn.react.classname("zr-list-view-popover", this.props.listClassName)} emptyView={true} value={this.state.value} onItemClick={this.__onListItemClick} />;
 	},
 	render: function(){
 		return (
-			<Dropdown {...this.props} popoverRender={this.__popoverRender} className={zn.react.classname("rt-menu", this.props.className)} >
+			<Dropdown {...this.props} popoverRender={this.__popoverRender} className={zn.react.classname("zr-menu", this.props.className)} >
 				<div className="menu-view">
 					<span className="text">{this.__textRender()}</span>
 					<i className="trigger fa fa-angle-down" />

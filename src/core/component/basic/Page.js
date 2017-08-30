@@ -31,14 +31,14 @@ module.exports = React.createClass({
 			_begin += 10;
 		}
 		return (
-			<div className={zn.react.classname('rt-page', this.props.className)} style={this.props.style}>
+			<div className={zn.react.classname('zr-page', this.props.className)} style={this.props.style}>
 				<div className="page-header" style={{height: _begin}}>
 					<div className="header-left">
 						{this.props.canBack && <i className={"back fa " + this.props.icon} onClick={this.__onBack} />}
 						<span className="title">{this.props.title}</span>
 					</div>
 					<div className="header-right">
-						<zn.react.ButtonGroup className="rt-flex" items={this.props.toolbarItems} onClick={this.props.onToolbarClick} />
+						<zn.react.ButtonGroup className="zr-flex" items={this.props.toolbarItems} onClick={this.props.onToolbarClick} />
 					</div>
 				</div>
 				<div className="page-body">

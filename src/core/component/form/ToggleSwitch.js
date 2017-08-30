@@ -25,7 +25,7 @@ module.exports = React.createClass({
 	render: function(){
 		var _uuid = 'c_toggle_switch_input_' + (new Date()).getTime();
 		return (
-			<div className={"rt-toggle-switch " + this.props.className + ' ' + (this.props.disabled?'disabled':'')} data-ts-color={this.props.color||'red'}>
+			<div className={"zr-toggle-switch " + this.props.className + ' ' + (this.props.disabled?'disabled':'')} data-ts-color={this.props.color||'red'}>
 				<input ref="input" id={_uuid} disabled={this.props.disabled} type="checkbox" defaultChecked={this.props.value} onClick={this.__onInputClick} onChange={this.__onChange} />
 				<label htmlFor={_uuid} className="ts-helper"></label>
 			</div>

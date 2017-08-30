@@ -58,7 +58,7 @@ module.exports = React.createClass({
 			<div
 				data-active={this.state.active}
 				data-hang={this.state.hang}
-				className={'rt-list-filter ' + this.props.className}
+				className={'zr-list-filter ' + this.props.className}
 				style={zn.extend({ height: this.props.height },this.props.style)}>
 				<div className="filter-background"></div>
 				<div className="filter-header">

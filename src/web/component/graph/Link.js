@@ -190,7 +190,7 @@ module.exports = React.createClass({
 	},
 	render:function(){
 		return (
-			<svg className="rt-graph-link" version="1.1" xmlns="http://www.w3.org/2000/svg" style={this.state.svgStyle}>
+			<svg className="zr-graph-link" version="1.1" xmlns="http://www.w3.org/2000/svg" style={this.state.svgStyle}>
 				<defs>
 					<marker id="markerArrow" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
 					  <path d="M0,0 L0,6 L9,3 z" fill="#f00" />

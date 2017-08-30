@@ -160,7 +160,7 @@ module.exports = React.createClass({
 		this._links = {};
 		zn.debug('FlowCanvas data: ', this.state.nodes, this.state.links);
 		return (
-			<div className="rt-graph-flow-canvas" >
+			<div className="zr-graph-flow-canvas" >
 				{
 					(this.state.nodes||[]).map(function (node, index){
 						node.id = node.id||zn.uuid();

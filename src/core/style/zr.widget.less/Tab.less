@@ -1,46 +1,46 @@
-@import "../../../rt.variables.less";
+@import "../../../zr.variables.less";
 
-.rt-tab-ios{
+.zr-tab-ios{
     display: flex;
     flex-direction: row;
-    border: 1px solid @rt-color-primary;
+    border: 1px solid @zr-color-primary;
     margin: 3px;
     border-radius: 5px;
     &>*{
         flex: 1;
         text-align: center;
-        border-left: 1px solid @rt-color-primary;
-        color: @rt-color-primary;
+        border-left: 1px solid @zr-color-primary;
+        color: @zr-color-primary;
         &:first-child{
             border-left: 0px;
         }
-        &.rt-item[data-checked='true']{
-            background-color: @rt-color-primary;
+        &.zr-item[data-checked='true']{
+            background-color: @zr-color-primary;
             color: #FFF;
         }
     }
 }
 
-.rt-tab-android{
+.zr-tab-android{
     display: flex;
     flex-direction: row;
     margin: 5px 0px;
     background-color: #FFF;
     &>*{
         flex: 1;
-        &.rt-item{
+        &.zr-item{
             line-height: 30px;
             text-align: center;
             border-bottom: 2px solid transparent;
             &[data-checked='true']{
-                border-color: @rt-color-primary;
-                color: @rt-color-primary;
+                border-color: @zr-color-primary;
+                color: @zr-color-primary;
             }
         }
     }
 }
 
-.rt-tab-bar{
+.zr-tab-bar{
     display: flex;
     align-items: center;
     justify-content: center;
