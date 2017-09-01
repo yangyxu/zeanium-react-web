@@ -63,7 +63,7 @@ module.exports = React.createClass({
 				disabled: false
 			});
 		}
-		zn.popover.close();
+		zn.popover.close('FilterItem:listitem.click');
 	},
 	__getData: function (){
 		var _temps = [];

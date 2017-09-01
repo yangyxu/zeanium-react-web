@@ -67,7 +67,8 @@ module.exports = React.createClass({
 				this.reset();
 				break;
 			case 'cancle':
-				zn.modal.close();
+				zn.modal.close('Form:cancle.click');
+				zn.popover.close('Form:cancle.click');
 				break;
 		}
 	},

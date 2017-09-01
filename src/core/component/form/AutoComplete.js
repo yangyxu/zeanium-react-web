@@ -5,16 +5,18 @@ var AutoComplete = React.createClass({
 	displayName:'AutoComplete',
 	getDefaultProps: function (){
 		return {
-			className: '',
-			popoverWidth: 200,
 			data: null
 		}
 	},
 	getInitialState: function (){
 		return {
 			value: this.props.value,
-			text: this.props.text
+			text: this.props.text,
+			loading: false
 		}
+	},
+	componentDidMount: function (){
+
 	},
 	__onEachListItem: function (item, value, rtlist){
 		var _callback = this.props.itemHandler && this.props.itemHandler(item, value, rtlist, this);
@@ -40,22 +42,24 @@ var AutoComplete = React.createClass({
 			value: _value,
 			item: rtitem.props
 		}, this);
-		zn.react.Popover.close('_click');
+
+		zn.popover.close('AutoComplete:listitem.click');
 	},
 	__renderView: function (target){
 		var _value = target.value;
 		if(_value){
-			zn.react.Popover.render({
-				name: '_click',
-				content: <ListView selectMode="none" {...this.props}
-					className="zr-list-view-popover"
-					onEachItem={(item, rtlist)=>this.__onEachListItem(item, _value, rtlist)}
-					onItemClick={this.__onListItemClick} />
-			}, function (popover, argv){
-				popover.fixPosition(target);
+			this.setState({ loading: true });
+			this.props.data.exec().then(function (data){
+				console.log(data);
+				this.setState({ loading: false });
+				zn.popover.render(<ListView data={data} onClick={this.__onListItemClick} />, zn.extend({
+					event: 'click',
+					target: target,
+					popoverWidth: '100%'
+				}, this.props));
 			}.bind(this));
 		}else {
-			zn.react.Popover.close('_click');
+			zn.popover.close('AutoComplete:empty.review');
 		}
 	},
 	__onInputChange: function (event){
@@ -70,7 +74,7 @@ var AutoComplete = React.createClass({
 			value: -1,
 			text: ''
 		});
-		zn.react.Popover.close('_click');
+		zn.popover.close('AutoComplete:clear.click');
 	},
 	getValue: function (){
 		return this.state.value;
@@ -82,8 +86,11 @@ var AutoComplete = React.createClass({
 	},
 	render: function(){
 		return (
-			<div className={'zr-auto-complete ' + this.props.className} >
-				<i className="clear fa fa-times-circle" onClick={this.__onClearClick} />
+			<div className={zn.react.classname("zr-auto-complete", this.props.className)} style={this.props.style} >
+				<div className="status">
+					{this.state.loading && <i className="fa fa-spinner zr-self-loading" />}
+					<i className="fa fa-times-circle" onClick={this.__onClearClick} />
+				</div>
 				<input value={this.state.text}
 					name={this.props.name}
 					type="text"

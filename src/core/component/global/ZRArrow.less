@@ -1,45 +1,82 @@
-@base-background-color: #3d4245;
+@arrow-color-black: #3d4245;
+@arrow-color-white: #FFF;
 .zr-arrow{
     position: relative;
-    background-color: @base-background-color;
     &::before{
         position: absolute;
         content: '';
+        width: 0;
+        height: 0;
+        border-color: rgba(0, 0, 0, 0);
         border-style: solid;
         border-width: 8px 8px 8px 8px;
     }
 
-    &.center {
-        &.arrow-top::before, &.arrow-bottom::before{
+    &.zr-arrow-placement-left{
+        &.zr-arrow-direction-top::before, &.zr-arrow-direction-bottom::before{
+            left: 8px;
+        }
+    }
+
+    &.zr-arrow-placement-right{
+        &.zr-arrow-direction-top::before, &.zr-arrow-direction-bottom::before{
+            right: 8px;
+        }
+    }
+
+    &.zr-arrow-placement-top{
+        &.zr-arrow-direction-left::before, &.zr-arrow-direction-right::before{
+            top: 8px;
+        }
+    }
+
+    &.zr-arrow-placement-bottom{
+        &.zr-arrow-direction-left::before, &.zr-arrow-direction-right::before{
+            bottom: 8px;
+        }
+    }
+
+    &.zr-arrow-placement-center {
+        &.zr-arrow-direction-top::before, &.zr-arrow-direction-bottom::before{
             left: 50%;
             margin-left: -8px;
         }
 
-        &.arrow-top::before{
-            top: -16px;
-            border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) @base-background-color rgba(0, 0, 0, 0);
-        }
-
-        &.arrow-bottom::before{
-            bottom: -16px;
-            border-color: @base-background-color rgba(0, 0, 0, 0) rgba(0, 0, 0, 0)  rgba(0, 0, 0, 0);
-        }
-
-        &.arrow-left::before, &.arrow-right::before{
+        &.zr-arrow-direction-left::before, &.zr-arrow-direction-right::before{
             top: 50%;
             margin-top: -8px;
         }
+    }
 
-        &.arrow-left::before{
-            left: -16px;
-            border-color: rgba(0, 0, 0, 0) @base-background-color rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+    .zr-arrow-color(@color: @arrow-color-black){
+        background-color: @color;
+        &.zr-arrow-direction-top::before{
+            top: -16px;
+            border-bottom-color: @color;
         }
 
-        &.arrow-right::before{
+        &.zr-arrow-direction-bottom::before{
+            bottom: -16px;
+            border-top-color: @color;
+        }
+
+        &.zr-arrow-direction-left::before{
+            left: -16px;
+            border-right-color: @color;
+        }
+
+        &.zr-arrow-direction-right::before{
             right: -16px;
-            border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) @base-background-color;
+            border-left-color: @color;
         }
     }
 
+    &.zr-arrow-color-black {
+        .zr-arrow-color(@arrow-color-black);
+    }
+
+    &.zr-arrow-color-white {
+        .zr-arrow-color(@arrow-color-white);
+    }
 
 }

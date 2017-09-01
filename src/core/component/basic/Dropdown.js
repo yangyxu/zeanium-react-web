@@ -19,6 +19,7 @@ module.exports = React.createClass({
 			event.stopPropagation();
 			zn.popover.render(this.__popoverContentRender(), zn.extend({
 				event: event,
+				reset: true,
 				target: _target
 			}, this.props));
 		}

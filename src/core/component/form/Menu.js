@@ -31,7 +31,7 @@ module.exports = React.createClass({
 	},
 	__onListItemClick: function (value, rtlistitem, rtlist, item){
 		this.setValue(value, item[rtlist.props.textKey]);
-		zn.popover.close();
+		zn.popover.close('Menu:item.click');
 	},
 	__popoverRender: function (){
 		return <ListView {...this.props} style={this.props.listStyle} className={zn.react.classname("zr-list-view-popover", this.props.listClassName)} emptyView={true} value={this.state.value} onItemClick={this.__onListItemClick} />;

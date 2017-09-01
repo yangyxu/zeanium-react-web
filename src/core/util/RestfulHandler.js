@@ -9,13 +9,13 @@ var Request = zn.Class({
         path: {
             readonly: true,
             get: function (){
-                return this._path;
+                return this._path || '';
             }
         },
         search: {
             readonly: true,
             get: function (){
-                return this._search;
+                return this._search || {};
             }
         },
         notFound: true

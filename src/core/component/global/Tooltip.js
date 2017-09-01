@@ -28,14 +28,14 @@ var Tooltip = React.createClass({
 
 		if((_target.y + _domHeight) > document.body.scrollHeight){
 			_top = _target.y - _domHeight - 16;
-			_className = 'arrow-bottom';
+			_className = 'zr-arrow-direction-bottom';
 		} else {
 			_top = _target.y + _target.height + 16;
-			_className = 'arrow-top';
+			_className = 'zr-arrow-direction-top';
 		}
 
 		if(_left<0){
-			_className = 'arrow-left';
+			_className = 'zr-arrow-direction-left';
 			_left = _target.x + _target.width + 4;
 			_top = _target.y + 4;
 		}
@@ -54,7 +54,7 @@ var Tooltip = React.createClass({
 	},
 	render: function(){
 		return (
-			<div className={zn.react.classname("zr-tooltip zr-arrow center", this.props.className)} style={this.props.style}>
+			<div className={zn.react.classname("zr-tooltip zr-arrow zr-arrow-color-black zr-arrow-placement-center", this.props.className)} style={this.props.style}>
 				{this.props.content}
 			</div>
 		);
@@ -68,6 +68,11 @@ zn.tooltip = zn.Class({
 		init: function (){
 			this._dom = zn.dom.createRootElement("div", { class: "zr-tooltip-container" });
 			window.addEventListener('mouseover', this.__onWindowMouseOver.bind(this), true);
+			window.addEventListener('resize', this.__onWindowResize.bind(this), false);
+		},
+		__onWindowResize: function (){
+			zn.tooltip.close('tooltip:window.resizing');
+			zn.popover.close('tooltip:window.resizing');
 		},
 		__onWindowMouseOver: function (event){
 			var _target = event.target;
