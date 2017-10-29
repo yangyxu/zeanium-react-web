@@ -7,6 +7,7 @@ module.exports = React.createClass({
 	displayName: 'AjaxUploader',
 	getDefaultProps: function getDefaultProps() {
 		return {
+			action: '/zn.plugin.admin/uploadFiles',
 			changeSubmit: true,
 			hiddens: {},
 			multiple: true,
@@ -64,7 +65,7 @@ module.exports = React.createClass({
 		xhr.addEventListener("load", this.__ajaxUploadComplete, false);
 		xhr.addEventListener("error", this.__ajaxUploadError, false);
 		xhr.addEventListener("abort", this.__ajaxUploadAbort, false);
-		xhr.open("POST", zn.http.fixURL(this.props.action || ''), "true");
+		xhr.open("POST", zn.http.fixURL(this.props.action), "true");
 		xhr.send(data);
 	},
 	__ajaxUploadProgress: function __ajaxUploadProgress(evt) {

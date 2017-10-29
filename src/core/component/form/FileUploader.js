@@ -22,6 +22,7 @@ module.exports = React.createClass({
 		});
 		this.state.value = this.state.value + _values.join(',') + ',';
 		this.forceUpdate();
+		this.props.onComplete && this.props.onComplete(data, uploader);
 	},
 	getValue: function (){
 		return this.state.value;
@@ -106,9 +107,10 @@ module.exports = React.createClass({
 		var _values = this.state.value.split(',');
 		var _editable = (this.props.editable && !this.props.disabled && !this.props.readonly);
 		return (
-			<div className="zr-file-uploader">
+			<div className="zr-file-uploader" style={this.props.style}>
 				{_editable && <AjaxUploader
 					{...this.props}
+					style={this.props.uploaderStyle}
 					onChange={this.__onChange}
 					onComplete={this.__onComplete} >
 					<div className="container">

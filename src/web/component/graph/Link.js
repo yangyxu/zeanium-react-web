@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 
 module.exports = React.createClass({
 	displayName: 'Link',
@@ -6,20 +7,22 @@ module.exports = React.createClass({
 		return {
 			highLightStyle: {
 				'stroke': '#f0ad4e',
-				'strokeWidth': '3px'
+				'strokeWidth': '1px'
 			},
 			lineStyle: {
 				'stroke': '#E26965',
-				'strokeWidth': '3px'
+				'strokeWidth': '1px'
 			}
 		}
 	},
 	getInitialState: function(){
 		return {
+			uuid: this.props.id || zn.uuid(),
 			x1: 0,
 			y1: 0,
 			x2: 0,
 			y2: 0,
+			marker: '',
 			lineStyle: this.props.lineStyle,
 			svgStyle: {
 
@@ -28,28 +31,33 @@ module.exports = React.createClass({
 		}
 	},
 	componentDidMount:function(){
-		this._id = zn.uuid();
 		this.highLight(false);
-		this.props.onDidMount && this.props.onDidMount(this, this.props);
+		this.props.onLinkDidMount && this.props.onLinkDidMount(this);
 	},
 	setTarget: function (value){
         if(value){
             this._target = value;
-            value.setLink(this._id, this);
+            value.setLink(this.state.uuid, this);
         }
     },
     setSource: function (value){
         if(value){
             this._source = value;
-            value.setLink(this._id, this);
+            value.setLink(this.state.uuid, this);
         }
     },
 	getId: function (){
-		return this._id;
+		return this.state.uuid;
 	},
 	reset: function (targetPosition, sourcePosition){
 		var _bound = this.__calculateSVGBound(targetPosition, sourcePosition);
-		_bound && this.setState({ svgStyle: _bound });
+		if(_bound){
+			if(_bound.left == 0 && _bound.top ==0){
+				_bound.width = 0;
+				_bound.height = 0;
+			}
+			this.setState({ svgStyle: _bound });
+		}
 	},
 	__getDirection: function (x, y, x1, y1){
         var flag = 0;
@@ -189,14 +197,33 @@ module.exports = React.createClass({
       	return path;
 	},
 	render:function(){
+		/*
+		<defs>
+			<marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="auto" markerUnits="strokeWidth">
+				<path d="M0,0 L0,6 L9,3 z" fill="#f00" />
+			</marker>
+		</defs>
+
+
 		return (
 			<svg className="zr-graph-link" version="1.1" xmlns="http://www.w3.org/2000/svg" style={this.state.svgStyle}>
 				<defs>
-					<marker id="markerArrow" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
-					  <path d="M0,0 L0,6 L9,3 z" fill="#f00" />
+					<marker id="Triangle" viewBox="0 0 20 20" refX="0" refY="10" markerUnits="strokeWidth" markerWidth="20" markerHeight="20" orient="auto">
+						<path d="M 0 0 L 20 10 L 0 20 z"/>
 					</marker>
 				</defs>
-				<line className="line" marker-mid="url(#markerArrow)" x1={this.state.x1} y1={this.state.y1} x2={this.state.x2} y2={this.state.y2} style={this.state.lineStyle}></line>
+				<path className="line" d={'M '+this.state.x1+' '+ this.state.y1 +' L ' + this.state.x2 + ' ' + this.state.y2} stroke="red" markerMid='Triangle'/>
+			 </svg>
+		);
+		*/
+		return (
+			<svg className="zr-graph-link" version="1.1" xmlns="http://www.w3.org/2000/svg" style={this.state.svgStyle}>
+				<defs>
+				    <marker id="Triangle" markerWidth="20" markerHeight="20" refX="0" refY="4" orient="auto" markerUnits="strokeWidth" viewBox="0 0 50 50">
+				      	<path d="M0,0 L0,6 L9,3 z" fill="#f00" />
+				    </marker>
+				</defs>
+				<line className="line" markerStart="url(#Triangle)" x1={this.state.x1} y1={this.state.y1} x2={this.state.x2} y2={this.state.y2} style={this.state.lineStyle}></line>
 			</svg>
 		);
 	}

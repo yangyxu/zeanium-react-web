@@ -6,12 +6,14 @@
 
 .zr-form-item{
     position: relative;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.075);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
     display: flex;
     margin: 1px 0px;
 
     &>*:last-child{
         flex: 1;
+        border-radius: 3px;
+        background-color: rgba(241, 241, 241, 0.4);
     }
 
     /*
@@ -40,9 +42,11 @@
     }
 
     &>.title{
-        min-width: 10rem;
+        text-align: right;
+        min-width: 100px;
         /*text-indent: 0.8rem;*/
-        line-height: 3rem;
+        line-height: 30px;
+        padding-right: 5px;
     }
     &>.icon{
         text-align: center;
@@ -51,9 +55,9 @@
     }
 
     &>.suffix{
-        min-width: 3.2rem;
-        line-height: 3rem;
-        text-align: right;
+        min-width: 32px;
+        line-height: 36px;
+        text-align: center;
     }
 
     input, textarea, select, &.input{

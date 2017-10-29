@@ -1,12 +1,12 @@
 var React = require('react');
 var Dropdown = require('../basic/Dropdown');
-var ListView = require('../data/ListView');
-
+var SearchListView = require('../data/SearchListView');
 module.exports = React.createClass({
 	displayName: 'Menu',
 	getDefaultProps: function (){
 		return {
-			eventType: 'click'
+			eventType: 'click',
+			editable: true
 		}
 	},
 	getInitialState: function (){
@@ -21,7 +21,7 @@ module.exports = React.createClass({
 	setValue: function (value, text) {
 		this.setState({
 			value: value,
-			text: text
+			text: text||value
 		}, function (){
 			this.props.onChange && this.props.onChange(value, text, this);
 		});
@@ -33,14 +33,19 @@ module.exports = React.createClass({
 		this.setValue(value, item[rtlist.props.textKey]);
 		zn.popover.close('Menu:item.click');
 	},
+	__onInputChange: function (event){
+		this.state.value = event.target.value;
+		this.forceUpdate();
+		zn.popover.close('Menu:item.click');
+	},
 	__popoverRender: function (){
-		return <ListView {...this.props} style={this.props.listStyle} className={zn.react.classname("zr-list-view-popover", this.props.listClassName)} emptyView={true} value={this.state.value} onItemClick={this.__onListItemClick} />;
+		return <SearchListView {...this.props} style={this.props.listStyle} className={zn.react.classname("zr-list-view-popover", this.props.listClassName)} emptyView={true} value={this.state.value} onItemClick={this.__onListItemClick} />;
 	},
 	render: function(){
 		return (
-			<Dropdown {...this.props} popoverRender={this.__popoverRender} className={zn.react.classname("zr-menu", this.props.className)} >
+			<Dropdown {...this.props} popoverRender={this.__popoverRender} popoverWidth="100%" className={zn.react.classname("zr-menu", this.props.className)} >
 				<div className="menu-view">
-					<span className="text">{this.__textRender()}</span>
+					{this.props.editable ? <input value={this.state.value} onChange={this.__onInputChange} /> : <span className="text">{this.__textRender()}</span>}
 					<i className="trigger fa fa-angle-down" />
 				</div>
 			</Dropdown>

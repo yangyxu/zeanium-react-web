@@ -42,26 +42,31 @@ module.exports = React.createClass({
 			return false;
 		}.bind(this);
 	},
-	__onNodeDidMount: function __onNodeDidMount(node, nodeProps, nodeState) {
+	__onNodeDidMount: function __onNodeDidMount(node) {
 		this._nodes[node.getId()] = node;
 	},
 	__onNodeDrag: function __onNodeDrag() {},
 	__onNodeDragEnd: function __onNodeDragEnd(event, data, node) {
 		var _data = this.state.nodes[node.props.index];
-		_data.x = data.currX;
-		_data.y = data.currY;
-		this.props.onNodeDragEnd && this.props.onNodeDragEnd(event, data, node);
+		if (_data) {
+			_data.x = data.currX;
+			_data.y = data.currY;
+			this.props.onNodeDragEnd && this.props.onNodeDragEnd(event, data, node);
+		}
 	},
-	__onLinkDidMount: function __onLinkDidMount(link, linkProps) {
-		var _target = this._nodes[linkProps.target],
-		    _source = this._nodes[linkProps.source];
+	__onLinkDidMount: function __onLinkDidMount(link) {
+		var _target = this._nodes[link.props.target],
+		    _source = this._nodes[link.props.source];
 		this._links[link.getId()] = link;
 		link.setTarget(_target);
 		link.setSource(_source);
 		link.reset();
 	},
 	getData: function getData() {
-		return this.state;
+		return {
+			nodes: this.state.nodes,
+			links: this.state.links
+		};
 	},
 	setData: function setData(data) {
 		if (data) {
@@ -73,6 +78,8 @@ module.exports = React.createClass({
 				_obj.links = data.links;
 			}
 			if (Object.keys(_obj).length) {
+				this._nodes = {};
+				this._links = {};
 				this.setState(_obj);
 			}
 		}
@@ -156,37 +163,38 @@ module.exports = React.createClass({
 		this.props.onNodeClick && this.props.onNodeClick(event, node, data, this);
 	},
 	render: function render() {
-		this._nodes = {};
-		this._links = {};
-		zn.debug('FlowCanvas data: ', this.state.nodes, this.state.links);
+		zn.debug('FlowCanvas data: ', this.state);
 		return React.createElement(
 			'div',
-			{ className: 'zr-graph-flow-canvas' },
+			{ className: zn.react.classname("zr-graph-flow-canvas", this.props.className) },
 			(this.state.nodes || []).map(function (node, index) {
 				var _this = this;
 
 				node.id = node.id || zn.uuid();
-				return React.createElement(Node, _extends({ key: zn.uuid(),
+				return React.createElement(Node, _extends({}, node, {
+					key: node.id,
 					index: index,
-					selected: this.state.selectNode === node ? true : false,
-					data: node,
 					canvas: this,
-					onContextMenu: this.props.onNodeContextMenu,
 					className: this.props.nodeClassName,
+					selected: this.state.selectNode === node ? true : false,
 					editable: this.props.editable || node.editable,
 					draggable: this.props.draggable || node.draggable,
 					render: this.props.nodeRender,
+					onContextMenu: this.props.onNodeContextMenu,
 					onNodeEditDragEnd: this.props.onNodeEditDragEnd,
-					onDidMount: this.__onNodeDidMount,
+					onNodeDidMount: this.__onNodeDidMount,
 					onNodeDrag: this.__onNodeDrag,
 					onNodeDragEnd: this.__onNodeDragEnd,
 					onClick: function onClick(event, instance) {
 						return _this.__onNodeClick(event, instance, node);
-					}
-				}, node));
+					} }));
 			}.bind(this)),
 			this.state.links.map(function (link, index) {
-				return React.createElement(Link, _extends({ key: zn.uuid(), data: link, render: this.props.linkRender }, link, { onDidMount: this.__onLinkDidMount }));
+				link.id = link.id || zn.uuid();
+				return React.createElement(Link, _extends({}, link, {
+					key: link.id,
+					render: this.props.linkRender,
+					onLinkDidMount: this.__onLinkDidMount }));
 			}.bind(this)),
 			React.createElement(Link, { ref: 'temp' })
 		);

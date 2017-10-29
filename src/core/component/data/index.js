@@ -5,6 +5,7 @@ module.exports = zn.arrayValueToObject([
     'PagingList',
     'PullRefreshList',
     'Steps',
+    'Tree',
     'TreeListView'
 ], function (value, index){
     return require('./'+value+'.js');

@@ -2,6 +2,14 @@ var React = require('react');
 
 module.exports = React.createClass({
 	displayName: 'Card',
+	__rightRender: function __rightRender() {
+		switch (zn.type(this.props.rightRender)) {
+			case 'function':
+				return this.props.rightRender();
+			case 'object':
+				return this.props.rightRender;
+		}
+	},
 	render: function render() {
 		return React.createElement(
 			'div',
@@ -18,7 +26,7 @@ module.exports = React.createClass({
 				this.props.rightRender && React.createElement(
 					'div',
 					{ className: 'right-content' },
-					this.props.rightRender(this)
+					this.__rightRender()
 				)
 			),
 			React.createElement(

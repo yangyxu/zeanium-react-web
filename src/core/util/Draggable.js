@@ -124,8 +124,7 @@ module.exports = zn.Class({
             return false;
         },
         __mouseup: function (event) {
-            event.stopPropagation();
-            event.preventDefault();
+            //event.stopPropagation();
             this._argv.onDragEnd && this._argv.onDragEnd(event, this._argv);
             document.onmousemove = null;
             document.onmouseup = null;

@@ -37,7 +37,7 @@ module.exports = React.createClass({
 	__tableHeaderRender: function (item, index, columnSize){
 		if(index == columnSize-1){
 			return <div style={{textAlign: 'center'}}>
-				<zn.react.Icon title='Add Row(Insert Last Row)' icon="fa-plus" onClick={this.__onRowAdd} />
+				<zn.react.Icon tooltip='Add Row(Insert Last Row)' icon="fa-plus" onClick={this.__onRowAdd} />
 			</div>;
 		}
 	},
@@ -45,7 +45,7 @@ module.exports = React.createClass({
 		switch (columnIndex) {
 			case this.props.headers.length:
 				return <div style={{textAlign: 'center'}}>
-					<zn.react.Icon title="Delete Row(Delete This Row)" icon="fa-minus" onClick={()=>this.__onRowDelete(rowIndex, columnIndex, data, item, value)} />
+					<zn.react.Icon tooltip="Delete Row(Delete This Row)" icon="fa-minus" onClick={()=>this.__onRowDelete(rowIndex, columnIndex, data, item, value)} />
 					{
 						/*
 							<zn.react.Icon title="Append Row(Append To This Row Before)" icon="fa-plus" onClick={()=>this.__onRowAppend(rowIndex, columnIndex, data, item, value)} />

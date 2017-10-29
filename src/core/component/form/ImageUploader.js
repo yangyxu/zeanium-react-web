@@ -22,7 +22,12 @@ module.exports = React.createClass({
 	__onComplete: function (data, uploader){
 		var _file = data[0];
 		if(_file){
-			this.setValue(_file.url);
+			var _value = _file.url;
+			if(_value.indexOf('/')!=0){
+				_value = "/" + _value;
+			}
+			console.log(_value);
+			this.setValue(_value);
 		}
 		this.props.onComplete && this.props.onComplete(_file, this);
 	},

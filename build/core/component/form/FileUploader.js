@@ -26,6 +26,7 @@ module.exports = React.createClass({
 		});
 		this.state.value = this.state.value + _values.join(',') + ',';
 		this.forceUpdate();
+		this.props.onComplete && this.props.onComplete(data, uploader);
 	},
 	getValue: function getValue() {
 		return this.state.value;
@@ -123,10 +124,11 @@ module.exports = React.createClass({
 		var _editable = this.props.editable && !this.props.disabled && !this.props.readonly;
 		return React.createElement(
 			'div',
-			{ className: 'zr-file-uploader' },
+			{ className: 'zr-file-uploader', style: this.props.style },
 			_editable && React.createElement(
 				AjaxUploader,
 				_extends({}, this.props, {
+					style: this.props.uploaderStyle,
 					onChange: this.__onChange,
 					onComplete: this.__onComplete }),
 				React.createElement(

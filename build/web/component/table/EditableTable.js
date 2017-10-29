@@ -37,7 +37,7 @@ module.exports = React.createClass({
 			return React.createElement(
 				'div',
 				{ style: { textAlign: 'center' } },
-				React.createElement(zn.react.Icon, { title: 'Add Row(Insert Last Row)', icon: 'fa-plus', onClick: this.__onRowAdd })
+				React.createElement(zn.react.Icon, { tooltip: 'Add Row(Insert Last Row)', icon: 'fa-plus', onClick: this.__onRowAdd })
 			);
 		}
 	},
@@ -49,7 +49,7 @@ module.exports = React.createClass({
 				return React.createElement(
 					'div',
 					{ style: { textAlign: 'center' } },
-					React.createElement(zn.react.Icon, { title: 'Delete Row(Delete This Row)', icon: 'fa-minus', onClick: function onClick() {
+					React.createElement(zn.react.Icon, { tooltip: 'Delete Row(Delete This Row)', icon: 'fa-minus', onClick: function onClick() {
 							return _this.__onRowDelete(rowIndex, columnIndex, data, item, value);
 						} })
 				);

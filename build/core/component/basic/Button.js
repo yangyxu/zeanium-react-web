@@ -47,7 +47,7 @@ module.exports = React.createClass({
 					"data-loading": this.state.loading,
 					"data-tooltip": this.props.tooltip
 				}, this.props.attrs),
-				className: zn.react.classname("zr-button zr-action-ripple", this.props.className, this.props.status || this.props.type),
+				className: zn.react.classname("zr-button zr-action-ripple zr-base-transition", this.props.className, this.props.status || this.props.type),
 				onClick: this.__onClick }),
 			this.__renderChildren()
 		);

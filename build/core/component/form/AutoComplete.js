@@ -1,34 +1,68 @@
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var React = require('react');
 var ListView = require('../data/ListView');
 
-var AutoComplete = React.createClass({
+module.exports = React.createClass({
 	displayName: 'AutoComplete',
 	getDefaultProps: function getDefaultProps() {
 		return {
-			data: null
+			textKey: 'text',
+			valueKey: 'value'
 		};
 	},
 	getInitialState: function getInitialState() {
 		return {
+			data: [],
 			value: this.props.value,
 			text: this.props.text,
+			autoLoad: true,
 			loading: false
 		};
 	},
-	componentDidMount: function componentDidMount() {},
-	__onEachListItem: function __onEachListItem(item, value, rtlist) {
-		var _callback = this.props.itemHandler && this.props.itemHandler(item, value, rtlist, this);
-		if (_callback === false) {
-			return _callback;
+	componentDidMount: function componentDidMount() {
+		this._dataSource = zn.store.dataSource(this.props.items || this.props.data, {
+			autoLoad: this.props.autoLoad || true,
+			onExec: function () {
+				var _result = this.props.onLoading && this.props.onLoading();
+				if (_result !== false && this.isMounted()) {
+					this.setState({
+						loading: true
+					});
+				}
+			}.bind(this),
+			onSuccess: function (data) {
+				this.__onDataLoaded(this.__dataHandler(data));
+				this.props.onData && this.props.onData(data);
+			}.bind(this)
+		});
+	},
+	__dataHandler: function __dataHandler(data) {
+		if (this.props.dataHandler) {
+			return this.props.dataHandler(data);
 		}
-		var _value = rtlist.getItemText(item);
-		if (_value && _value.indexOf(value) == -1) {
+
+		return data.result || data;
+	},
+	__onDataLoaded: function __onDataLoaded(data) {
+		if (!this.isMounted()) {
 			return false;
 		}
+		if (data.length == undefined) {
+			var temp = [];
+			for (var key in data) {
+				temp.push(data[key]);
+			}
+			data = temp;
+		}
+
+		this.state.data = data;
+		this.setState({ data: data, loading: false });
+		this.props.onLoaded && this.props.onLoaded(data, this);
 	},
-	__onListItemClick: function __onListItemClick(value, rtitem, rtlist, event) {
-		var _text = rtitem.props[rtlist.props.textKey],
-		    _value = rtitem.props[rtlist.props.valueKey];
+	__onListItemClick: function __onListItemClick(value) {
+		var _text = value.item[value.self.props.textKey],
+		    _value = value.item[value.self.props.valueKey];
 
 		this.setState({
 			value: _value,
@@ -38,7 +72,7 @@ var AutoComplete = React.createClass({
 		this.props.onChange && this.props.onChange({
 			text: _text,
 			value: _value,
-			item: rtitem.props
+			item: value.item
 		}, this);
 
 		zn.popover.close('AutoComplete:listitem.click');
@@ -46,19 +80,34 @@ var AutoComplete = React.createClass({
 	__renderView: function __renderView(target) {
 		var _value = target.value;
 		if (_value) {
-			this.setState({ loading: true });
-			this.props.data.exec().then(function (data) {
-				console.log(data);
-				this.setState({ loading: false });
-				zn.popover.render(React.createElement(ListView, { data: data, onClick: this.__onListItemClick }), zn.extend({
+			_value = this.__filterData(_value);
+			if (_value.length) {
+				zn.popover.render(React.createElement(ListView, _extends({}, this.props, { onClick: this.__onListItemClick, data: _value })), zn.extend({
 					event: 'click',
 					target: target,
 					popoverWidth: '100%'
 				}, this.props));
-			}.bind(this));
+			} else {
+				zn.popover.close('AutoComplete:empty.review');
+			}
 		} else {
 			zn.popover.close('AutoComplete:empty.review');
 		}
+	},
+	__filterData: function __filterData(value) {
+		var _data = [];
+		this.state.data.map(function (item, index) {
+			var _callback = this.props.itemFilter && this.props.itemFilter(item, value, this);
+			if (_callback === false) {
+				return;
+			}
+			var _value = typeof item == 'string' ? item : item[this.props.textKey];
+			if (_value && _value.indexOf(value) != -1) {
+				_data.push(item);
+			}
+		}.bind(this));
+
+		return _data;
 	},
 	__onInputChange: function __onInputChange(event) {
 		this.setState({
@@ -67,11 +116,12 @@ var AutoComplete = React.createClass({
 		event.stopPropagation();
 		this.__renderView(event.target);
 	},
-	__onClearClick: function __onClearClick() {
+	__onClearClick: function __onClearClick(event) {
 		this.setState({
 			value: -1,
 			text: ''
 		});
+		event.target.parentNode.nextSibling.focus();
 		zn.popover.close('AutoComplete:clear.click');
 	},
 	getValue: function getValue() {
@@ -90,14 +140,12 @@ var AutoComplete = React.createClass({
 				'div',
 				{ className: 'status' },
 				this.state.loading && React.createElement('i', { className: 'fa fa-spinner zr-self-loading' }),
-				React.createElement('i', { className: 'fa fa-times-circle', onClick: this.__onClearClick })
+				this.state.text && React.createElement('i', { className: 'fa fa-times-circle', onClick: this.__onClearClick })
 			),
-			React.createElement('input', { value: this.state.text,
+			React.createElement('input', { type: 'text', value: this.state.text,
 				name: this.props.name,
-				type: 'text',
+				disabled: this.state.loading,
 				onChange: this.__onInputChange })
 		);
 	}
 });
-
-module.exports = AutoComplete;

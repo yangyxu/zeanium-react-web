@@ -3,14 +3,24 @@ module.exports = zn.arrayValueToObject([
     'AutoComplete',
     'Checkbox',
     'CheckboxGroup',
+    'DropdownSelector',
+    'FileUploader',
+    'ImageUploader',
     'Radio',
+    'RichEditor',
+    'RichSelector',
     'Select',
     'ImageUploader',
     'Menu',
+    'OrderCode',
     'Form',
     'FormItem',
     'FileUploader',
-    'Input'
+    'Input',
+    'Label',
+    'Textarea',
+    'Timer',
+    'ToggleSwitch'
 ], function (value, index){
     return require('./'+value+'.js');
 });

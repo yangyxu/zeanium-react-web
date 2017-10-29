@@ -1,13 +1,12 @@
 var React = require('react');
-var ListView = require('../basic/RTList');
-var RTItem = require('../basic/RTItem');
-var Checkbox = require('./Checkbox');
+var RTList = require('../basic/RTList');
 
-var TreeMenuItem = React.createClass({
-	displayName: 'TreeMenuItem',
+var CascaderItem = React.createClass({
+	displayName: 'TreeListViewItem',
 	getDefaultProps: function (){
 		return {
-			checked: false
+			checked: false,
+			className: ''
 		}
 	},
 	getInitialState: function(){
@@ -15,7 +14,8 @@ var TreeMenuItem = React.createClass({
 			active: this.props.active||this.props.parent.props.activeAll,
 			selected: false,
 			checked: false,
-			loading: false
+			loading: false,
+			data: this.props.parent.props.data.clone({ where: { zn_tree_pid: this.props.data.id } })
 		};
 	},
 	componentDidMount: function (){
@@ -43,7 +43,7 @@ var TreeMenuItem = React.createClass({
 	__isTreeRow: function (){
 		var _return = this.props.isTreeRow && this.props.isTreeRow(this.props, this);
 		if(_return === undefined) {
-			_return = !!this.props.data.sons;
+			_return = !!this.props.data.zn_tree_son_count;
 		}
 		return _return;
 	},
@@ -56,6 +56,7 @@ var TreeMenuItem = React.createClass({
 	},
 	__onCheckboxChange: function (value){
 		this.setState({ checked: value });
+		this.props.onChange && this.props.onChange(value, this.props.data);
 		this.props.onCheckboxChange && this.props.onCheckboxChange(value, this.props.data);
 	},
 	renderContent: function (){
@@ -78,37 +79,44 @@ var TreeMenuItem = React.createClass({
 	},
 	__renderChildren: function (){
 		if(this.__isTreeRow() && this.state.active){
-			var _data = this.props.parent.props.data.copyAndExt({ where: { pid: this.props.data.id } });
 			var _sep = this.props.parent.props.sep;
 			_sep++;
-			return <TreeMenu {...this.props.parent.props} checked={(this.props.parent.props.cascade ? this.state.checked : undefined)} parentTreeMenu={this.props.parent} sep={_sep} autoLoad={true} data={_data} />;
+			return <TreeListView {...this.props.parent.props}
+						checked={(this.props.parent.props.cascade ? this.state.checked : undefined)}
+						parentTreeMenu={this.props.parent}
+						sep={_sep}
+						autoLoad={true}
+						data={this.state.data} />;
 		}
 	},
-	render:function(){
+	render: function(){
 		return (
-			<div className="tree-row">
-				<div className={"row-title " + (this.state.selected?'curr':'')} onClick={this.__onClick}>{this.renderIcon()}{this.renderContent()}</div>
+			<RTItem className={"zr-tree-list-view-item " + this.props.className} >
+				<div className="item-row-title" data-selected={this.state.selected} onClick={this.__onClick}>
+					{this.renderIcon()}
+					{this.renderContent()}
+				</div>
 				{this.__renderChildren()}
-			</div>
+			</RTItem>
 		);
 	}
 });
 
-var TreeMenu = React.createClass({
+var TreeListView = React.createClass({
+	displayName: 'TreeListView',
 	getDefaultProps: function () {
 		return {
 			sep: 0,
 			isTreeRow: null,
 			autoLoad: true,
-			textKey: 'title',
+			textKey: 'zn_title',
 			valueKey: 'id',
-			className: 'c-tree',
+			className: '',
 			checked: false,
 			disabled: false,
 			enableCheckbox: false
 		};
 	},
-	displayName: 'TreeMenu',
 	getInitialState: function(){
 		return {
 			currIndex: null,
@@ -161,30 +169,26 @@ var TreeMenu = React.createClass({
 		}
 	},
 	__itemRender: function (item, index){
-		var _content = null;
-		if(typeof item=='string'){
-			item = { text: item };
-		}
-		_content = this.props.itemRender && this.props.itemRender(item, index);
-		if(!_content){
+		var _content = this.props.itemRender && this.props.itemRender(item, index);
+		if(!_content && item){
 			var _checked = this.props.checked,
 				_itemValue = (item[this.props.valueKey]) + ',';
 			if(!_checked){
 				_checked = this.state.value.indexOf(',' + _itemValue)!=-1;
 			}
-			_content = <TreeMenuItem key={index} checked={_checked} parent={this} data={item} onClick={this.__onItemClick} onCheckboxChange={this.__onItemCheckboxChange} />;
+			_content = <TreeListViewItem key={index} checked={_checked} parent={this} data={item} onClick={this.__onItemClick} onCheckboxChange={this.__onItemCheckboxChange} />;
 		}
 
 		return _content;
 	},
 	refresh: function (){
-		this.refs.listview.refresh();
+		return this.props.data.refresh(), this;
 	},
 	render:function(){
 		return (
-			<ListView {...this.props} ref='listview' onClick={null} itemRender={this.__itemRender} onLoaded={this.__onLoaded} />
+			<RTList {...this.props} className={'zr-tree-list-view ' + this.props.className} onClick={null} itemRender={this.__itemRender} onLoaded={this.__onLoaded} />
 		);
 	}
 });
 
-module.exports = TreeMenu;
+module.exports = TreeListView;

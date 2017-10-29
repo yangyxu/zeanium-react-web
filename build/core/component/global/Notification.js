@@ -19,7 +19,9 @@ var Notification = React.createClass({
 		var _dom = ReactDOM.findDOMNode(this);
 		_dom.classList.add('notification-out');
 		_dom.addEventListener("animationend", function () {
-			_dom.parentNode.parentNode.removeChild(_dom.parentNode);
+			if (_dom.parentNode.parentNode) {
+				_dom.parentNode.parentNode.removeChild(_dom.parentNode);
+			}
 		}, false);
 	},
 	render: function render() {

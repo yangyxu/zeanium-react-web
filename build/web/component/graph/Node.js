@@ -7,23 +7,25 @@ module.exports = React.createClass({
 	getDefaultProps: function getDefaultProps() {
 		return {
 			draggable: true,
-			editable: true
+			editable: true,
+			data: {},
+			x: 0,
+			y: 0
 		};
 	},
 	getInitialState: function getInitialState() {
 		this._links = {};
 		this._nodes = {};
 		return {
+			uuid: this.props.id || zn.uuid(),
 			highLight: false
 		};
 	},
 	componentDidMount: function componentDidMount() {
 		var _source = this._dom,
 		    _self = this;
-
-		this._id = this.props.id || zn.uuid();
-		this._x = this.props.x || 0;
-		this._y = this.props.y || 0;
+		this._x = this.props.x;
+		this._y = this.props.y;
 		this._parentPosition = zn.dom.getPosition(this._dom.parentNode);
 		if (this.props.draggable) {
 			zn.react.Draggable.create(_source, {
@@ -37,7 +39,7 @@ module.exports = React.createClass({
 		zn.dom.on(_source, 'mouseover', this.__onMouseOver);
 		zn.dom.on(_source, 'mouseout', this.__onMouseOut);
 
-		this.props.onDidMount && this.props.onDidMount(this, this.props);
+		this.props.onNodeDidMount && this.props.onNodeDidMount(this);
 	},
 	getCenterXY: function getCenterXY() {
 		var _position = zn.dom.getPosition(this._dom);
@@ -82,7 +84,7 @@ module.exports = React.createClass({
 
 		if (node) {
 			_node = React.createElement(Node, node);
-			this._nodes[_node._id] = _node;
+			this._nodes[_node.state.uuid] = _node;
 			React.render(_node, this._dom);
 		}
 	},
@@ -173,8 +175,7 @@ module.exports = React.createClass({
 	__onNodeDragEnd: function __onNodeDragEnd(event, data) {
 		var _dx = Math.abs(this._startVector.x - data.mouseX),
 		    _dy = Math.abs(this._startVector.y - data.mouseY);
-		//event.stopPropagation();
-		event.preventDefault();
+
 		if (this._dom) {
 			this._dom.style.zIndex = this._oldZIndex;
 		}
@@ -209,8 +210,6 @@ module.exports = React.createClass({
 		});
 	},
 	__onMouseOver: function __onMouseOver(event) {
-		event.stopPropagation();
-		event.preventDefault();
 		for (var key in this._links) {
 			this._links[key].highLight(true);
 		}
@@ -230,21 +229,25 @@ module.exports = React.createClass({
 	},
 	__onContextMenu: function __onContextMenu(event) {
 		event.stopPropagation();
-		event.preventDefault();
 		return this.props.onContextMenu && this.props.onContextMenu(event, this);
 	},
 	getId: function getId() {
-		return this._id;
+		return this.state.uuid;
 	},
 	render: function render() {
 		var _this = this;
 
 		return React.createElement(
 			'div',
-			{ onContextMenu: this.__onContextMenu, ref: function ref(_ref) {
+			{ ref: function ref(_ref) {
 					return _this._dom = _ref;
-				}, className: zn.react.classname('zr-graph-node', this.props.className), 'data-id': this.getId(), 'data-highlight': this.state.highLight, 'data-selected': this.props.selected, style: this.props.style },
-			this.props.render && this.props.render(this, this.props),
+				}, style: this.props.style,
+				className: zn.react.classname('zr-graph-node', this.props.className),
+				'data-id': this.getId(),
+				'data-highlight': this.state.highLight,
+				'data-selected': this.props.selected,
+				onContextMenu: this.__onContextMenu },
+			this.props.render && this.props.render(this.props.data, this),
 			this.__editableRender()
 		);
 	}

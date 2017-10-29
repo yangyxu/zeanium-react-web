@@ -1,17 +1,17 @@
-var _kv = zn.arrayValueToObject([
+module.exports = zn.arrayValueToObject([
+    'AjaxUploader',
     'AutoComplete',
-    'Input',
     'Checkbox',
     'CheckboxGroup',
-    'RichEditor',
-    'Radio',
-    'Select',
+    'DropdownSelector',
     'FileUploader',
     'ImageUploader',
-    'InputPopup',
+    'Input',
     'Menu',
-    'TreeMenu',
-    'SearchMenu',
+    'RichEditor',
+    'RichSelector',
+    'Radio',
+    'Select',
     'Label',
     'Textarea',
     'Timer',
@@ -19,6 +19,3 @@ var _kv = zn.arrayValueToObject([
 ], function (value, index){
     return require('./'+value+'.js');
 });
-
-_kv.TreeListView = require('../data/TreeListView.js');
-module.exports = _kv;

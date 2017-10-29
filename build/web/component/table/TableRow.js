@@ -14,11 +14,20 @@ module.exports = React.createClass({
 		return {
 			selected: this.props.selected,
 			editable: this.props.editable,
-			checked: this.props.checked
+			checked: this.props.checked,
+			data: this.props.data || {},
+			vars: [],
+			exps: {}
 		};
 	},
 	componentDidMount: function componentDidMount() {
 		this.props.onDidMount && this.props.onDidMount(this);
+	},
+	componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+		if (nextProps.data != this.props.data) {
+			this.state.data = nextProps.data;
+			this.forceUpdate();
+		}
 	},
 	checked: function checked(value) {
 		if (this.isMounted()) {
@@ -51,7 +60,7 @@ module.exports = React.createClass({
 		this.props.onRowClick && this.props.onRowClick(event, {
 			tr: _tr,
 			td: _td,
-			data: this.props.data,
+			data: this.state.data,
 			items: this.props.items
 		}, this);
 	},
@@ -65,16 +74,28 @@ module.exports = React.createClass({
 	__onTableColumnChange: function __onTableColumnChange(rowIndex, columnIndex, value, input, event, props) {
 		var _value = props.onChange && props.onChange(value, input, this, event, props, rowIndex, columnIndex);
 		if (_value !== undefined || _value !== null) {
-			this.props.data[props.name] = input.getValue();
+			this.state.data[props.name] = input.getValue();
 		}
+
+		var _vars = [];
+		this.state.vars.map(function (_var, _index) {
+			_vars.push(_var + " = " + (this.state.data[_var] || 0));
+		}.bind(this));
+
+		_vars = _vars.join(',');
+		Object.keys(this.state.exps).map(function (key, index) {
+			this.state.data[key] = eval.call(null, "(function () { var " + _vars + "; return " + this.state.exps[key] + "; })()");
+		}.bind(this));
+
+		this.forceUpdate();
 	},
 	setRowValue: function setRowValue(value) {
 		switch (arguments.length) {
 			case 1:
-				zn.overwrite(this.props.data, value);
+				zn.overwrite(this.state.data, value);
 				break;
 			case 2:
-				this.props.data[arguments[0]] = arguments[1];
+				this.state.data[arguments[0]] = arguments[1];
 				break;
 		}
 
@@ -82,17 +103,19 @@ module.exports = React.createClass({
 	},
 	getRowValue: function getRowValue() {
 		if (arguments.length) {
-			return this.props.data[arguments[0]];
+			return this.state.data[arguments[0]];
 		} else {
-			return this.props.data;
+			return this.state.data;
 		}
 	},
 	__columnRender: function __columnRender(item, index) {
 		var _this = this;
 
-		var _value = this.props.data,
+		var _value = this.state.data,
 		    _content = null;
-
+		if (item.type != 'action' && item.type != 'checkbox' && this.state.vars.indexOf(item.name) == -1) {
+			this.state.vars.push(item.name);
+		}
 		if (Object.prototype.toString.call(_value) === '[object Array]') {
 			if (this.props.checkbox) {
 				_value = _value[index - 1];
@@ -104,26 +127,49 @@ module.exports = React.createClass({
 		}
 
 		if (this.props.columnRender) {
-			_content = this.props.columnRender(this.props.index, index, this.props.data, item, _value);
+			_content = this.props.columnRender(this.props.index, index, this.state.data, item, _value);
 		}
 
 		if (_content == null) {
-			switch (item.type) {
-				case 'checkbox':
-					_value = _value == undefined ? this.props.checked : _value;
-					_content = this.state.editable ? React.createElement(zn.react.Icon, { icon: 'fa-edit' }) : React.createElement(zn.react.Checkbox, { onChange: this.__onCheckBoxChange, checked: _value });
-					break;
-				default:
-					var inputs = zn.react.FormItem.inputs;
-					var _Input = inputs[item.type] || inputs['Input'];
-					_content = this.state.editable ? React.createElement(_Input, _extends({}, item, { value: _value, text: _value, onChange: function onChange(value, input, event) {
-							return _this.__onTableColumnChange(_this.props.index, index, value, input, event, item);
-						} })) : React.createElement(
+			var _type = item.type;
+			if (zn.is(_type, 'string')) {
+				if (_type[0] == '{' && _type[_type.length - 1] == '}') {
+					if (!this.state.exps[item.name]) {
+						this.state.exps[item.name] = _type.substring(1, _type.length - 1);
+					}
+					_content = React.createElement(
 						'span',
-						null,
+						{ style: { padding: '0px 5px' } },
 						_value
 					);
-					break;
+				} else {
+					if (_type == 'checkbox') {
+						_value = _value == undefined ? this.props.checked : _value;
+						_content = this.state.editable ? React.createElement(zn.react.Icon, { icon: 'fa-edit' }) : React.createElement(zn.react.Checkbox, { onChange: this.__onCheckBoxChange, checked: _value });
+					} else {
+						if (zn.path(window, _type)) {
+							_input = zn.path(window, _type);
+						} else {
+							_input = zn.react[_type];
+						}
+					}
+				}
+			} else {
+				_input = _type;
+			}
+
+			if (!_content) {
+				var _Input = _input || zn.react.Input;
+				if (item.props && item.props[0] == '{') {
+					item.attrs = JSON.parse(item.props);
+				}
+				_content = this.state.editable ? React.createElement(_Input, _extends({}, item, { value: _value, text: _value, onChange: function onChange(value, input, event) {
+						return _this.__onTableColumnChange(_this.props.index, index, value, input, event, item);
+					} })) : React.createElement(
+					'span',
+					null,
+					_value
+				);
 			}
 		}
 

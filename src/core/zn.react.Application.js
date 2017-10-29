@@ -9,24 +9,27 @@ module.exports = zn.react.Application = zn.Class({
                     }
                 };
             zn.each(argv, function (value, key){
-                if(zn.type(value)=='function'){
+                if(zn.type(value)=='function' && !value.displayName){
                     _methods[key] = value;
                 }else {
                     _props[key] = value;
                 }
             });
             var _Class = zn.Class(this, {
-                properties: _props,
-                methods: _methods
+                methods: _methods,
+                properties: _props
             });
+
             return new _Class(_props);
         }
     },
     properties: {
         container: 'container',
+        absolute: true,
         home: null,
         main: null,
         host: window.location.origin,
+        router: null,
         plugins: []
     },
     methods: {
@@ -41,23 +44,30 @@ module.exports = zn.react.Application = zn.Class({
         __initArgv: function (argv){
             var _routers = {},
                 _plugin = null,
+                _path = this.get('path'),
                 _self = this;
 
             this.get('plugins') && this.get('plugins').forEach(function (plugin){
                 if(zn.is(plugin, 'string')){
                     plugin = _self.onLoading(plugin);
                 }
-                zn.extend(_routers, plugin);
+                if(_path && _routers[_path]){
+                    zn.extend(_routers[_path], plugin);
+                }else {
+                    zn.extend(_routers, plugin);
+                }
             });
 
             if(argv.routers){
                 var __routers = zn.deepEachObject(argv.routers, this.onLoading.bind(this));
-                if(this.get('path')){
-                    zn.extend(_routers[this.get('path')], __routers);
+                if(_path){
+                    zn.extend(_routers[_path], __routers);
                 }else {
                     zn.extend(_routers, __routers);
                 }
             }
+
+            console.log(_routers);
 
             this._routers = _routers;
             zn.react.session.setHome(this.get('home'))
@@ -72,7 +82,11 @@ module.exports = zn.react.Application = zn.Class({
             return this.render && this.render.call(this, this.gets());
         },
         update: function (view){
-            var _Router = zn.react.isMobile()?zn.react.WapRouter:zn.react.WebRouter;
+            var _Router = this.get('router');
+            if(!_Router){
+                _Router = zn.react.isMobile()?zn.react.WapRouter:zn.react.WebRouter;
+            }
+
             if(!_Router){
                 return alert('只适合手机版本打开!'), false;
             }
@@ -80,9 +94,11 @@ module.exports = zn.react.Application = zn.Class({
             var _view = view || this.__getRenderView() || <_Router home={this.get('home')} routers={this._routers} />,
                 _container = this.get('container');
             _container = zn.type(_container)=='string'?document.getElementById(_container):_container;
-            _container.style.position = 'absolute';
-            _container.style.width = '100%';
-            _container.style.height = '100%';
+            if(this.get('absolute')){
+                _container.style.position = 'absolute';
+                _container.style.width = '100%';
+                _container.style.height = '100%';
+            }
             if(zn.react.isMobile()){
                 _container.classList.add('zr-mobile');
             }

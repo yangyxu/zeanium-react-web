@@ -3,9 +3,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 var React = require('react');
 var RTList = require('../basic/RTList');
 var RTFlexItem = require('../basic/RTFlexItem');
-var inputs = require('./inputs.js');
 
-var FormItem = React.createClass({
+module.exports = React.createClass({
 	displayName: 'FormItem',
 	getDefaultProps: function getDefaultProps() {
 		return {
@@ -21,9 +20,13 @@ var FormItem = React.createClass({
 	},
 	componentDidMount: function componentDidMount() {
 		if (this.props.value != undefined && this.refs.input) {
-			this.refs.input.setValue(this.props.value);
+			if (this.refs.input.setValue) {
+				this.refs.input.setValue(this.props.value);
+			} else {
+				zn.toast.error('The FormItem input component has not setValue method.');
+			}
 		}
-		this.props.onDidMount && this.props.onDidMount(this);
+		this.props.onFormItemDidMount && this.props.onFormItemDidMount(this);
 	},
 	validate: function validate() {
 		if (!this.refs.input) {
@@ -50,7 +53,11 @@ var FormItem = React.createClass({
 		var _input = null,
 		    _type = this.props.type;
 		if (zn.is(_type, 'string')) {
-			_input = inputs[_type];
+			if (zn.path(window, _type)) {
+				_input = zn.path(window, _type);
+			} else {
+				_input = zn.react[_type];
+			}
 		} else {
 			_input = _type;
 		}
@@ -78,6 +85,3 @@ var FormItem = React.createClass({
 		);
 	}
 });
-
-FormItem.inputs = inputs;
-module.exports = FormItem;

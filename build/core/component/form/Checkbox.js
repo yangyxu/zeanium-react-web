@@ -18,6 +18,11 @@ module.exports = React.createClass({
 			checked: this.props.checked
 		};
 	},
+	componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+		if (nextProps.checked != this.props.checked) {
+			this.setState({ checked: nextProps.checked });
+		}
+	},
 	__onClick: function __onClick(rtitem, event) {
 		this.state.checked = !this.state.checked;
 		this.setState({

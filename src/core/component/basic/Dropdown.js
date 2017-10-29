@@ -12,6 +12,13 @@ module.exports = React.createClass({
 	componentDidMount: function (){
 		ReactDOM.findDOMNode(this).addEventListener(this.props.eventType, this.__eventHandler, false);
 	},
+	getParent: function (target){
+		if(target.classList.contains('zr-dropdown')){
+			return target;
+		}else {
+			return this.getParent(target.parentNode);
+		}
+	},
 	__eventHandler: function (event){
 		if(this.props.disabled){ return; }
 		var _target = this.getParent(event.target);
@@ -31,13 +38,6 @@ module.exports = React.createClass({
 		}
 
 		return _content;
-	},
-	getParent: function (target){
-		if(target.classList.contains('zr-dropdown')){
-			return target;
-		}else {
-			return this.getParent(target.parentNode);
-		}
 	},
 	render: function(){
 		var _children = this.props.children;

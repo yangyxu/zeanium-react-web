@@ -47,13 +47,14 @@ zn.alert = function (content, title, callback){
 	});
 };
 
-zn.confirm = function (content, title, confirm, cancel){
+zn.confirm = function (content, title, confirm, cancel, options){
+	var _options = zn.extend({ cancel: '取消', confirm: '确定' }, options);
 	zn.modal.open(<Alert
 			content={content}
 			title={title}
 			buttons={[
-				{ text:'取消', onClick: cancel },
-				{ text:'确定', onClick: confirm }
+				{ text: _options.cancel, onClick: cancel },
+				{ text: _options.confirm, onClick: confirm }
 			]} />, {
 				showOverlay: true,
 				contentStyles: function (dom, modal){

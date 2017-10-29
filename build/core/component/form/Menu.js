@@ -2,13 +2,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var React = require('react');
 var Dropdown = require('../basic/Dropdown');
-var ListView = require('../data/ListView');
-
+var SearchListView = require('../data/SearchListView');
 module.exports = React.createClass({
 	displayName: 'Menu',
 	getDefaultProps: function getDefaultProps() {
 		return {
-			eventType: 'click'
+			eventType: 'click',
+			editable: true
 		};
 	},
 	getInitialState: function getInitialState() {
@@ -23,7 +23,7 @@ module.exports = React.createClass({
 	setValue: function setValue(value, text) {
 		this.setState({
 			value: value,
-			text: text
+			text: text || value
 		}, function () {
 			this.props.onChange && this.props.onChange(value, text, this);
 		});
@@ -35,17 +35,22 @@ module.exports = React.createClass({
 		this.setValue(value, item[rtlist.props.textKey]);
 		zn.popover.close('Menu:item.click');
 	},
+	__onInputChange: function __onInputChange(event) {
+		this.state.value = event.target.value;
+		this.forceUpdate();
+		zn.popover.close('Menu:item.click');
+	},
 	__popoverRender: function __popoverRender() {
-		return React.createElement(ListView, _extends({}, this.props, { style: this.props.listStyle, className: zn.react.classname("zr-list-view-popover", this.props.listClassName), emptyView: true, value: this.state.value, onItemClick: this.__onListItemClick }));
+		return React.createElement(SearchListView, _extends({}, this.props, { style: this.props.listStyle, className: zn.react.classname("zr-list-view-popover", this.props.listClassName), emptyView: true, value: this.state.value, onItemClick: this.__onListItemClick }));
 	},
 	render: function render() {
 		return React.createElement(
 			Dropdown,
-			_extends({}, this.props, { popoverRender: this.__popoverRender, className: zn.react.classname("zr-menu", this.props.className) }),
+			_extends({}, this.props, { popoverRender: this.__popoverRender, popoverWidth: '100%', className: zn.react.classname("zr-menu", this.props.className) }),
 			React.createElement(
 				'div',
 				{ className: 'menu-view' },
-				React.createElement(
+				this.props.editable ? React.createElement('input', { value: this.state.value, onChange: this.__onInputChange }) : React.createElement(
 					'span',
 					{ className: 'text' },
 					this.__textRender()

@@ -1,10 +1,14 @@
 @import "../../../zr.variables.less";
 
 .zr-modal {
-    position: absolute;
+    position: fixed;
     z-index: 11000;
     height: 100%;
     width: 100%;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
     opacity: 0;
     -webkit-transition-property: -webkit-transform, opacity;
     transition-property: transform, opacity;
@@ -73,8 +77,10 @@
         position: relative;
         top: 50%;
         left: 50%;
-        width: 540px;
-        margin-left: -270px;
+        width: 680px;
+        margin-left: -340px;
+        margin-top: 100px;
+        margin-bottom: 100px;
         .close{
             /*
             background-color: #e6e6e6;*/

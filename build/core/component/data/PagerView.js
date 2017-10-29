@@ -9,7 +9,8 @@ module.exports = React.createClass({
 		return {
 			pageIndex: 1,
 			pageSize: 10,
-			visiblePage: 3
+			visiblePage: 3,
+			dataFixed: false
 		};
 	},
 	getInitialState: function getInitialState() {
@@ -27,6 +28,9 @@ module.exports = React.createClass({
 		this.props.data.refresh();
 	},
 	__dataHandler: function __dataHandler(data) {
+		if (!data.result) {
+			return zn.notification.error('空数据'), -1;
+		}
 		if (data.result[1]) {
 			var _count = data.result[1][0].count;
 			if (this.isMounted()) {
@@ -61,15 +65,16 @@ module.exports = React.createClass({
 		});
 		return React.createElement(
 			'div',
-			{ className: zn.react.classname("zr-pager-view", "zr-flex-layout column", this.props.className) },
+			{ className: zn.react.classname("zr-pager-view", this.props.className), 'data-fixed': this.props.dataFixed },
 			React.createElement(
 				'div',
-				{ className: 'layout-body' },
+				{ className: 'content-view' },
 				React.createElement(View, _extends({}, this.props, { onData: this.__onTableData, dataHandler: this.__dataHandler, ref: 'view' }))
 			),
 			React.createElement(
 				'div',
-				{ className: 'layout-footer' },
+				{ className: 'action-view' },
+				React.createElement(zn.react.Icons, { className: 'ios', items: this.props.toolbarItems, onClick: this.props.onToolbarClick }),
 				React.createElement(Pager, { total: this.state.total,
 					count: this.state.count,
 					current: this.state.current,

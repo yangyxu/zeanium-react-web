@@ -4,7 +4,7 @@ var React = require('react');
 var RTItem = require('../basic/RTItem');
 var RTList = require('../basic/RTList');
 
-var Steps = React.createClass({
+module.exports = React.createClass({
 	displayName: 'Steps',
 	getDefaultProps: function getDefaultProps() {
 		return {
@@ -130,5 +130,3 @@ var Steps = React.createClass({
 			itemRender: this.__itemRender }));
 	}
 });
-
-module.exports = Steps;

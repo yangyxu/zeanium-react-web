@@ -11,6 +11,7 @@ module.exports = React.createClass({
 			className: 'zr-list-view-default',
 			itemClassName: '',
 			float: 'none',
+			filterValue: null,
 			disabled: false,
 			value: null,
 			textKey: 'text',
@@ -127,6 +128,7 @@ module.exports = React.createClass({
 		if (this.props.itemRender) {
 			_content = this.props.itemRender(item, index, this);
 		}
+
 		return React.createElement(
 			RTItem,
 			_extends({
@@ -147,8 +149,16 @@ module.exports = React.createClass({
 	setValue: function setValue(value, callback) {
 		this.setState({ value: value }, callback);
 	},
+	__onEachItem: function __onEachItem(item, rtlist) {
+		if (this.props.filterValue) {
+			if (item[this.props.textKey].indexOf(this.props.filterValue) == -1) {
+				return false;
+			}
+		}
+	},
 	render: function render() {
 		return React.createElement(RTList, _extends({}, this.props, {
+			onEachItem: this.__onEachItem,
 			className: zn.react.classname('zr-list-view', this.props.className, this.props.noborder ? 'noborder' : ''),
 			itemRender: this.__itemRender }));
 	}

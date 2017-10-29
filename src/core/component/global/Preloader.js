@@ -19,6 +19,9 @@ var Preloader = React.createClass({
 module.exports = zn.preloader = zn.Class({
 	static: true,
 	methods: {
+		init: function (){
+			this._dom = zn.dom.createRootElement("div", { class: "zr-preloader-container" });
+		},
 		open: function (argv, overlay){
 			zn.modal.open(<Preloader {...argv} />, { className: overlay?'overlay':'' });
 		},

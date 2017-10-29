@@ -4,9 +4,9 @@ module.exports = React.createClass({
 	displayName: 'Page',
 	getDefaultProps: function() {
 		return {
-			icon: 'fa-arrow-left',
-			height: 42,
-			end: 42,
+			icon: 'fa-angle-left',
+			height: 40,
+			end: 40,
 			flex: false,
 			canBack: true,
 			loading: false

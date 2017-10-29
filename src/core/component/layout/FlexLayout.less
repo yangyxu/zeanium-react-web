@@ -5,22 +5,25 @@
     flex-direction: column;
     &.column {
         flex-direction: column !important;
+        &>*{
+            width: 100%;
+        }
     }
 
     &.row {
         flex-direction: row !important;
+        &>*{
+            height: 100%;
+        }
     }
 
-    .layout-header{
+    &>.layout-header{
         position: relative;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
         overflow: auto;
     }
 
 
-    .layout-body {
+    &>.layout-body {
         position: relative;
         overflow: auto;
         width: 100%;
@@ -28,7 +31,7 @@
         flex: 1;
     }
 
-    .layout-footer {
+    &>.layout-footer {
         position: relative;
         overflow: auto;
     }

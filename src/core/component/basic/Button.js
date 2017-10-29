@@ -2,7 +2,7 @@ var React = require('react');
 var RTItem = require('./RTItem');
 
 module.exports = React.createClass({
-	displayName:'Button',
+	displayName: 'Button',
 	getDefaultProps: function (){
 		return {
 			className: '',
@@ -10,12 +10,12 @@ module.exports = React.createClass({
 			type: 'primary'
 		}
 	},
-	getInitialState: function(){
+	getInitialState: function() {
 		return {
 			loading: false
 		}
 	},
-	loading: function (value){
+	loading: function (value) {
 		if(this.isMounted()){
 			this.setState({ loading: value });
 		}
@@ -42,7 +42,7 @@ module.exports = React.createClass({
 					"data-loading": this.state.loading,
 					"data-tooltip": this.props.tooltip
 				}, this.props.attrs)}
-				className={zn.react.classname("zr-button zr-action-ripple", this.props.className, (this.props.status||this.props.type))}
+				className={zn.react.classname("zr-button zr-action-ripple zr-base-transition", this.props.className, (this.props.status||this.props.type))}
 				onClick={this.__onClick} >
 				{this.__renderChildren()}
 			</RTItem>

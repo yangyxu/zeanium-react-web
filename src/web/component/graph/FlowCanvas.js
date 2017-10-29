@@ -40,7 +40,7 @@ module.exports = React.createClass({
             return false;
         }.bind(this);
 	},
-	__onNodeDidMount: function (node, nodeProps, nodeState){
+	__onNodeDidMount: function (node){
 		this._nodes[node.getId()] = node;
 	},
 	__onNodeDrag: function (){
@@ -48,20 +48,25 @@ module.exports = React.createClass({
 	},
 	__onNodeDragEnd: function (event, data, node){
 		var _data = this.state.nodes[node.props.index];
-		_data.x = data.currX;
-		_data.y = data.currY;
-		this.props.onNodeDragEnd && this.props.onNodeDragEnd(event, data, node);
+		if(_data){
+			_data.x = data.currX;
+			_data.y = data.currY;
+			this.props.onNodeDragEnd && this.props.onNodeDragEnd(event, data, node);
+		}
 	},
-	__onLinkDidMount: function (link, linkProps){
-		var _target = this._nodes[linkProps.target],
-			_source = this._nodes[linkProps.source];
+	__onLinkDidMount: function (link){
+		var _target = this._nodes[link.props.target],
+			_source = this._nodes[link.props.source];
 		this._links[link.getId()] = link;
 		link.setTarget(_target);
 		link.setSource(_source);
 		link.reset();
 	},
 	getData: function (){
-		return this.state;
+		return {
+			nodes: this.state.nodes,
+			links: this.state.links
+		};
 	},
 	setData: function (data){
 		if(data){
@@ -73,6 +78,8 @@ module.exports = React.createClass({
 				_obj.links = data.links;
 			}
 			if(Object.keys(_obj).length){
+				this._nodes = {};
+				this._links = {};
 				this.setState(_obj);
 			}
 		}
@@ -156,35 +163,36 @@ module.exports = React.createClass({
 		this.props.onNodeClick && this.props.onNodeClick(event, node, data, this);
 	},
 	render:function(){
-		this._nodes = {};
-		this._links = {};
-		zn.debug('FlowCanvas data: ', this.state.nodes, this.state.links);
+		zn.debug('FlowCanvas data: ', this.state);
 		return (
-			<div className="zr-graph-flow-canvas" >
+			<div className={zn.react.classname("zr-graph-flow-canvas", this.props.className)} >
 				{
 					(this.state.nodes||[]).map(function (node, index){
-						node.id = node.id||zn.uuid();
-						return <Node key={zn.uuid()}
+						node.id = node.id || zn.uuid();
+						return <Node {...node}
+									key={node.id}
 									index={index}
-									selected={this.state.selectNode===node?true:false}
-									data={node}
 									canvas={this}
-									onContextMenu={this.props.onNodeContextMenu}
 									className={this.props.nodeClassName}
+									selected={this.state.selectNode===node?true:false}
 									editable={this.props.editable||node.editable}
 									draggable={this.props.draggable||node.draggable}
 									render={this.props.nodeRender}
+									onContextMenu={this.props.onNodeContextMenu}
 									onNodeEditDragEnd={this.props.onNodeEditDragEnd}
-									onDidMount={this.__onNodeDidMount}
+									onNodeDidMount={this.__onNodeDidMount}
 									onNodeDrag={this.__onNodeDrag}
 									onNodeDragEnd={this.__onNodeDragEnd}
-									onClick={(event, instance)=>this.__onNodeClick(event, instance, node)}
-									{...node} />;
+									onClick={(event, instance)=>this.__onNodeClick(event, instance, node)} />;
 					}.bind(this))
 				}
 				{
 					this.state.links.map(function (link, index){
-						return <Link key={zn.uuid()} data={link} render={this.props.linkRender} {...link} onDidMount={this.__onLinkDidMount} />;
+						link.id = link.id || zn.uuid();
+						return <Link {...link}
+									key={link.id}
+									render={this.props.linkRender}
+									onLinkDidMount={this.__onLinkDidMount} />;
 					}.bind(this))
 				}
 				<Link ref="temp" />

@@ -39,6 +39,8 @@ module.exports = zn.react.session = zn.Class({
                 _searchAry.push(key + '=' + _value);
             }
 
+            zn.react.global.fireJump();
+
             if(_searchAry.length){
                 location.hash = path + '?' + _searchAry.join('&');
             }else {
@@ -67,6 +69,9 @@ module.exports = zn.react.session = zn.Class({
         },
         isPath: function (value){
             return window.location.hash.split('?')[0] === '#' + this.fixPath(value);
+        },
+        containPath: function (value){
+            return window.location.hash.split('?')[0].indexOf('#' + this.fixPath(value)) !== -1;
         },
         doHome: function (){
             if(this._home){

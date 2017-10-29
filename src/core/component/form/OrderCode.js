@@ -1,16 +1,11 @@
 var React = require('react');
 var Dropdown = require('../basic/Dropdown');
-var FixedLayout = require('../layout/FixedLayout');
-var ListView = require('../data/ListView');
-
 module.exports = React.createClass({
-	displayName: 'SearchMenu',
+	displayName: 'OrderCode',
 	getDefaultProps: function (){
 		return {
-			className: '',
-			autoFixPosition: true,
-			triggerEvent: 'click',
-			popoverWidth: null
+			eventType: 'click',
+			editable: true
 		}
 	},
 	getInitialState: function (){
@@ -25,7 +20,7 @@ module.exports = React.createClass({
 	setValue: function (value, text) {
 		this.setState({
 			value: value,
-			text: text
+			text: text||value
 		}, function (){
 			this.props.onChange && this.props.onChange(value, text, this);
 		});
@@ -35,23 +30,22 @@ module.exports = React.createClass({
 	},
 	__onListItemClick: function (value, rtlistitem, rtlist, item){
 		this.setValue(value, item[rtlist.props.textKey]);
-		Popover.closeAll();
+		zn.popover.close('Menu:item.click');
+	},
+	__onInputChange: function (event){
+		this.state.value = event.target.value;
+		this.forceUpdate();
+		zn.popover.close('Menu:item.click');
 	},
 	__popoverRender: function (){
-		return <div>
-			<div></div>
-			<ListView {...this.props}
-				className="zr-list-view-popover"
-				value={this.state.value}
-				onItemClick={this.__onListItemClick} />
-		</div>;
+		return null;
 	},
 	render: function(){
 		return (
-			<Dropdown {...this.props} popoverRender={this.__popoverRender} className={"zr-search-menu " + this.props.className} >
-				<div className="menu-view">
-					<div className className="text">{this.__textRender()}</div>
-					<span className="trigger"><i className="fa fa-angle-down" /></span>
+			<Dropdown {...this.props} popoverRender={this.__popoverRender} popoverWidth="100%" className={zn.react.classname("zr-order-code", this.props.className)} >
+				<div className="code-view">
+					{this.props.editable ? <input value={this.state.value} onChange={this.__onInputChange} /> : <span className="text">{this.__textRender()}</span>}
+					<i className="trigger fa fa-angle-down" />
 				</div>
 			</Dropdown>
 		);

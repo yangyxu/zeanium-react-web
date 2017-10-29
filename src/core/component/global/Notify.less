@@ -1,0 +1,178 @@
+@import "../../../zr.variables.less";
+
+
+.zr-status(@color: @zr-color-primary){
+    border-top-color: @color;
+    .fa{
+        color: @color;
+        border-color: @color;
+    }
+}
+
+.zr-notify-container {
+    position: absolute;
+    z-index: 15000;
+    right: 20px;
+    top: 50px;
+
+}
+
+@media (max-width: 320px) {
+
+}
+
+.zr-notify {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    background-color: #9b59b6;
+    border-radius: 4px;
+    background-color: #fbfbfb;
+    box-shadow: 0 0 7px 0 rgba(0,0,0,.36);
+    padding: 19px 14px;
+    border-top: 5px solid transparent;
+    min-width: 320px;
+
+    .icon, .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .icon{
+        text-align: center;
+        .fa{
+            width: 48px;
+            height: 48px;
+            font-size: 28px;
+            border-radius: 50%;
+            border: 5px solid transparent;
+            padding: 5px;
+        }
+    }
+
+    .content{
+        flex: 1;
+        padding: 24px;
+        padding-right: 72px;
+        justify-content: flex-start;
+        text-align: left;
+    }
+
+    .close{
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    &.notify-in{
+        animation: notifyIn 0.4s;
+        -moz-animation: notifyIn 0.4s; /* Firefox */
+        -webkit-animation: notifyIn 0.4s; /* Safari and Chrome */
+        -o-animation: notifyIn 0.4s; /* Opera */
+    }
+
+    &.notify-out{
+        animation: notifyOut 0.4s;
+        -moz-animation: notifyOut 0.4s; /* Firefox */
+        -webkit-animation: notifyOut 0.4s; /* Safari and Chrome */
+        -o-animation: notifyOut 0.4s; /* Opera */
+    }
+
+    @keyframes notifyIn {
+        from {
+            opacity: 0;
+
+            -webkit-transform: translate3d(0, 0, 0) scale(0.815);
+            transform: translate3d(0, 0, 0) scale(0.815);
+        }
+        to {
+            opacity: 1;
+            -webkit-transform: translate3d(0, 0, 0) scale(1);
+            transform: translate3d(0, 0, 0) scale(1);
+        }
+    }
+
+    @-moz-keyframes notifyIn {
+        from {
+            opacity: 0;
+            -webkit-transform: translate3d(0, 0, 0) scale(0.815);
+            transform: translate3d(0, 0, 0) scale(0.815);
+        }
+        to {
+            opacity: 1;
+            -webkit-transform: translate3d(0, 0, 0) scale(1);
+            transform: translate3d(0, 0, 0) scale(1);
+        }
+    }
+
+    @-webkit-keyframes notifyIn {
+        from {
+            opacity: 0;
+            -webkit-transform: translate3d(0, 0, 0) scale(0.815);
+            transform: translate3d(0, 0, 0) scale(0.815);
+        }
+        to {
+            opacity: 1;
+            -webkit-transform: translate3d(0, 0, 0) scale(1);
+            transform: translate3d(0, 0, 0) scale(1);
+        }
+    }
+
+    @o-keyframes notifyIn {
+        from {
+            opacity: 0;
+            -webkit-transform: translate3d(0, 0, 0) scale(0.815);
+            transform: translate3d(0, 0, 0) scale(0.815);
+        }
+        to {
+            opacity: 1;
+            -webkit-transform: translate3d(0, 0, 0) scale(1);
+            transform: translate3d(0, 0, 0) scale(1);
+        }
+    }
+
+    @keyframes notifyOut {
+        from {
+            opacity: 1;
+            -webkit-transform: translate3d(0, 0, 0) scale(1);
+            transform: translate3d(0, 0, 0) scale(1);
+        }
+        to {
+            opacity: 0;
+            -webkit-transform: translate3d(0, 0, 0) scale(0.815);
+            transform: translate3d(0, 0, 0) scale(0.815);
+        }
+    }
+
+
+
+    .zr-status(#9b59b6);
+
+    &.heart{
+        .zr-status(#9b59b6);
+    }
+
+    &.secondary{
+        .zr-status(#34495e);
+    }
+
+    &.success{
+        .zr-status(#27ae60);
+    }
+
+    &.info{
+        .zr-status(#3498db);
+    }
+
+    &.warning{
+        .zr-status(#f39c12);
+    }
+
+    &.error{
+        .zr-status(#e74c3c);
+    }
+}

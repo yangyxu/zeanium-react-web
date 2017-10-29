@@ -1,0 +1,41 @@
+@import "../../../zr.variables.less";
+
+.zr-title {
+    .h2{
+        margin-top: 30px;
+        margin-bottom: 26px;
+        padding: 0 18px;
+        font-weight: normal;
+        height: 38px;
+        line-height: 38px;
+        color: #fff;
+        font-size: 20px;
+        display: inline-block;
+        background-color: #25a6f7;
+        position: relative;
+        left: -20px;
+        &::after{
+            content: ' ';
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-top: 13px solid #394264;
+            border-left: 22px solid rgba(0, 0, 0, 0);
+            border-bottom: 22px solid rgba(0, 0, 0, 0);
+            border-right: 0;
+            position: absolute;
+            left: 0;
+            top: 38px;
+        }
+    }
+    .h3{
+        font-size: 20px;
+        border-left: 5px;
+        color: #25a6f7;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        border-left: 5px solid #25a6f7;
+        padding: 0 12px 0;
+        line-height: 21px;
+    }
+}

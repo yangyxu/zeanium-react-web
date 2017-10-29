@@ -5,11 +5,12 @@ module.exports = React.createClass({
 	displayName: 'RTList',
 	propTypes: {
 		textKey: React.PropTypes.string,
-		valueKey: React.PropTypes.string
+		valueKey: React.PropTypes.string,
+		fireIndex: 0,
 	},
 	getDefaultProps: function () {
 		return {
-			autoLoad: true
+			active: true
 		};
 	},
 	getInitialState: function(){
@@ -19,9 +20,8 @@ module.exports = React.createClass({
 		}
 	},
 	componentDidMount: function(){
-		var _source = this.props.items || this.props.data;
-		this._dataSource = zn.store.dataSource(_source, {
-			autoLoad: this.props.autoLoad,
+		this._dataSource = zn.store.dataSource(this.props.items || this.props.data, {
+			autoLoad: this.props.active,
 			onExec: function (){
 				var _result = this.props.onLoading && this.props.onLoading();
 				if(_result !== false && this.isMounted()){
@@ -35,6 +35,17 @@ module.exports = React.createClass({
 				this.props.onData && this.props.onData(data);
 			}.bind(this)
 		});
+	},
+	componentWillReceiveProps: function(nextProps){
+		if(nextProps.items!==this.props.items){
+			this._dataSource.reset(nextProps.items);
+		}
+		if(nextProps.data!==this.props.data){
+			this._dataSource.reset(nextProps.data);
+		}
+		if(nextProps.active && nextProps.active != this.props.active){
+			this.refresh();
+		}
 	},
 	__dataHandler: function (data){
 		if(this.props.dataHandler){
@@ -56,19 +67,15 @@ module.exports = React.createClass({
 		}
 
 		this.state.data = data;
-		this.setState({ data: data, loading: false });
-		if(this.props.fireIndex != undefined){
-			//this.fireClick(this.props.fireIndex);
-		}
-		this.props.onLoaded && this.props.onLoaded(data, this);
-	},
-	componentWillReceiveProps: function(nextProps){
-		if(nextProps.items!==this.props.items){
-			this._dataSource.reset(nextProps.items);
-		}
-		if(nextProps.data!==this.props.data){
-			this._dataSource.reset(nextProps.data);
-		}
+		this.setState({
+			data: data,
+			loading: false
+		}, function (){
+			if(this.props.fireIndex != undefined){
+				//this.fireClick(this.props.fireIndex);
+			}
+			this.props.onLoaded && this.props.onLoaded(data, this);
+		}.bind(this));
 	},
 	request: function (data, argv){
 		this._dataSource.reset(data, argv);
@@ -131,8 +138,12 @@ module.exports = React.createClass({
 		return item?item[this.props.valueKey]:null;
 	},
 	render: function(){
-		if(this.state.loading){
-			return <div data-loader="arrow-circle" style={{margin:'0 auto',borderColor: '#2c89e8', marginTop: 10}}></div>;
+		if(!this.props.active){
+			return null;
+		}
+
+		if(this.state.loading && this.props.showLoading){
+			return <div style={{ textAlign: 'center' }}><i className="fa fa-spinner zr-self-loading" /></div>;
 		}
 
 		if(!this.state.data.length){

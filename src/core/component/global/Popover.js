@@ -29,7 +29,7 @@ var Popover = React.createClass({
 			}.bind(this), 0);
 		}
 
-		this.props.onDidMount && this.props.onDidMount(this);
+		this.props.onPopoverDidMount && this.props.onPopoverDidMount(this);
 	},
 	__onWindowClick: function (){
 		this.close('Popover:window.click');
@@ -106,7 +106,7 @@ var Popover = React.createClass({
 				this.state.arrowClassName,
 				this.props.className
 				)} style={this.props.style} >
-				{this.props.closeable && <i className="popover-close fa fa-close" />}
+				{this.props.closeable && <i className="popover-close fa fa-close zr-hover-self-loading" />}
 				{this.props.content}
 			</div>
 		);
@@ -118,6 +118,7 @@ module.exports = zn.popover = zn.Class({
 	methods: {
 		init: function (){
 			this._dom = zn.dom.createRootElement("div", { class: "zr-popover-container" });
+			zn.react.global.onJump(function (){ this.close(); }, this);
 		},
 		render: function (content, options){
 			if(options && options.reset){

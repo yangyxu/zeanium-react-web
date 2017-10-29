@@ -37,6 +37,7 @@ module.exports = React.createClass({
 	},
 	componentWillReceiveProps: function (nextProps){
 		if(nextProps.value!=this.props.value){
+
 			this.setValue(nextProps.value);
 		}
 	},
@@ -51,7 +52,7 @@ module.exports = React.createClass({
 					value={this.state.value[item.name]||''}
 					{...item}
 					form={this}
-					onDidMount={this.__onItemDidMount} />;
+					onFormItemDidMount={this.__onItemDidMount} />;
 	},
 	__onBtnsClick: function (props, btn, event){
 		if(!props){
@@ -95,7 +96,7 @@ module.exports = React.createClass({
 			return this;
 		}
 		if(zn.isZNObject(value)){
-			return this.props.value.exec().then((data)=>this.setValue(data.result)), this;
+			return value.exec().then((data)=>this.setValue(data.result)), this;
 		}
 		if(zn.is(value, 'object')){
 			var _item = null,
@@ -106,7 +107,7 @@ module.exports = React.createClass({
 					_item = this._items[key];
 					_value = value[key];
 					_text = value[key+'_convert'];
-					if(_item&&_value !== undefined){
+					if(_item&&_value !== undefined && _item.refs.input){
 						_item.refs.input.setValue(_value, _text);
 					}
 				}
@@ -119,7 +120,12 @@ module.exports = React.createClass({
 		return this;
 	},
 	getValue: function (){
+		var _result = this.validate();
+		if(_result === false){
+			_result = {};
+		}
 
+		return _result;
 	},
 	validate: function (){
 		var _data = {},
@@ -128,9 +134,18 @@ module.exports = React.createClass({
 			if(!this._items[name]){
 				continue;
 			}
-			_value = this._items[name].validate();
+			if(this._items[name].validate){
+				_value = this._items[name].validate();
+			}else {
+				_value = this._items[name].getValue();
+			}
+
 			if(_value !== null && _value !== undefined){
-				_data[name] = _value;
+				if(this.props.valueKey){
+					_data[this._items[name].props[this.props.valueKey]] = _value;
+				}else {
+					_data[name] = _value;
+				}
 			} else {
 				return false;
 			}
@@ -148,7 +163,7 @@ module.exports = React.createClass({
 			_result[key] = _result[key] || this.state.hiddens[key];
 		}
 		if(zn.DEBUG){
-			zn.debug("FormData", _result);
+			zn.debug("Form Data", _result);
 		}
 		var _temp = (this.props.onSubmitBefore && this.props.onSubmitBefore(_result, this));
 		if(_temp!==false){
@@ -193,7 +208,7 @@ module.exports = React.createClass({
 				continue;
 			}
 
-			this._items[name].setValue('');
+			this._items[name].refs.input.setValue('', '');
 		}
 	},
 	render: function(){

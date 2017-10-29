@@ -9,12 +9,12 @@ module.exports = React.createClass({
 			icon: 'fa-code'
 		}
 	},
-	__onClick: function (){
-		this.props.onClick && this.props.onClick(this);
+	__onClick: function (event){
+		this.props.onClick && this.props.onClick(this, event);
 	},
 	render:function(){
 		return (
-			<i onClick={this.__onClick} className={zn.react.classname('zr-icon fa', this.props.className, this.props.icon)} data-spin={this.props.spin} />
+			<i data-tooltip={this.props.tooltip} onClick={this.__onClick} className={zn.react.classname('zr-icon fa', this.props.className, this.props.icon)} data-spin={this.props.spin} />
 		);
 	}
 });
