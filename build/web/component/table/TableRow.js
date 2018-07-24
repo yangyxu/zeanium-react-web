@@ -79,14 +79,18 @@ module.exports = React.createClass({
 
 		var _vars = [];
 		this.state.vars.map(function (_var, _index) {
-			_vars.push(_var + " = " + (this.state.data[_var] || 0));
+			if (zn.is(this.state.data[_var], 'number')) {
+				_vars.push(_var + " = " + (this.state.data[_var] || 0));
+			} else {
+				_vars.push(_var + " = '" + (this.state.data[_var] || '') + "'");
+			}
 		}.bind(this));
 
 		_vars = _vars.join(',');
 		Object.keys(this.state.exps).map(function (key, index) {
 			this.state.data[key] = eval.call(null, "(function () { var " + _vars + "; return " + this.state.exps[key] + "; })()");
 		}.bind(this));
-
+		this.props.onRowColumnChange && this.props.onRowColumnChange(rowIndex, columnIndex, value, this.state.data, props);
 		this.forceUpdate();
 	},
 	setRowValue: function setRowValue(value) {
@@ -123,7 +127,10 @@ module.exports = React.createClass({
 				_value = _value[index];
 			}
 		} else {
-			_value = _value[item.name];
+			_value = this.state.data[item.convert || item.name];
+			if (_value == undefined) {
+				_value = this.state.data[item.name];
+			}
 		}
 
 		if (this.props.columnRender) {
@@ -163,13 +170,22 @@ module.exports = React.createClass({
 				if (item.props && item.props[0] == '{') {
 					item.attrs = JSON.parse(item.props);
 				}
-				_content = this.state.editable ? React.createElement(_Input, _extends({}, item, { value: _value, text: _value, onChange: function onChange(value, input, event) {
-						return _this.__onTableColumnChange(_this.props.index, index, value, input, event, item);
-					} })) : React.createElement(
+				_content = React.createElement(
 					'span',
 					null,
 					_value
 				);
+				if (this.state.editable) {
+					if (_Input == zn.react.Input) {
+						_content = React.createElement(_Input, _extends({}, item, { value: _value, text: _value, onBlur: function onBlur(value, input, event) {
+								return _this.__onTableColumnChange(_this.props.index, index, value, input, event, item);
+							} }));
+					} else {
+						_content = React.createElement(_Input, _extends({}, item, { value: _value, text: _value, onChange: function onChange(value, input, event) {
+								return _this.__onTableColumnChange(_this.props.index, index, value, input, event, item);
+							} }));
+					}
+				}
 			}
 		}
 

@@ -4,7 +4,9 @@ module.exports = zn.arrayValueToObject([
     'Checkbox',
     'CheckboxGroup',
     'DropdownSelector',
+    'DateTime',
     'FileUploader',
+    'FormTitle',
     'ImageUploader',
     'Radio',
     'RichEditor',
@@ -12,6 +14,7 @@ module.exports = zn.arrayValueToObject([
     'Select',
     'ImageUploader',
     'Menu',
+    'MultiInput',
     'OrderCode',
     'Form',
     'FormItem',
@@ -19,7 +22,6 @@ module.exports = zn.arrayValueToObject([
     'Input',
     'Label',
     'Textarea',
-    'Timer',
     'ToggleSwitch'
 ], function (value, index){
     return require('./'+value+'.js');

@@ -10,7 +10,10 @@ module.exports = React.createClass({
 		};
 	},
 	getValue: function () {
-		return ReactDOM.findDOMNode(this).value;
+		//placeholder="ex.&#13;&#10;test1@test.com&#13;&#10;test2@test.com&#13;&#10;..."
+		var _value = ReactDOM.findDOMNode(this).value;
+		//console.log(_value.replace(/\u000A/g, '\n'));
+		return _value;
 	},
 	setValue: function (value) {
 		return ReactDOM.findDOMNode(this).value = value, this;
@@ -25,7 +28,8 @@ module.exports = React.createClass({
 						placeholder={this.props.placeholder}
 						{...this.props.attrs}
 						defaultValue={this.props.value}
-						disabled={this.props.disabled}
+						readonly={this.props.readonly}
+						disabled={this.props.disabled||this.props.readonly}
 						onChange={this.__onChange}
 						name={this.props.name} />
 		);

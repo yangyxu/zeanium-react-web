@@ -1,8 +1,8 @@
 var React = require('react');
 var OPTS = {
 	'=': { text: '等于', value: '=', icon: 'fa-exchange' },
-	'>': { text: '大于', value: '>', icon: 'fa-angle-left' },
-	'<': { text: '小于', value: '<', icon: 'fa-angle-right' },
+	'>': { text: '大于', value: '>', icon: 'fa-angle-right' },
+	'<': { text: '小于', value: '<', icon: 'fa-angle-left' },
 	'like': { text: '相似', value: 'like', icon: 'fa-percent' },
 	'cancle': { text: '取消', value: 'cancle', icon: 'fa-remove' }
 };
@@ -29,7 +29,6 @@ module.exports = React.createClass({
 		if(this.props.value!=undefined){
 			this.refs.input.setValue(this.props.value);
 		}
-		this.props.onDidMount && this.props.onDidMount(this);
 	},
 	validate: function (){
 		var _value = this.refs.input.getValue();
@@ -57,11 +56,15 @@ module.exports = React.createClass({
 				this.props.onCancle && this.props.onCancle(value, listitem, list, this);
 			}.bind(this));
 		}else {
-			this.setState({
-				opt: value,
-				optIcon: listitem.props.icon,
-				disabled: false
-			});
+			if(value != this.state.value){
+				this.setState({
+					opt: value,
+					optIcon: listitem.props.icon,
+					disabled: false
+				}, function (){
+					this.props.onOptChange && this.props.onOptChange(value);
+				}.bind(this));
+			}
 		}
 		zn.popover.close('FilterItem:listitem.click');
 	},
@@ -84,7 +87,17 @@ module.exports = React.createClass({
 		return <zn.react.ListView itemRender={this.__listItemRender} data={this.__getData()} value={this.state.opt} onItemClick={this.__onListItemClick} style={{border:'none',backgroundColor:'#FFF'}} />;
 	},
 	render: function(){
-		var Input = zn.react.FormItem.inputs[this.props.type];
+		var _input = null,
+			_type = this.props.type;
+		if(zn.is(_type, 'string')){
+			if(zn.path(window, _type)){
+				_input = zn.path(window, _type);
+			}else {
+				_input = zn.react[_type];
+			}
+		}else {
+			_input = _type;
+		}
 		return (
 			<zn.react.RTFlexItem
 				{...this.props}
@@ -95,7 +108,7 @@ module.exports = React.createClass({
 					popoverWidth={this.props.popoverWidth} >
 					<i className={"filter-icon fa " + this.state.optIcon} />
 				</zn.react.Dropdown>
-				{Input && <Input ref="input" {...this.props} disabled={this.state.disabled} value={this.state.value} className="filter-input" />}
+				{_input && <_input ref="input" {...this.props} disabled={this.state.disabled} value={this.state.value} className="filter-input" />}
 			</zn.react.RTFlexItem>
 		);
 	}

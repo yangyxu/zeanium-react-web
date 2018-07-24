@@ -9,6 +9,7 @@ module.exports = React.createClass({
 	},
 	getDefaultProps: function getDefaultProps() {
 		return {
+			dataType: 'int',
 			className: '',
 			autoLoad: true,
 			textKey: 'text',
@@ -21,7 +22,7 @@ module.exports = React.createClass({
 			loading: false,
 			selected: false,
 			currIndex: null,
-			value: this.props.value || '',
+			value: this.props.value,
 			data: []
 		};
 	},
@@ -32,9 +33,7 @@ module.exports = React.createClass({
 			onExec: function () {
 				var _result = this.props.onLoading && this.props.onLoading();
 				if (_result !== false && this.isMounted()) {
-					this.setState({
-						loading: true
-					});
+					this.state.loading = true;
 				}
 			}.bind(this),
 			onSuccess: function (data) {
@@ -65,8 +64,11 @@ module.exports = React.createClass({
 			data = temp;
 		}
 		this.state.data = data;
-		this.setState({ data: data, loading: false }, function () {
-			if (_value) {
+		this.setState({
+			data: data,
+			loading: false
+		}, function () {
+			if (_value && !this.state.value) {
 				this.setValue(_value);
 			}
 			this.props.onLoaded && this.props.onLoaded(data, this);
@@ -144,10 +146,15 @@ module.exports = React.createClass({
 		this.setValue(_value, event);
 	},
 	getValue: function getValue() {
-		return this.state.value || ReactDOM.findDOMNode(this).value;
+		var _value = this.state.value || ReactDOM.findDOMNode(this).value;
+		if (isNaN(_value)) {
+			return _value;
+		} else {
+			return +_value;
+		}
+		//return this.props.dataType=='int'?(+_value):_value;
 	},
 	setValue: function setValue(value, event) {
-		//console.log('Value: ', value, this.props.name);
 		this.setState({
 			value: value,
 			selected: value ? true : false
@@ -161,7 +168,7 @@ module.exports = React.createClass({
 					}
 				}
 			}
-			this.props.onChange && this.props.onChange(_item, this, event);
+			this.props.onChange && this.props.onChange(_item, this, value);
 		});
 	},
 	render: function render() {
@@ -171,6 +178,7 @@ module.exports = React.createClass({
 				className: zn.react.classname("zr-select", this.state.selected ? '' : 'no-selected'),
 				style: this.props.style,
 				name: this.props.name,
+				required: this.props.required,
 				disabled: this.props.disabled || this.props.readonly,
 				value: this.state.value,
 				onChange: this.__onSelectChange,

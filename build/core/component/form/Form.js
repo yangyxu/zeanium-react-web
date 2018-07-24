@@ -1,7 +1,6 @@
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var React = require('react');
-var RTList = require('../basic/RTList');
 var FormItem = require('./FormItem');
 var ButtonGroup = require('../basic/ButtonGroup');
 
@@ -12,9 +11,9 @@ module.exports = React.createClass({
 			sync: false,
 			method: 'POST',
 			value: {},
-			hiddens: {},
 			buttons: [{ text: '取消', type: 'cancle', status: 'danger' }, { text: '确定', type: 'submit', status: 'primary' }],
 			buttonsClassName: 'right',
+			itemClassName: zn.react.isMobile() ? 'column' : '',
 			submitCallback: function submitCallback(data) {
 				if (data.status == 200) {
 					return true;
@@ -25,9 +24,8 @@ module.exports = React.createClass({
 		};
 	},
 	getInitialState: function getInitialState() {
-		this._items = {};
 		return {
-			hiddens: this.props.hiddens,
+			hiddens: zn.extend({}, this.props.hiddens),
 			value: {}
 		};
 	},
@@ -36,22 +34,15 @@ module.exports = React.createClass({
 	},
 	componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
 		if (nextProps.value != this.props.value) {
-
 			this.setValue(nextProps.value);
 		}
 	},
-	__onItemDidMount: function __onItemDidMount(formitem) {
-		this._items[formitem.props.name || formitem.props.index] = formitem;
-	},
-	__itemRender: function __itemRender(item, index, rtlist) {
-		return React.createElement(FormItem, _extends({
-			disabled: this.props.disabled,
-			readonly: this.props.readonly,
-			float: this.props.float,
-			value: this.state.value[item.name] || ''
-		}, item, {
-			form: this,
-			onFormItemDidMount: this.__onItemDidMount }));
+	__parseItemValue: function __parseItemValue(value) {
+		if (value.indexOf("javascript:") == 0) {
+			return eval(value);
+		}
+
+		return value;
 	},
 	__onBtnsClick: function __onBtnsClick(props, btn, event) {
 		if (!props) {
@@ -80,17 +71,14 @@ module.exports = React.createClass({
 			var _result = this.props.onSubmitSuccess && this.props.onSubmitSuccess(data, this, xhr);
 			if (_result !== false) {
 				zn.modal.close();
-				zn.notification.success('操作成功');
+				zn.notification.success(data.result || '操作成功');
 			}
 		} else {
 			var _result = this.props.onSubmitError && this.props.onSubmitError(data, this, xhr);
 			if (_result !== false) {
-				zn.notification.error('操作失败！');
+				zn.notification.error(data.result || '操作失败！');
 			}
 		}
-	},
-	item: function item(name) {
-		return this._items[name];
 	},
 	setValue: function setValue(value) {
 		var _this = this;
@@ -108,8 +96,11 @@ module.exports = React.createClass({
 			    _value = null,
 			    _text = null;
 			setTimeout(function () {
-				for (var key in this._items) {
-					_item = this._items[key];
+				for (var key in this.state.hiddens) {
+					this.state.hiddens[key] = value[key] || this.state.hiddens[key];
+				}
+				for (var key in this.refs) {
+					_item = this.refs[key];
 					_value = value[key];
 					_text = value[key + '_convert'];
 					if (_item && _value !== undefined && _item.refs.input) {
@@ -132,27 +123,36 @@ module.exports = React.createClass({
 
 		return _result;
 	},
-	validate: function validate() {
+	validate: function validate(callback) {
 		var _data = {},
 		    _value = null;
-		for (var name in this._items) {
-			if (!this._items[name]) {
+		for (var name in this.refs) {
+			if (!this.refs[name]) {
 				continue;
 			}
-			if (this._items[name].validate) {
-				_value = this._items[name].validate();
+			if (this.refs[name].validate) {
+				_value = this.refs[name].validate(callback);
 			} else {
-				_value = this._items[name].getValue();
+				_value = this.refs[name].getValue(callback);
 			}
 
+			if (_value === false) {
+				return false;
+			}
 			if (_value !== null && _value !== undefined) {
 				if (this.props.valueKey) {
-					_data[this._items[name].props[this.props.valueKey]] = _value;
+					_data[this.refs[name].props[this.props.valueKey]] = _value;
 				} else {
 					_data[name] = _value;
 				}
 			} else {
-				return false;
+				continue;
+			}
+		}
+
+		for (var key in this.state.hiddens) {
+			if (this.state.hiddens[key] !== null && this.state.hiddens[key] !== undefined) {
+				_data[key] = _data[key] || this.state.hiddens[key];
 			}
 		}
 
@@ -164,11 +164,8 @@ module.exports = React.createClass({
 			return false;
 		}
 
-		for (var key in this.state.hiddens) {
-			_result[key] = _result[key] || this.state.hiddens[key];
-		}
 		if (zn.DEBUG) {
-			zn.debug("Form Data", _result);
+			//zn.debug("Form Data", JSON.stringify(_result));
 		}
 		var _temp = this.props.onSubmitBefore && this.props.onSubmitBefore(_result, this);
 		if (_temp !== false) {
@@ -177,8 +174,7 @@ module.exports = React.createClass({
 			return;
 		}
 		if (!this.props.action) {
-			zn.alert('Form action is undefined.');
-			return;
+			return zn.alert('Form action is undefined.'), false;
 		}
 		this.loading(true);
 		if (this.props.sync) {
@@ -207,40 +203,84 @@ module.exports = React.createClass({
 		}
 	},
 	reset: function reset() {
-		for (var name in this._items) {
-			if (!this._items[name]) {
+		for (var name in this.refs) {
+			if (!this.refs[name]) {
 				continue;
 			}
 
-			this._items[name].refs.input.setValue('', '');
+			this.refs[name].refs.input.setValue('', '');
+		}
+	},
+	__renderItems: function __renderItems(items) {
+		if (items && items.length) {
+			return React.createElement(
+				'div',
+				{ className: 'form-items' },
+				items.map(function (item, index) {
+					item.index = index;
+					if (item.type == 'Hidden') {
+						return this.state.hiddens[item.name] = item.value != null ? this.__parseItemValue(item.value) : null, null;
+					}
+
+					return React.createElement(FormItem, _extends({
+						disabled: this.props.disabled,
+						readonly: this.props.readonly,
+						float: this.props.float,
+						value: this.state.value[item.name] || '',
+						onChange: this.props.onChange
+					}, item, {
+						className: zn.react.classname(this.props.itemClassName, item.className),
+						form: this, ref: item.name }));
+				}.bind(this))
+			);
+		}
+	},
+	__renderGroups: function __renderGroups(groups) {
+		if (groups && groups.length) {
+			return React.createElement(
+				'div',
+				{ className: 'form-groups' },
+				groups.map(function (group, index) {
+					return React.createElement(
+						zn.react.Group,
+						group,
+						this.__renderItems(group.items)
+					);
+				}.bind(this))
+			);
+		}
+	},
+	__renderButtons: function __renderButtons() {
+		var _btns = this.props.buttons || this.props.btns;
+		if (_btns) {
+			if (zn.is(_btns, 'array')) {
+				_btns = { items: _btns };
+			}
+			return React.createElement(ButtonGroup, _extends({}, _btns, { className: zn.react.classname("form-buttons flex", this.props.buttonsClassName), onClick: this.__onBtnsClick }));
 		}
 	},
 	render: function render() {
-		var _btns = this.props.buttons || this.props.btns;
-		if (zn.is(_btns, 'array')) {
-			_btns = { items: _btns };
-		}
 		if (this.props.sync) {
 			var _hiddens = this.state.hiddens;
 			return React.createElement(
 				'form',
-				{
-					className: zn.react.classname('zr-form', this.props.className),
+				{ className: zn.react.classname('zr-form', this.props.className), style: this.props.style,
 					encType: 'multipart/form-data',
-					method: 'POST',
-					style: this.props.style },
+					method: 'POST' },
 				Object.keys(_hiddens).map(function (hidden, index) {
 					return React.createElement('input', { key: 'hidden_' + hidden, type: 'hidden', name: hidden, value: _hiddens[hidden] });
 				}),
-				React.createElement(RTList, _extends({}, this.props, { className: 'form-items', style: null, itemRender: this.__itemRender })),
-				React.createElement(ButtonGroup, _extends({}, _btns, { className: zn.react.classname("form-buttons", this.props.buttonsClassName), onClick: this.__onBtnsClick }))
+				this.__renderItems(this.props.items),
+				this.__renderGroups(this.props.groups),
+				this.__renderButtons()
 			);
 		} else {
 			return React.createElement(
 				'div',
 				{ className: zn.react.classname('zr-form', this.props.className), style: this.props.style },
-				React.createElement(RTList, _extends({}, this.props, { className: 'form-items', style: null, itemRender: this.__itemRender })),
-				React.createElement(ButtonGroup, _extends({}, _btns, { className: zn.react.classname("form-buttons flex", this.props.buttonsClassName), onClick: this.__onBtnsClick }))
+				this.__renderItems(this.props.items),
+				this.__renderGroups(this.props.groups),
+				this.__renderButtons()
 			);
 		}
 	}

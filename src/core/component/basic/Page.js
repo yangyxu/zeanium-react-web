@@ -1,17 +1,7 @@
 var React = require('react');
 
-module.exports = React.createClass({
+var Page = React.createClass({
 	displayName: 'Page',
-	getDefaultProps: function() {
-		return {
-			icon: 'fa-angle-left',
-			height: 40,
-			end: 40,
-			flex: false,
-			canBack: true,
-			loading: false
-		};
-	},
 	__onBack: function (){
 		if(typeof this.props.onBack == 'string'){
 			return zn.react.session.jump(this.props.onBack), false;
@@ -26,26 +16,42 @@ module.exports = React.createClass({
 		}
 	},
 	render:function(){
-		var _begin = this.props.height;
+		var __props = this.props;
+		var _begin = __props.height;
 		if(zn.react.isIOS()){
-			_begin += 10;
+			//_begin += 10;
 		}
 		return (
-			<div className={zn.react.classname('zr-page', this.props.className)} style={this.props.style}>
+			<div className={zn.react.classname('zr-page', __props.className)} style={__props.style}>
 				<div className="page-header" style={{height: _begin}}>
 					<div className="header-left">
-						{this.props.canBack && <i className={"back fa " + this.props.icon} onClick={this.__onBack} />}
-						<span className="title">{this.props.title}</span>
+						{__props.canBack && <i className={"back fa " + __props.icon} onClick={this.__onBack} />}
+						<span className="title">{__props.title}</span>
 					</div>
+					{__props.headerCenter && <div className="header-center">{__props.headerCenter}</div>}
 					<div className="header-right">
-						<zn.react.ButtonGroup className="zr-flex" items={this.props.toolbarItems} onClick={this.props.onToolbarClick} />
+						{this.props.rightView}
+						<zn.react.ButtonGroup className="zr-flex" items={__props.toolbarItems} onClick={__props.onToolbarClick} />
 					</div>
 				</div>
 				<div className="page-body">
-				{this.props.loading?<zn.react.DataLoader loader="timer" content="加载中..." />:this.props.children}
+					{
+						this.props.loading?<zn.react.DataLoader loader="timer" content="加载中..." />:this.props.children
+					}
 				</div>
 				{(!this.props.loading && !!this.props.footerView) && <div className="page-footer">{this.props.footerView}</div>}
 			</div>
 		);
 	}
 });
+
+Page.defaultProps = {
+	icon: 'fa-angle-left',
+	height: 32,
+	end: 32,
+	flex: false,
+	canBack: true,
+	loading: false
+};
+
+module.exports = Page;

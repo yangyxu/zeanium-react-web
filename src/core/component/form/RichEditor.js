@@ -3,13 +3,9 @@ var ReactDOM = require('react-dom');
 
 module.exports = React.createClass({
 	displayName: 'RichEditor',
-	getDefaultProps: function (){
-		return {
-			className: ''
-		};
-	},
 	componentDidMount: function (){
 		this._editor = KindEditor.create(ReactDOM.findDOMNode(this), {
+			minWidth: 100,
 			autoHeightMode : true,
 			afterCreate : function() {
 				this.loadPlugin('autoheight');
@@ -27,7 +23,7 @@ module.exports = React.createClass({
 	},
 	render: function(){
 		return (
-			<textarea className={"zr-rich-editor " + this.props.className} style={this.props.style} name={this.props.name} />
+			<textarea className={zn.react.classname("zr-rich-editor", this.props.className)} style={this.props.style} name={this.props.name} />
 		);
 	}
 });

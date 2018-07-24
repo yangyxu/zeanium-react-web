@@ -2,21 +2,36 @@
     position: relative;
     margin-top: 15px;
     margin-bottom: 5px;
-    border: 1px solid #494d50;
+    border: 1px solid #a0a2a8;
     border-radius: 3px;
-    &>.title{
-        position: absolute;
-        border: 1px solid #494d50;
-        background-color: #FFF;
-        border-radius: 3px;
-        padding: 0px 5px;
-        font-size: 10px;
-        top: -10px;
-        left: 10px;
-        line-height: 16px;
-        cursor: pointer;
+    &[data-active="false"]{
+        &>.g-inner-content{
+            display: none;
+        }
+        .title{
+            background-color: #efeaea !important;
+            &::after{
+                content: '...';
+            }
+        }
     }
-    .inner-content{
+    &>.g-header{
+        position: absolute;
+        top: -14px;
+        width: 100%;
+        text-align: center;
+        &>.title{
+            border: 1px solid #a0a2a8;
+            background-color: #FFF;
+            border-radius: 3px;
+            padding: 2px 6px;
+            font-size: 10px;
+            line-height: 16px;
+            cursor: pointer;
+        }
+    }
+
+    &>.g-inner-content{
         padding: 5px;
     }
 }

@@ -17,13 +17,25 @@ module.exports = React.createClass({
 			_value = +_value;
 		}
 
+		if(this.props.attrs && this.props.attrs.type=='date'){
+			if(!_value){
+				return null;
+			}
+		}
+
 		return _value;
 	},
 	setValue: function (value) {
+		if(this.props.attrs && this.props.attrs.type=='date' && value){
+			value = value.split(' ')[0];
+		}
 		return ReactDOM.findDOMNode(this).value = value, this;
 	},
 	__onChange: function (event){
 		this.props.onChange && this.props.onChange(event.target.value, this, event);
+	},
+	__onBlur: function (event){
+		this.props.onBlur && this.props.onBlur(event.target.value, this, event);
 	},
 	__onKeyUp: function (event){
 		if(event.nativeEvent.keyCode==13){
@@ -44,6 +56,7 @@ module.exports = React.createClass({
 				disabled={this.props.disabled}
 				readOnly={this.props.readonly}
 				onChange={this.__onChange}
+				onBlur={this.__onBlur}
 				onKeyUp={this.__onKeyUp} />
 		);
 	}

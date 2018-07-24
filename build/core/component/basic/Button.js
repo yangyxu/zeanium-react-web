@@ -25,8 +25,8 @@ module.exports = React.createClass({
 	__renderChildren: function __renderChildren() {
 		if (!this.props.children) {
 			return React.createElement(
-				'span',
-				null,
+				'div',
+				{ className: 'btn' },
 				!!this.props.icon && React.createElement('i', { className: 'btn-icon fa ' + this.props.icon }),
 				this.props.text
 			);

@@ -22,10 +22,10 @@ module.exports = React.createClass({
 	},
 	__renderChildren: function (){
 		if(!this.props.children){
-			return <span>
+			return <div className="btn">
 				{!!this.props.icon && <i className={'btn-icon fa ' + this.props.icon} />}
 				{this.props.text}
-			</span>;
+			</div>;
 		}else {
 			return this.props.children;
 		}

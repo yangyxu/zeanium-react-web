@@ -7,6 +7,11 @@
             color: #FFF;
         }
     }
+
+    &:hover{
+        background-color: @color;
+        color: #FFF;
+    }
 }
 
 .zr-tag{
@@ -24,11 +29,19 @@
         .zr-tag-status(#000);
     }
 
-    &.orangle{
+    &.orangle, &.warning{
         .zr-tag-status(#ee6723);
     }
 
     &.primary{
         .zr-tag-status(#3498db);
+    }
+
+    &.danger{
+        .zr-tag-status(#d9534f);
+    }
+
+    &.ok, &.success{
+        .zr-tag-status(#4CAF50);
     }
 }

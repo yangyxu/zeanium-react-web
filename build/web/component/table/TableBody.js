@@ -3,15 +3,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 var React = require('react');
 var TableRow = require('./TableRow');
 
-module.exports = React.createClass({
+var TableBody = React.createClass({
 	displayName: 'TableBody',
-	getDefaultProps: function getDefaultProps() {
-		return {
-			singleSelect: true,
-			value: [],
-			valueKey: 'id'
-		};
-	},
 	getInitialState: function getInitialState() {
 		return {
 			curr: null,
@@ -24,6 +17,18 @@ module.exports = React.createClass({
 	componentDidMount: function componentDidMount() {
 		var _this = this;
 
+		if (this.props.data && this.props.data.on) {
+			var _self = this;
+			this.props.data.on('before', function () {
+				if (_self.props.showLoading) {
+					zn.preloader.open({ title: '加载中...' });
+				}
+			}).on('complete', function () {
+				if (_self.props.showLoading) {
+					zn.preloader.close();
+				}
+			});
+		}
 		this._dataSource = Store.dataSource(this.props.data, {
 			autoLoad: this.props.autoLoad || true,
 			onExec: function onExec() {
@@ -150,11 +155,11 @@ module.exports = React.createClass({
 				null,
 				React.createElement(
 					'tr',
-					null,
+					{ style: { position: 'relative', height: 180 } },
 					React.createElement(
 						'td',
 						{ style: { position: 'absolute', width: '100%' } },
-						React.createElement(zn.react.DataLoader, { loader: 'arrow-circle', content: 'Loading ......' })
+						React.createElement(zn.react.DataLoader, { style: { width: 100 }, loader: 'arrow-circle', content: 'Loading ......' })
 					)
 				)
 			);
@@ -166,12 +171,17 @@ module.exports = React.createClass({
 			this.state.data && this.state.data.map && this.state.data.map(function (item, index) {
 				var _this2 = this;
 
+				var _result = this.props.onRowRender && this.props.onRowRender(item, index, this.state.data.length);
+				if (_result) {
+					return _result;
+				}
 				var _value = item[this.props.valueKey];
 				this.state.values.push(_value);
 				return (typeof item === 'undefined' ? 'undefined' : _typeof(item)) === 'object' ? React.createElement(TableRow, {
 					index: index,
 					key: index + '_' + zn.uuid(),
 					data: item,
+					style: this.props.rowStyleValidate && this.props.rowStyleValidate(item, index, this.state.data.length),
 					items: this.props.items,
 					checked: this.state.value.indexOf(_value) != -1,
 					editable: this.props.editable !== undefined ? this.props.editable : item._editable,
@@ -179,14 +189,24 @@ module.exports = React.createClass({
 					rowRender: this.props.rowRender,
 					columnRender: this.props.columnRender,
 					draggable: !!this.props.onRowDragStart,
+					onDidMount: this.__onRowDidMount,
+					onRowClick: this.__onTableRowClick,
 					onDragStart: function onDragStart(event) {
-						_this2.props.onRowDragStart(event, item, index);
+						return _this2.props.onRowDragStart(event, item, index);
 					},
 					onCheckBoxChange: this.__onRowCheckBoxChange,
-					onDidMount: this.__onRowDidMount,
-					onRowClick: this.__onTableRowClick
-				}) : null;
+					onRowColumnChange: this.props.onRowColumnChange }) : null;
 			}.bind(this))
 		);
 	}
 });
+
+TableBody.defaultProps = {
+	showLoading: true,
+	singleSelect: true,
+	rowStyleValidate: function rowStyleValidate() {},
+	value: [],
+	valueKey: 'id'
+};
+
+module.exports = TableBody;

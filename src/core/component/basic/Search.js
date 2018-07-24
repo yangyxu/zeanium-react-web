@@ -29,12 +29,16 @@ module.exports = React.createClass({
 	},
 	__onInputChange: function (event){
 		var _value = event.target.value;
-		this.state.value = _value
+		this.state.value = _value;
 		this.forceUpdate();
 		this.props.onChange && this.props.onChange(_value);
-		if(this.props.realtime){
-			this.props.onSearch && this.props.onSearch(_value);
-		}
+        if(_value){
+			if(this.props.realtime){
+				this.props.onSearch && this.props.onSearch(_value);
+			}
+        }else {
+        	this.props.onCancel && this.props.onCancel();
+        }
 		event.stopPropagation();
 	},
 	__onIconClick: function (event){
@@ -52,10 +56,19 @@ module.exports = React.createClass({
 		this.setState({ value: '' });
 		event.target.nextSibling.focus();
 		event.stopPropagation();
+		this.props.onCancle && this.props.onCancle();
 	},
+	__onSearchKeyUp: function(event){
+        var _event = event.nativeEvent;
+        if(_event.keyCode==13){
+            var _value = _event.target.value;
+			this.state.value = _value;
+			this.props.onSearch && this.props.onSearch(_value);
+        }
+    },
 	render: function(){
 		return (
-			<div className={zn.react.classname("zr-search", this.props.className, this.state.focus?'foucs':'')}>
+			<div className={zn.react.classname("zr-search", this.props.className, this.state.focus?'foucs':'')} style={this.props.style}>
 				<i onClick={this.__onIconClick} className={"search-icon fa " + (this.state.searching?"searching":"fa-search")} />
 				{this.state.value && <i className="search-clear fa fa-times-circle" onClick={this.__onClearClick} />}
 				<input {...this.props}
@@ -63,6 +76,7 @@ module.exports = React.createClass({
 					onFocus={this.__onInputFoucs}
 					onBlur={this.__onInputBlur}
 					onChange={this.__onInputChange}
+					onKeyUp={(event)=>this.__onSearchKeyUp(event)}
 					onClick={(event)=>event.stopPropagation()}
 					className="search-input"
 					type="text"

@@ -1,7 +1,6 @@
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var React = require('react');
-var RTList = require('../basic/RTList');
 var RTFlexItem = require('../basic/RTFlexItem');
 
 module.exports = React.createClass({
@@ -23,31 +22,44 @@ module.exports = React.createClass({
 			if (this.refs.input.setValue) {
 				this.refs.input.setValue(this.props.value);
 			} else {
-				zn.toast.error('The FormItem input component has not setValue method.');
+				zn.notification.error('The FormItem input component ' + this.props.title + ' has not setValue method.');
 			}
 		}
-		this.props.onFormItemDidMount && this.props.onFormItemDidMount(this);
 	},
-	validate: function validate() {
+	validate: function validate(callback) {
 		if (!this.refs.input) {
-			return zn.toast.error('Form item input component is undefined.'), false;
+			return zn.notification.error('Form item input component ' + this.props.title + ' is undefined.'), false;
 		}
 		var _value = this.refs.input.getValue();
-		if (this.props.required && (_value == '' || _value == null || _value == undefined)) {
+		if (this.props.required && (_value === '' || _value === null || _value === undefined)) {
 			this.setState({
 				status: 'danger'
 			});
-			return zn.toast.error(this.props.error || (this.props.title || '字段') + '是必填项.'), null;
-		} else {
-			this.setState({
-				status: 'success'
-			});
+			var _msg = this.props.error || (this.props.title || '字段') + '是必填项.';
+			if (zn.react.isMobile()) {
+				zn.notification.error(_msg);
+			} else {
+				zn.notification.error(_msg);
+			}
+			return false;
 		}
 
-		return _value;
+		var _callback = callback && callback(_value, this);
+		if (_callback == false) {
+			return this.setState({
+				status: 'danger'
+			}), false;
+		}
+
+		return this.setState({
+			status: 'success'
+		}), _value;
 	},
-	__onInputChange: function __onInputChange(value, rtlist) {
-		this.props.onChange && this.props.onChange(value, rtlist, this);
+	__onInputChange: function __onInputChange(value, input) {
+		if (value == null) {
+			return;
+		}
+		this.props.onChange && this.props.onChange(value, input, this);
 	},
 	render: function render() {
 		var _input = null,
@@ -62,25 +74,37 @@ module.exports = React.createClass({
 			_input = _type;
 		}
 
+		if (_type == 'FormTitle') {
+			return _input && React.createElement(_input, _extends({}, this.props, { ref: 'input', className: this.props.inputClassName || '', onChange: this.__onInputChange }));
+		}
+
 		return React.createElement(
 			RTFlexItem,
 			_extends({}, this.props, {
 				className: zn.react.classname('zr-form-item', this.props.className, this.state.status, this.props.required ? 'required' : '') }),
-			this.props.icon && React.createElement(
+			React.createElement(
 				'div',
-				{ className: 'icon' },
-				React.createElement('i', { className: "fa " + this.props.icon })
+				{ className: 'zrfi-header' },
+				this.props.icon && React.createElement(
+					'div',
+					{ className: 'icon' },
+					React.createElement('i', { className: "fa " + this.props.icon })
+				),
+				this.props.title && React.createElement(
+					'div',
+					{ className: 'title' },
+					this.props.title
+				)
 			),
-			this.props.title && React.createElement(
+			React.createElement(
 				'div',
-				{ className: 'title' },
-				this.props.title
-			),
-			_input && React.createElement(_input, _extends({ ref: 'input' }, this.props, { className: this.props.inputClassName || '', onChange: this.__onInputChange })),
-			this.props.suffix && React.createElement(
-				'div',
-				{ className: 'suffix' },
-				this.props.suffix
+				{ className: 'zrfi-body' },
+				!!_input && React.createElement(_input, _extends({}, this.props, { ref: 'input', className: this.props.inputClassName || '', onChange: this.__onInputChange })),
+				this.props.suffix && React.createElement(
+					'span',
+					{ className: 'suffix' },
+					this.props.suffix
+				)
 			)
 		);
 	}

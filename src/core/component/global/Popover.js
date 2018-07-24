@@ -100,12 +100,18 @@ var Popover = React.createClass({
 		_popover.className = _popover.className + ' ' + _arrowClassNames.join(' ');
 	},
 	render: function(){
+		var _style = {};
+		if(this.props.height){
+			_style.height = 'auto';
+		}else {
+			_style.maxHeight = '240px';
+		}
 		return (
 			<div className={zn.react.classname(
 				'zr-popover zr-arrow zr-arrow-color-white',
 				this.state.arrowClassName,
 				this.props.className
-				)} style={this.props.style} >
+			)} style={zn.extend(this.props.style, _style)} >
 				{this.props.closeable && <i className="popover-close fa fa-close zr-hover-self-loading" />}
 				{this.props.content}
 			</div>

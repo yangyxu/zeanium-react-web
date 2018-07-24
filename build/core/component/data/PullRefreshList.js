@@ -5,7 +5,7 @@ module.exports = React.createClass({
 	getDefaultProps: function getDefaultProps() {
 		return {
 			pageIndex: 1,
-			pageSize: 4,
+			pageSize: 10,
 			className: ''
 		};
 	},
@@ -24,7 +24,7 @@ module.exports = React.createClass({
 			pageSize: this.props.pageSize
 		});
 
-		this._dataSource = Store.dataSource(this.props.data, {
+		this._dataSource = zn.store.dataSource(this.props.data, {
 			autoLoad: true,
 			onExec: function () {
 				var _result = this.props.onLoading && this.props.onLoading();
@@ -130,7 +130,7 @@ module.exports = React.createClass({
 		}
 	},
 	__renderLoading: function __renderLoading() {
-		return React.createElement(UI.DataLoader, { loader: 'timer', content: '\u52A0\u8F7D\u6570\u636E\u4E2D...' });
+		return React.createElement(zn.react.DataLoader, { loader: 'timer', content: '\u52A0\u8F7D\u6570\u636E\u4E2D...' });
 	},
 	__renderNoData: function __renderNoData() {
 		return React.createElement(

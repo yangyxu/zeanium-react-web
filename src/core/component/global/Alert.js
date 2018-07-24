@@ -22,7 +22,7 @@ var Alert = React.createClass({
 			<div className={zn.react.classname('zr-alert', this.props.className)} style={this.props.style} >
 				<div className="alert-inner">
 					{this.props.title && <div className="alert-title">{this.props.title}</div>}
-					{this.props.content && <div className="alert-content" ref="alertContent">{this.props.content}</div>}
+					{this.props.content && <div className="alert-content">{this.props.content}</div>}
 				</div>
 				<div className="alert-btns">
 					{
@@ -36,12 +36,13 @@ var Alert = React.createClass({
 	}
 });
 
-zn.alert = function (content, title, callback){
-	zn.modal.open(<Alert content={content} title={title} onClick={callback} />, {
+zn.alert = function (content, title, callback, props){
+	zn.modal.open(<Alert content={content} title={title} onClick={callback} {...props} />, {
 		showOverlay: true,
 		contentStyles: function (dom, modal){
 			return {
-				"margin-top": -(dom.offsetHeight/2)+'px'
+				"margin-top": -(dom.offsetHeight/2)+'px',
+				"margin-left": -(dom.offsetWidth/2)+'px'
 			};
 		}
 	});
@@ -59,7 +60,8 @@ zn.confirm = function (content, title, confirm, cancel, options){
 				showOverlay: true,
 				contentStyles: function (dom, modal){
 					return {
-						"margin-top": -(dom.offsetHeight/2)+'px'
+						"margin-top": -(dom.offsetHeight/2)+'px',
+						"margin-left": -(dom.offsetWidth/2)+'px'
 					};
 				}
 			});
@@ -75,14 +77,15 @@ zn.prompt = function (title, confirm, cancel){
 				{
 					text:'确定',
 					onClick: function (item, index, alert){
-						confirm && confirm(alert.refs.alertContent.firstChild.value, item, index, alert);
+						confirm && confirm(alert.props.content, item, index, alert);
 					}
 				}
 			]} />, {
 				showOverlay: true,
 				contentStyles: function (dom, modal){
 					return {
-						"margin-top": -(dom.offsetHeight/2)+'px'
+						"margin-top": -(dom.offsetHeight/2)+'px',
+						"margin-left": -(dom.offsetWidth/2)+'px'
 					};
 				}
 			});

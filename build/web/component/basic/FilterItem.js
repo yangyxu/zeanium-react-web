@@ -3,8 +3,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 var React = require('react');
 var OPTS = {
 	'=': { text: '等于', value: '=', icon: 'fa-exchange' },
-	'>': { text: '大于', value: '>', icon: 'fa-angle-left' },
-	'<': { text: '小于', value: '<', icon: 'fa-angle-right' },
+	'>': { text: '大于', value: '>', icon: 'fa-angle-right' },
+	'<': { text: '小于', value: '<', icon: 'fa-angle-left' },
 	'like': { text: '相似', value: 'like', icon: 'fa-percent' },
 	'cancle': { text: '取消', value: 'cancle', icon: 'fa-remove' }
 };
@@ -31,7 +31,6 @@ module.exports = React.createClass({
 		if (this.props.value != undefined) {
 			this.refs.input.setValue(this.props.value);
 		}
-		this.props.onDidMount && this.props.onDidMount(this);
 	},
 	validate: function validate() {
 		var _value = this.refs.input.getValue();
@@ -59,11 +58,15 @@ module.exports = React.createClass({
 				this.props.onCancle && this.props.onCancle(value, listitem, list, this);
 			}.bind(this));
 		} else {
-			this.setState({
-				opt: value,
-				optIcon: listitem.props.icon,
-				disabled: false
-			});
+			if (value != this.state.value) {
+				this.setState({
+					opt: value,
+					optIcon: listitem.props.icon,
+					disabled: false
+				}, function () {
+					this.props.onOptChange && this.props.onOptChange(value);
+				}.bind(this));
+			}
 		}
 		zn.popover.close('FilterItem:listitem.click');
 	},
@@ -91,7 +94,17 @@ module.exports = React.createClass({
 		return React.createElement(zn.react.ListView, { itemRender: this.__listItemRender, data: this.__getData(), value: this.state.opt, onItemClick: this.__onListItemClick, style: { border: 'none', backgroundColor: '#FFF' } });
 	},
 	render: function render() {
-		var Input = zn.react.FormItem.inputs[this.props.type];
+		var _input = null,
+		    _type = this.props.type;
+		if (zn.is(_type, 'string')) {
+			if (zn.path(window, _type)) {
+				_input = zn.path(window, _type);
+			} else {
+				_input = zn.react[_type];
+			}
+		} else {
+			_input = _type;
+		}
 		return React.createElement(
 			zn.react.RTFlexItem,
 			_extends({}, this.props, {
@@ -104,7 +117,7 @@ module.exports = React.createClass({
 					popoverWidth: this.props.popoverWidth },
 				React.createElement('i', { className: "filter-icon fa " + this.state.optIcon })
 			),
-			Input && React.createElement(Input, _extends({ ref: 'input' }, this.props, { disabled: this.state.disabled, value: this.state.value, className: 'filter-input' }))
+			_input && React.createElement(_input, _extends({ ref: 'input' }, this.props, { disabled: this.state.disabled, value: this.state.value, className: 'filter-input' }))
 		);
 	}
 });

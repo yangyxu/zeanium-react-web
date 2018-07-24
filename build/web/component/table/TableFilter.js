@@ -11,7 +11,6 @@ module.exports = React.createClass({
 		};
 	},
 	getInitialState: function getInitialState() {
-		this._items = {};
 		return {};
 	},
 	componentDidMount: function componentDidMount() {
@@ -21,7 +20,6 @@ module.exports = React.createClass({
 		this.search(this.props.filterData);
 	},
 	search: function search(data) {
-		//console.log(data);
 		data && this.props.onFilterSearch(data, this);
 	},
 	__onFilterChange: function __onFilterChange(value, item) {
@@ -34,30 +32,44 @@ module.exports = React.createClass({
 			};
 		}
 	},
+	__onFilterOptChange: function __onFilterOptChange(opt, name) {
+		if (this.props.filterData[name]) {
+			this.props.filterData[name].opt = opt;
+		} else {
+			this.props.filterData[name] = {
+				key: name,
+				opt: opt
+			};
+		}
+
+		this.props.onFilter && this.props.onFilter(this.validate());
+	},
 	__onFilterItemChange: function __onFilterItemChange(value, input) {
 		this.props.onFilter && this.props.onFilter(this.validate(), input);
 	},
 	validate: function validate() {
-		var _value = {};
-		zn.each(this._items, function (item, name) {
+		var _value = {},
+		    _ref = null;
+		for (var key in this.refs) {
+			_ref = this.refs[key];
 			//if(item.state.opt && item.validate()){
-			if (item.state.opt) {
-				_value[name.split('_')[0]] = {
-					opt: item.state.opt,
-					value: item.validate()
+
+			if (_ref.state.opt) {
+				_value[key.split('_convert')[0]] = {
+					opt: _ref.state.opt,
+					value: _ref.validate()
 				};
 			}
-		});
+		}
 
 		return _value;
-	},
-	__onFilterItemDidMount: function __onFilterItemDidMount(item) {
-		this._items[item.props.name] = item;
 	},
 	__onFilterItemCancle: function __onFilterItemCancle() {
 		this.props.onFilter && this.props.onFilter(this.validate());
 	},
 	__itemRender: function __itemRender(item, index) {
+		var _this = this;
+
 		var _content = null;
 		switch (item.type) {
 			case 'checkbox':
@@ -81,10 +93,13 @@ module.exports = React.createClass({
 					_content = React.createElement(zn.react.FilterItem, _extends({
 						popoverWidth: 80,
 						opts: ['like', '='],
-						name: item.name
+						name: item.name,
+						ref: item.name
 					}, _filter, {
-						onCancle: this.__onFilterItemCancle,
-						onDidMount: this.__onFilterItemDidMount
+						onOptChange: function onOptChange(opt) {
+							return _this.__onFilterOptChange(opt, item.name);
+						},
+						onCancle: this.__onFilterItemCancle
 					}, _events));
 				} else {
 					_content = null;

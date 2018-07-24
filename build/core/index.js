@@ -8,4 +8,7 @@ require('./util/index.js');
 if (!zn.plugin) {
     zn.plugin = {};
 }
+if (!zn.app) {
+    zn.app = {};
+}
 module.exports = zn.react;

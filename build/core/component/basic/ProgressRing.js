@@ -6,6 +6,7 @@ module.exports = React.createClass({
 	getDefaultProps: function getDefaultProps() {
 		return {
 			full: true,
+			style: null,
 			className: '',
 			trackColor: '#f0f0f0',
 			valueColor: '#6ec84e',
@@ -73,7 +74,7 @@ module.exports = React.createClass({
 	render: function render() {
 		return React.createElement(
 			'div',
-			{ className: "zr-progress-ring " + this.props.className, 'data-full': this.props.full },
+			{ className: "zr-progress-ring " + this.props.className, 'data-full': this.props.full, style: this.props.style },
 			React.createElement('div', { className: 'progress-track', style: { borderColor: this.props.trackColor } }),
 			React.createElement('div', { className: 'progress-left', style: zn.extend({ borderColor: this.props.valueColor }, this.state.leftStyle) }),
 			React.createElement('div', { className: 'progress-right', style: zn.extend({ borderColor: this.props.valueColor }, this.state.rightStyle) }),
@@ -84,7 +85,7 @@ module.exports = React.createClass({
 				React.createElement(
 					'span',
 					{ className: 'progress-num' },
-					this.props.value
+					(+this.props.value || 0).toFixed(1)
 				),
 				React.createElement(
 					'span',

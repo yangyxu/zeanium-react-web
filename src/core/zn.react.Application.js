@@ -30,6 +30,7 @@ module.exports = zn.react.Application = zn.Class({
         main: null,
         host: window.location.origin,
         router: null,
+        global: null,
         plugins: []
     },
     methods: {
@@ -43,6 +44,7 @@ module.exports = zn.react.Application = zn.Class({
         },
         __initArgv: function (argv){
             var _routers = {},
+                _relativeRouters = {},
                 _plugin = null,
                 _path = this.get('path'),
                 _self = this;
@@ -51,25 +53,30 @@ module.exports = zn.react.Application = zn.Class({
                 if(zn.is(plugin, 'string')){
                     plugin = _self.onLoading(plugin);
                 }
-                if(_path && _routers[_path]){
-                    zn.extend(_routers[_path], plugin);
-                }else {
-                    zn.extend(_routers, plugin);
+                if(zn.is(plugin, 'array')){
+                    zn.extend(_routers, plugin[1]);
+                    plugin = plugin[0];
                 }
+
+                zn.extend(_relativeRouters, plugin);
             });
 
             if(argv.routers){
                 var __routers = zn.deepEachObject(argv.routers, this.onLoading.bind(this));
+                zn.extend(_relativeRouters, __routers);
                 if(_path){
-                    zn.extend(_routers[_path], __routers);
+                    var _temp = {},
+                        _index = _routers[_path] || _relativeRouters[_path];
+                    _relativeRouters['/'] = _index;
+                    _routers[_path] = _relativeRouters;
                 }else {
+                    _routers = _relativeRouters;
                     zn.extend(_routers, __routers);
                 }
             }
 
-            console.log(_routers);
-
             this._routers = _routers;
+            this._relativeRouters = _relativeRouters;
             zn.react.session.setHome(this.get('home'))
                             .setMain(this.get('main'))
                             .setBasePath(this.get('path'));
@@ -102,7 +109,14 @@ module.exports = zn.react.Application = zn.Class({
             if(zn.react.isMobile()){
                 _container.classList.add('zr-mobile');
             }
-            require('react-dom').render(_view, _container);
+            //require('react-dom').render(_view, _container)
+            if(this.get('global')){
+                _view = <div style={{width: '100%', height: '100%'}}>
+                    {_view}
+                    {this.get('global')}
+                </div>;
+            }
+            setTimeout(()=>require('react-dom').render(_view, _container), 50);
         }
     }
 });

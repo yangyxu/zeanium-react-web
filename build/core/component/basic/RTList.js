@@ -14,7 +14,9 @@ module.exports = React.createClass({
 	},
 	getDefaultProps: function getDefaultProps() {
 		return {
-			active: true
+			active: true,
+			textKey: 'text',
+			valueKey: 'value'
 		};
 	},
 	getInitialState: function getInitialState() {
@@ -24,6 +26,18 @@ module.exports = React.createClass({
 		};
 	},
 	componentDidMount: function componentDidMount() {
+		if (this.props.data && this.props.data.on) {
+			var _self = this;
+			this.props.data.on('before', function () {
+				if (_self.props.showLoading) {
+					zn.preloader.open({ title: '加载中...' });
+				}
+			}).on('complete', function () {
+				if (_self.props.showLoading) {
+					zn.preloader.close();
+				}
+			});
+		}
 		this._dataSource = zn.store.dataSource(this.props.items || this.props.data, {
 			autoLoad: this.props.active,
 			onExec: function () {
@@ -41,10 +55,10 @@ module.exports = React.createClass({
 		});
 	},
 	componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-		if (nextProps.items !== this.props.items) {
+		if (nextProps.items !== this.props.items && !!this._dataSource) {
 			this._dataSource.reset(nextProps.items);
 		}
-		if (nextProps.data !== this.props.data) {
+		if (nextProps.data !== this.props.data && !!this._dataSource) {
 			this._dataSource.reset(nextProps.data);
 		}
 		if (nextProps.active && nextProps.active != this.props.active) {
@@ -112,19 +126,18 @@ module.exports = React.createClass({
 
 		var _content = null,
 		    _temp = {};
-		if ((typeof item === 'undefined' ? 'undefined' : _typeof(item)) !== 'object') {
+		if ((typeof item === 'undefined' ? 'undefined' : _typeof(item)) == 'object') {
+			item._index = index;
+		} else {
 			_temp[this.props.textKey] = _temp[this.props.valueKey] = item;
 			this.state.data[index] = item = _temp;
 		}
-		if (item && (typeof item === 'undefined' ? 'undefined' : _typeof(item)) == 'object') {
-			item._index = index;
-		}
 
-		var _temp = this.props.onEachItem && this.props.onEachItem(item, this);
-
+		_temp = this.props.onEachItem && this.props.onEachItem(item, this);
 		if (_temp === false) {
 			return null;
 		}
+
 		if (this.props.itemRender) {
 			_content = this.props.itemRender(item, index, this);
 		}

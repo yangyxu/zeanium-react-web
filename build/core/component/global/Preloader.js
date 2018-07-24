@@ -14,7 +14,7 @@ var Preloader = React.createClass({
 			React.createElement(
 				'span',
 				null,
-				this.props.title
+				this.props.content || this.props.title
 			)
 		);
 	}

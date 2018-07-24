@@ -34,8 +34,12 @@ module.exports = React.createClass({
 		this.state.value = _value;
 		this.forceUpdate();
 		this.props.onChange && this.props.onChange(_value);
-		if (this.props.realtime) {
-			this.props.onSearch && this.props.onSearch(_value);
+		if (_value) {
+			if (this.props.realtime) {
+				this.props.onSearch && this.props.onSearch(_value);
+			}
+		} else {
+			this.props.onCancel && this.props.onCancel();
 		}
 		event.stopPropagation();
 	},
@@ -54,11 +58,22 @@ module.exports = React.createClass({
 		this.setState({ value: '' });
 		event.target.nextSibling.focus();
 		event.stopPropagation();
+		this.props.onCancle && this.props.onCancle();
+	},
+	__onSearchKeyUp: function __onSearchKeyUp(event) {
+		var _event = event.nativeEvent;
+		if (_event.keyCode == 13) {
+			var _value = _event.target.value;
+			this.state.value = _value;
+			this.props.onSearch && this.props.onSearch(_value);
+		}
 	},
 	render: function render() {
+		var _this = this;
+
 		return React.createElement(
 			'div',
-			{ className: zn.react.classname("zr-search", this.props.className, this.state.focus ? 'foucs' : '') },
+			{ className: zn.react.classname("zr-search", this.props.className, this.state.focus ? 'foucs' : ''), style: this.props.style },
 			React.createElement('i', { onClick: this.__onIconClick, className: "search-icon fa " + (this.state.searching ? "searching" : "fa-search") }),
 			this.state.value && React.createElement('i', { className: 'search-clear fa fa-times-circle', onClick: this.__onClearClick }),
 			React.createElement('input', _extends({}, this.props, {
@@ -66,6 +81,9 @@ module.exports = React.createClass({
 				onFocus: this.__onInputFoucs,
 				onBlur: this.__onInputBlur,
 				onChange: this.__onInputChange,
+				onKeyUp: function onKeyUp(event) {
+					return _this.__onSearchKeyUp(event);
+				},
 				onClick: function onClick(event) {
 					return event.stopPropagation();
 				},

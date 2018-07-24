@@ -24,6 +24,6 @@ zn.react.global = zn.Class({
     }
 });
 
-module.exports = zn.arrayValueToObject(['Ripple', 'Alert', 'Modal', 'Notify', 'Notification', 'Popover', 'Popup', 'Preloader', 'Toast', 'Tooltip'], function (value, index) {
+module.exports = zn.arrayValueToObject(['Ripple', 'Alert', 'Modal', 'Modals', 'Notify', 'Notification', 'Popover', 'Popup', 'Preloader', 'Toast', 'Tooltip'], function (value, index) {
     return require('./' + value + '.js');
 });

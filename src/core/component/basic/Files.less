@@ -1,0 +1,31 @@
+@import "../../../zr.variables.less";
+
+.zr-files {
+    .files{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        .file{
+            margin: 1px;
+            img, video, .office-file{
+                width: 64px;
+                height: 64px;
+            }
+            .office-file{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                background-color: #eee;
+                color: #6d6d6d;
+                .fa{
+                    font-size: 40px;
+                }
+                .name{
+                    line-height: 16px;
+                    font-size: 10px;
+                }
+            }
+        }
+    }
+}

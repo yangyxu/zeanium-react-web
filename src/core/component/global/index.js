@@ -28,6 +28,7 @@ module.exports = zn.arrayValueToObject([
     'Ripple',
     'Alert',
     'Modal',
+    'Modals',
     'Notify',
     'Notification',
     'Popover',

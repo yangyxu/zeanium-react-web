@@ -70,6 +70,7 @@ module.exports = React.createClass({
 		if (evt.lengthComputable) {
 			evt.progress = Math.round(evt.loaded * 100 / evt.total);
 		}
+		console.log(evt);
 		this.props.onUploading && this.props.onUploading(evt, this);
 	},
 	__ajaxUploadComplete: function (evt){
@@ -78,6 +79,7 @@ module.exports = React.createClass({
 		if(_data.status==200){
 			this.props.onComplete && this.props.onComplete(_data.result, this);
 		}else {
+			zn.confirm(_data.result);
 			this.props.onError && this.props.onError(_data.result, this);
 		}
 	},
@@ -95,11 +97,11 @@ module.exports = React.createClass({
 	},
 	render: function(){
 		return (
-			<form className={"zr-ajax-uploader " + this.props.className}
+			<form className={zn.react.classname("zr-ajax-uploader", this.props.className)}
 				style={this.props.style}
 				data-loading={this.state.loading}
-				encType="multipart/form-data"
 				action={zn.http.fixURL(this.props.action||'')}
+				encType="multipart/form-data"
 				method="POST">
 				{this.props.children}
 				{this.props.size && <span className="size">{this.props.size}</span>}

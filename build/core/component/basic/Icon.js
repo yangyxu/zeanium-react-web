@@ -13,6 +13,10 @@ module.exports = React.createClass({
 		this.props.onClick && this.props.onClick(this, event);
 	},
 	render: function render() {
-		return React.createElement('i', { 'data-tooltip': this.props.tooltip, onClick: this.__onClick, className: zn.react.classname('zr-icon fa', this.props.className, this.props.icon), 'data-spin': this.props.spin });
+		return React.createElement(
+			'i',
+			{ 'data-tooltip': this.props.tooltip, onClick: this.__onClick, className: zn.react.classname('zr-icon fa', this.props.className, this.props.icon), 'data-spin': this.props.spin },
+			this.props.text
+		);
 	}
 });

@@ -1,15 +1,8 @@
 var React = require('react');
 var TableRow = require('./TableRow');
 
-module.exports = React.createClass({
+var TableBody = React.createClass({
 	displayName:'TableBody',
-	getDefaultProps: function (){
-		return {
-			singleSelect: true,
-			value: [],
-			valueKey: 'id'
-		};
-	},
 	getInitialState:function(){
 		return {
 			curr: null,
@@ -20,6 +13,18 @@ module.exports = React.createClass({
 		}
 	},
 	componentDidMount:function(){
+		if(this.props.data && this.props.data.on){
+			var _self = this;
+			this.props.data.on('before', function (){
+				if(_self.props.showLoading){
+					zn.preloader.open({title: '加载中...'});
+				}
+			}).on('complete', function (){
+				if(_self.props.showLoading){
+					zn.preloader.close();
+				}
+			});
+		}
 		this._dataSource = Store.dataSource(this.props.data, {
 			autoLoad: this.props.autoLoad||true,
 			onExec: ()=>this.setState({loading: true}),
@@ -144,9 +149,9 @@ module.exports = React.createClass({
 	render: function(){
 		if(this.state.loading){
 			return <tbody>
-				<tr>
+				<tr style={{ position: 'relative', height: 180 }}>
 					<td style={{position:'absolute', width: '100%'}}>
-						<zn.react.DataLoader loader="arrow-circle" content="Loading ......" />
+						<zn.react.DataLoader style={{width: 100}} loader="arrow-circle" content="Loading ......" />
 					</td>
 				</tr>
 			</tbody>;
@@ -156,12 +161,17 @@ module.exports = React.createClass({
 			<tbody style={this.props.tbodyStyle}>
 				{
 					this.state.data && this.state.data.map && this.state.data.map(function (item, index){
+						var _result = this.props.onRowRender && this.props.onRowRender(item, index, this.state.data.length);
+						if(_result){
+							return _result;
+						}
 						var _value = item[this.props.valueKey];
 						this.state.values.push(_value);
 						return (typeof item === 'object')?<TableRow
 									index={index}
 									key={index + '_' + zn.uuid()}
 									data={item}
+									style={this.props.rowStyleValidate && this.props.rowStyleValidate(item, index, this.state.data.length)}
 									items={this.props.items}
 									checked={this.state.value.indexOf(_value)!=-1}
 									editable={this.props.editable !== undefined ? this.props.editable: item._editable}
@@ -169,16 +179,24 @@ module.exports = React.createClass({
 									rowRender={this.props.rowRender}
 									columnRender={this.props.columnRender}
 									draggable={!!this.props.onRowDragStart}
-									onDragStart={(event)=>{
-										this.props.onRowDragStart(event, item, index);
-									}}
-									onCheckBoxChange={this.__onRowCheckBoxChange}
 									onDidMount={this.__onRowDidMount}
 									onRowClick={this.__onTableRowClick}
-									/>:null;
+									onDragStart={(event)=>this.props.onRowDragStart(event, item, index)}
+									onCheckBoxChange={this.__onRowCheckBoxChange}
+									onRowColumnChange={this.props.onRowColumnChange} />:null;
 					}.bind(this))
 				}
 			</tbody>
 		);
 	}
 });
+
+TableBody.defaultProps = {
+	showLoading: true,
+	singleSelect: true,
+	rowStyleValidate: function (){},
+	value: [],
+	valueKey: 'id'
+};
+
+module.exports = TableBody;

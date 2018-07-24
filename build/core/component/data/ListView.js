@@ -4,22 +4,8 @@ var React = require('react');
 var RTItem = require('../basic/RTItem');
 var RTList = require('../basic/RTList');
 
-module.exports = React.createClass({
+var ListView = React.createClass({
 	displayName: 'ListView',
-	getDefaultProps: function getDefaultProps() {
-		return {
-			className: 'zr-list-view-default',
-			itemClassName: '',
-			float: 'none',
-			filterValue: null,
-			disabled: false,
-			value: null,
-			textKey: 'text',
-			valueKey: 'value',
-			noborder: false,
-			selectMode: 'radio' //radio, checkbox, none
-		};
-	},
 	getInitialState: function getInitialState() {
 		return {
 			value: this.props.value,
@@ -28,7 +14,8 @@ module.exports = React.createClass({
 	},
 	componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
 		if (nextProps.value !== this.props.value) {
-			this.setState({ value: nextProps.value });
+			this.state.value = nextProps.value;
+			this.forceUpdate();
 		}
 	},
 	__getItemValue: function __getItemValue(item) {
@@ -117,7 +104,7 @@ module.exports = React.createClass({
 
 		var _content = React.createElement(
 			'div',
-			null,
+			{ style: { display: 'flex' } },
 			!!item.icon && React.createElement('i', { className: 'fa ' + item.icon, style: { padding: 3 } }),
 			React.createElement(
 				'span',
@@ -128,7 +115,6 @@ module.exports = React.createClass({
 		if (this.props.itemRender) {
 			_content = this.props.itemRender(item, index, this);
 		}
-
 		return React.createElement(
 			RTItem,
 			_extends({
@@ -163,3 +149,18 @@ module.exports = React.createClass({
 			itemRender: this.__itemRender }));
 	}
 });
+
+ListView.defaultProps = {
+	className: 'zr-list-view-default',
+	itemClassName: '',
+	float: 'none',
+	filterValue: null,
+	disabled: false,
+	value: null,
+	textKey: 'text',
+	valueKey: 'value',
+	noborder: false,
+	selectMode: 'radio' //radio, checkbox, none
+};
+
+module.exports = ListView;

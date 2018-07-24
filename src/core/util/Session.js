@@ -1,51 +1,35 @@
 module.exports = zn.react.session = zn.Class({
     static: true,
     methods: {
-        relativeURL: function (path, argv){
-            var _basePath = this._basePath || '',
-                _argv = zn.querystring.stringify(argv);
-            if(path.indexOf(_basePath)==-1){
-                path = _basePath + path;
-            }
-            return '#' + path + (_argv?('?'+_argv):'');
-        },
-        relativeJump: function (path, search, overwrite){
+        fixRelativePath: function (path){
             var _basePath = this._basePath || '';
             if(path.indexOf(_basePath)==-1){
                 path = _basePath + path;
             }
 
-            return this.jump(path, search, overwrite);
+            return path;
+        },
+        relativeURL: function (path, argv){
+            var _argv = zn.querystring.stringify(argv);
+            return '#' + this.fixRelativePath(path) + (_argv?('?'+_argv):'');
+        },
+        relativeJump: function (path, search, overwrite){
+            return this.jump(this.fixRelativePath(path), search, overwrite);
         },
         jump: function (path, search, overwrite){
-            var _search = {},
-                _searchAry = [],
-                _value = null;
-            zn.extend(_search, search);
+            var _search = zn.extend({}, search);
             if(!overwrite){
-                zn.extend(_search, this._globalSearch);
+                zn.overwrite(_search, this._globalSearch);
             }
             if(!search){
                 this._search = {};
             }
-
-            this._search = zn.extend(_search, this._search);
-
-            for(var key in _search){
-                _value = _search[key];
-                if(typeof _value != 'string'){
-                    _value = JSON.stringify(_value);
-                }
-                _searchAry.push(key + '=' + _value);
-            }
+            this._search = zn.overwrite(_search, this._search);
 
             zn.react.global.fireJump();
+            var _querystring = zn.querystring.stringify(this._search);
 
-            if(_searchAry.length){
-                location.hash = path + '?' + _searchAry.join('&');
-            }else {
-                location.hash = path;
-            }
+            location.hash = path + (_querystring ? '?' + _querystring : '');
 
             return this;
     	},
@@ -82,8 +66,10 @@ module.exports = zn.react.session = zn.Class({
         },
         doMain: function (data){
             if(this._main){
-                this.clear().set(data);
-                location.hash = this._main;
+                if(data){
+                    this.clear().set(data);
+                }
+                location.hash = this.fixRelativePath(this._main);
             }
 
             return this;
@@ -101,7 +87,7 @@ module.exports = zn.react.session = zn.Class({
             return this._engine = engine, this;
         },
         getEngine: function (){
-            var _engine = this._engine || 'localStorage';   // Cookie, sessionStorage, localStorage
+            var _engine = this._engine || 'sessionStorage';   // Cookie, sessionStorage, localStorage
             if(_engine&&typeof _engine == 'string'){
                 _engine = window[_engine];
             }
@@ -120,6 +106,9 @@ module.exports = zn.react.session = zn.Class({
         },
         getKeyValue: function (key){
             return this.getEngine().getItem(key);
+        },
+        removeKeyValue: function (key){
+            return this.getEngine().removeItem(key), this;
         },
         jsonKeyValue: function (value){
             var _value = this.getKeyValue(value);

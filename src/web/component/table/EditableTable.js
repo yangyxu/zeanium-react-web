@@ -35,35 +35,35 @@ module.exports = React.createClass({
 		this._tableBody.insertRow({ _editable: true }, rowIndex);
 	},
 	__tableHeaderRender: function (item, index, columnSize){
-		if(index == columnSize-1){
+		if(index == 0){
 			return <div style={{textAlign: 'center'}}>
 				<zn.react.Icon tooltip='Add Row(Insert Last Row)' icon="fa-plus" onClick={this.__onRowAdd} />
 			</div>;
 		}
 	},
 	__tableColumnRender: function (rowIndex, columnIndex, data, item, value){
-		switch (columnIndex) {
-			case this.props.headers.length:
-				return <div style={{textAlign: 'center'}}>
-					<zn.react.Icon tooltip="Delete Row(Delete This Row)" icon="fa-minus" onClick={()=>this.__onRowDelete(rowIndex, columnIndex, data, item, value)} />
-					{
-						/*
-							<zn.react.Icon title="Append Row(Append To This Row Before)" icon="fa-plus" onClick={()=>this.__onRowAppend(rowIndex, columnIndex, data, item, value)} />
-						*/
-					}
-				</div>;
+		if(item.type == "action"){
+			return <div style={{textAlign: 'center'}}>
+				<zn.react.Icon tooltip="Delete Row(Delete This Row)" icon="fa-minus" onClick={()=>this.__onRowDelete(rowIndex, columnIndex, data, item, value)} />
+				{
+					/*
+						<zn.react.Icon title="Append Row(Append To This Row Before)" icon="fa-plus" onClick={()=>this.__onRowAppend(rowIndex, columnIndex, data, item, value)} />
+					*/
+				}
+			</div>;
 		}
 	},
 	render: function(){
 		return (
 			<zn.react.Table
 				ref="dstable"
+				{...this.props}
 				singleSelect={false}
 				editable={true}
 				enableFilter={false}
 				checkbox={false}
 				showHeader={true}
-				items={this.props.headers.concat([{ title: 'Actions', name: 'Actions', type: 'action', width: 50, textAlign: 'center' }])}
+				items={[{ title: 'Actions', name: 'Actions', type: 'action', width: 50, textAlign: 'center' }].concat(this.props.headers)}
 				data={this.props.data}
 				headerRender={this.__tableHeaderRender}
 				columnRender={this.__tableColumnRender}/>

@@ -26,12 +26,11 @@ module.exports = React.createClass({
 			value: _file.name
 		});
 		if (_file.name.indexOf('xls') == -1) {
-			alert('文件[' + _file.name + ']不是 xlsx / xls 类型');
-			return false;
+			return (zn.notification.error || window.alert).call(null, '文件[' + _file.name + ']不是 xlsx / xls 类型'), false;
 		}
+
 		if (!this.props.action) {
-			alert('The action is empty');
-			return false;
+			return (zn.notification.error || window.alert).call(null, 'The action is empty'), false;
 		}
 
 		if (this.props.editable) {
@@ -94,7 +93,7 @@ module.exports = React.createClass({
 		}
 	},
 	__onError: function __onError(msg) {
-		zn.toast.error('Import Error: ' + msg);
+		zn.notification.error('Import Error: ' + msg);
 		this.props.onError && this.props.onError(msg);
 	},
 	render: function render() {

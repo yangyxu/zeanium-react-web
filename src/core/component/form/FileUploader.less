@@ -11,6 +11,7 @@
         color: #a0a0a0;
     }
     .file-list{
+        overflow: hidden;
         .file{
             overflow: hidden;
             position: relative;
@@ -20,7 +21,7 @@
                 position: absolute;
                 top: 0px;
                 right: 0px;
-                margin: 5px;
+                padding: 5px;
                 &:hover{
                     color: red;
                 }
@@ -41,8 +42,8 @@
     @media (max-width: 720px){
         .file-list{
             img{
-                width: 48px !important;
-                height: 48px !important;
+                width: 64px !important;
+                height: 64px !important;
             }
         }
     }

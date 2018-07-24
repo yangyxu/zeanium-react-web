@@ -34,9 +34,10 @@ module.exports = React.createClass({
 					break;
 			}
 		}
-
 		//width={(item.width?item.width:0)}
-		return <th key={index} className={'text-align-'+(item.textAlign||'left')} >{_content}</th>
+		return <th key={index} className={'text-align-'+(item.textAlign||'left')} style={{color: (!!item.required?'#F44336':'')}} >
+			{_content}
+		</th>;
 	},
 	render:function(){
 		return (

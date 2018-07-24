@@ -14,11 +14,8 @@ module.exports = React.createClass({
 	},
 	getInitialState: function(){
 		return {
-
+			searchWhereKeys: []
 		}
-	},
-	componentDidMount:function(){
-
 	},
 	__onHeaderCheckBoxChange: function (value){
 		this.refs.body.checkedAll(value);
@@ -28,16 +25,33 @@ module.exports = React.createClass({
 	},
 	__onFilter: function (data, filter){
 		if(Object.keys(data).length){
-			var _where = this.props.data._data.where || {};
+			var _where = this.props.data._data.where || {},
+				_key = null,
+				_value = null;
+			this.state.searchWhereKeys.map(function (key, index){
+				_where[key] = null;
+				delete _where[key];
+			}.bind(this));
+			this.state.searchWhereKeys = [];
 			zn.each(data, function (value, key){
-				if(value.value!==null){
-					_where[key+'&'+value.opt] = value.value;
+				_key = key+'&'+value.opt;
+				_value = value.value;
+				if(_value !== null && _value != ''){
+					_where[_key] = _value;
+					this.state.searchWhereKeys.push(_key);
 				}else {
-					_where[key+'&'+value.opt] = null;
-					delete _where[key+'&'+value.opt];
+					_where[_key] = null;
+					delete _where[_key];
 				}
 			}.bind(this));
-			this.props.data._data.where = _where;
+			this.props.onFilter && this.props.onFilter();
+			this.props.data._data.pageIndex = 1;
+			if(Object.keys(_where).length){
+				this.props.data._data.where = _where;
+			}else {
+				this.props.data._data.where = null;
+				delete this.props.data._data.where;
+			}
 			this.props.data.exec();
 		}
 	},
@@ -73,7 +87,6 @@ module.exports = React.createClass({
 			<table style={this.props.style} className={"zr-table " + this.props.className} data-fixed={this.props.fixed} cellPadding="0" cellSpacing="0">
 				<TableColgroup {...this.props} items={_items} />
 				{this.props.showHeader && <TableHeader
-					ref="header"
 					{...this.props}
 					items={_items}
 					columnSize={this._columnSize}

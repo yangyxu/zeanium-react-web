@@ -1,3 +1,5 @@
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var React = require('react');
 
 var Alert = React.createClass({
@@ -29,7 +31,7 @@ var Alert = React.createClass({
 				),
 				this.props.content && React.createElement(
 					'div',
-					{ className: 'alert-content', ref: 'alertContent' },
+					{ className: 'alert-content' },
 					this.props.content
 				)
 			),
@@ -52,12 +54,13 @@ var Alert = React.createClass({
 	}
 });
 
-zn.alert = function (content, title, callback) {
-	zn.modal.open(React.createElement(Alert, { content: content, title: title, onClick: callback }), {
+zn.alert = function (content, title, callback, props) {
+	zn.modal.open(React.createElement(Alert, _extends({ content: content, title: title, onClick: callback }, props)), {
 		showOverlay: true,
 		contentStyles: function contentStyles(dom, modal) {
 			return {
-				"margin-top": -(dom.offsetHeight / 2) + 'px'
+				"margin-top": -(dom.offsetHeight / 2) + 'px',
+				"margin-left": -(dom.offsetWidth / 2) + 'px'
 			};
 		}
 	});
@@ -72,7 +75,8 @@ zn.confirm = function (content, title, confirm, cancel, options) {
 		showOverlay: true,
 		contentStyles: function contentStyles(dom, modal) {
 			return {
-				"margin-top": -(dom.offsetHeight / 2) + 'px'
+				"margin-top": -(dom.offsetHeight / 2) + 'px',
+				"margin-left": -(dom.offsetWidth / 2) + 'px'
 			};
 		}
 	});
@@ -86,13 +90,14 @@ zn.prompt = function (title, confirm, cancel) {
 		buttons: [{ text: '取消', onClick: cancel }, {
 			text: '确定',
 			onClick: function onClick(item, index, alert) {
-				confirm && confirm(alert.refs.alertContent.firstChild.value, item, index, alert);
+				confirm && confirm(alert.props.content, item, index, alert);
 			}
 		}] }), {
 		showOverlay: true,
 		contentStyles: function contentStyles(dom, modal) {
 			return {
-				"margin-top": -(dom.offsetHeight / 2) + 'px'
+				"margin-top": -(dom.offsetHeight / 2) + 'px',
+				"margin-left": -(dom.offsetWidth / 2) + 'px'
 			};
 		}
 	});

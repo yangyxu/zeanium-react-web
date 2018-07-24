@@ -11,12 +11,19 @@ module.exports = React.createClass({
 	getValue: function () {
 		var _date = ReactDOM.findDOMNode(this.refs.date).value,
 			_time = ReactDOM.findDOMNode(this.refs.time).value;
-		return _date + ' ' + _time;
+		return (_date + ' ' + _time).trim();
 	},
 	setValue: function (value) {
-		var _data = value.split(' ');
-		ReactDOM.findDOMNode(this.refs.date).value = _data[0];
-		ReactDOM.findDOMNode(this.refs.time).value = _data[1];
+		if(value){
+			var _data = value.split(' ');
+			if(_data[0]){
+				ReactDOM.findDOMNode(this.refs.date).value = _data[0];
+			}
+			if(_data[1]){
+				ReactDOM.findDOMNode(this.refs.time).value = _data[1];
+			}
+		}
+
 		return this;
 	},
 	__onChange: function (event){
@@ -25,7 +32,7 @@ module.exports = React.createClass({
 	render: function(){
 		var _data = (this.props.value||'').split(' ');
 		return (
-			<div className={"zr-timer " + this.props.className}>
+			<div className={"zr-date-time " + this.props.className}>
 				<input type="date" defaultValue={_data[0]} ref="date" className="timer-date" name={this.props.name+'_date'} required={this.props.required} onChange={this.__onChange} />
 				<input type="time" defaultValue={_data[1]} ref="time" className="timer-time" name={this.props.name+'_time'} required={this.props.required} onChange={this.__onChange} />
 			</div>

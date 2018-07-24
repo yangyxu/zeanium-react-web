@@ -50,6 +50,8 @@ module.exports = React.createClass({
 		return this.refs.view.setValue(value), this;
 	},
 	render: function render() {
+		var _this = this;
+
 		var View = this.props.view;
 		if (typeof this.props.view == 'string') {
 			View = zn.react[this.props.view];
@@ -69,7 +71,9 @@ module.exports = React.createClass({
 			React.createElement(
 				'div',
 				{ className: 'content-view' },
-				React.createElement(View, _extends({}, this.props, { onData: this.__onTableData, dataHandler: this.__dataHandler, ref: 'view' }))
+				React.createElement(View, _extends({ showLoading: true }, this.props, { onFilter: function onFilter() {
+						return _this.setState({ current: 1 });
+					}, className: this.props.viewClassName, dataHandler: this.__dataHandler, ref: 'view' }))
 			),
 			React.createElement(
 				'div',

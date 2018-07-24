@@ -1,4 +1,47 @@
 module.exports = zn.react = {
+    downloadDataURL: function downloadDataURL(dataURL, filename) {
+        var blob = this.dataURLToBlob(dataURL);
+        var url = window.URL.createObjectURL(blob);
+
+        this.downloadURL(url, filename);
+    },
+    downloadURL: function downloadURL(url, filename) {
+        var a = document.createElement("a");
+        a.style = "display: none";
+        a.href = url;
+        if (filename) {
+            a.download = filename;
+        }
+
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+    },
+    dataURLToBlob: function dataURLToBlob(dataURL) {
+        // Code taken from https://github.com/ebidel/filer.js
+        var parts = dataURL.split(';base64,');
+        var contentType = parts[0].split(":")[1];
+        var raw = window.atob(parts[1]);
+        var rawLength = raw.length;
+        var uInt8Array = new Uint8Array(rawLength);
+
+        for (var i = 0; i < rawLength; ++i) {
+            uInt8Array[i] = raw.charCodeAt(i);
+        }
+
+        return new Blob([uInt8Array], { type: contentType });
+    },
+    copyToClipboard: function copyToClipboard(value) {
+        var _tempInput = document.createElement('input');
+        _tempInput.value = value;
+        _tempInput.style.width = '0px !important';
+        _tempInput.style.height = '0px !important';
+        document.body.appendChild(_tempInput);
+        _tempInput.select();
+        document.execCommand("Copy");
+        document.body.removeChild(_tempInput);
+        zn.notification.success('复制成功：' + value);
+    },
     isAndroid: function isAndroid() {
         return navigator.userAgent.indexOf('Android') > -1 || navigator.userAgent.indexOf('Adr') > -1;
     },
@@ -53,6 +96,7 @@ module.exports = zn.react = {
 
         return _items.join(' ');
     },
+    style: function style() {},
     extendPath: function extendPath(path, views) {
         var _views = {};
         for (var key in views) {

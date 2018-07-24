@@ -1,11 +1,6 @@
 @import "../../../zr.variables.less";
 
-.zr-status(@color: @zr-base-color){
-    border-color: @color;
-    color: @color;
-}
-
-.zr-timer {
+.zr-date-time {
     display: flex;
     flex-direction: row;
     input{
@@ -27,6 +22,16 @@
             outline: 0 none;
             outline: thin dotted \9;
             border-color: @zr-color-primary !important;
+        }
+
+        &[type="date"]{
+            width: 170px;
+            flex: none;
+        }
+        &[type="time"]{
+            width: 140px;
+            flex: none;
+            margin-left: -1px;
         }
     }
 }

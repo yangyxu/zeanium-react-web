@@ -6,6 +6,7 @@ module.exports = React.createClass({
 	getDefaultProps: function (){
 		return {
 			full: true,
+			style: null,
 			className: '',
 			trackColor: '#f0f0f0',
 			valueColor: '#6ec84e',
@@ -72,13 +73,13 @@ module.exports = React.createClass({
 	},
 	render: function(){
 		return (
-			<div className={"zr-progress-ring " + this.props.className} data-full={this.props.full} >
+			<div className={"zr-progress-ring " + this.props.className} data-full={this.props.full} style={this.props.style} >
 				<div className="progress-track" style={{ borderColor: this.props.trackColor }}></div>
 				<div className="progress-left" style={zn.extend({ borderColor: this.props.valueColor }, this.state.leftStyle)}></div>
 				<div className="progress-right" style={zn.extend({ borderColor: this.props.valueColor }, this.state.rightStyle)}></div>
 				<div className="progress-cover" ref="cover" style={zn.extend({ borderColor: this.props.trackColor }, this.state.coverStyle)}></div>
 				<div className="progress-text">
-					<span className="progress-num">{this.props.value}</span>
+					<span className="progress-num">{(+this.props.value||0).toFixed(1)}</span>
 					<span className="progress-percent">%</span>
 				</div>
 			</div>

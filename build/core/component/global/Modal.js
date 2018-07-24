@@ -60,6 +60,15 @@ module.exports = zn.modal = zn.Class({
 						};
 					}
 
+					if (_config.style && _config.style.top) {
+						return {
+							"visibility": "visible",
+							"top": _config.style.top + 'px',
+							"margin-top": '50px',
+							"margin-bottom": "50px"
+						};
+					}
+
 					return {
 						"visibility": "visible",
 						"margin-top": -(dom.offsetHeight / 2) + 'px'

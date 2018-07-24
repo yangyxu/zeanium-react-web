@@ -1,7 +1,7 @@
 var React = require('react');
 var DownPuller = require('../basic/DownPuller.js');
 module.exports = React.createClass({
-	displayName:'PullRefreshList',
+	displayName:'PagingList',
 	getDefaultProps: function (){
 		return {
 			pageIndex: 1,
@@ -24,7 +24,7 @@ module.exports = React.createClass({
 			pageSize: this.props.pageSize
 		});
 
-		this._dataSource = Store.dataSource(this.props.data, {
+		this._dataSource = zn.store.dataSource(this.props.data, {
 			autoLoad: true,
 			onExec: function (){
 				var _result = this.props.onLoading && this.props.onLoading();
@@ -122,7 +122,7 @@ module.exports = React.createClass({
 		}
 	},
 	__renderLoading: function (){
-		return <UI.DataLoader loader="timer" content="加载数据中..." />;
+		return <zn.react.DataLoader loader="timer" content="加载数据中..." />;
 	},
 	__renderNoData: function (){
 		return <div className="zr-no-data">暂无数据</div>

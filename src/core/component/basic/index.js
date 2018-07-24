@@ -9,6 +9,8 @@ module.exports = zn.arrayValueToObject([
     'Dropdown',
     'DropdownList',
     'ErrorPage',
+    'ExpressDetail',
+    'Files',
     'FixedPage',
     'Group',
     'Icon',
@@ -23,6 +25,7 @@ module.exports = zn.arrayValueToObject([
     'RTList',
     'Search',
     'Slider',
+    'Timer',
     'Uploader',
     'Watcher'
 ], function (value, index){

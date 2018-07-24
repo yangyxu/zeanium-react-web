@@ -1,17 +1,7 @@
 var React = require('react');
 
-module.exports = React.createClass({
+var Page = React.createClass({
 	displayName: 'Page',
-	getDefaultProps: function getDefaultProps() {
-		return {
-			icon: 'fa-angle-left',
-			height: 40,
-			end: 40,
-			flex: false,
-			canBack: true,
-			loading: false
-		};
-	},
 	__onBack: function __onBack() {
 		if (typeof this.props.onBack == 'string') {
 			return zn.react.session.jump(this.props.onBack), false;
@@ -26,30 +16,37 @@ module.exports = React.createClass({
 		}
 	},
 	render: function render() {
-		var _begin = this.props.height;
+		var __props = this.props;
+		var _begin = __props.height;
 		if (zn.react.isIOS()) {
-			_begin += 10;
+			//_begin += 10;
 		}
 		return React.createElement(
 			'div',
-			{ className: zn.react.classname('zr-page', this.props.className), style: this.props.style },
+			{ className: zn.react.classname('zr-page', __props.className), style: __props.style },
 			React.createElement(
 				'div',
 				{ className: 'page-header', style: { height: _begin } },
 				React.createElement(
 					'div',
 					{ className: 'header-left' },
-					this.props.canBack && React.createElement('i', { className: "back fa " + this.props.icon, onClick: this.__onBack }),
+					__props.canBack && React.createElement('i', { className: "back fa " + __props.icon, onClick: this.__onBack }),
 					React.createElement(
 						'span',
 						{ className: 'title' },
-						this.props.title
+						__props.title
 					)
+				),
+				__props.headerCenter && React.createElement(
+					'div',
+					{ className: 'header-center' },
+					__props.headerCenter
 				),
 				React.createElement(
 					'div',
 					{ className: 'header-right' },
-					React.createElement(zn.react.ButtonGroup, { className: 'zr-flex', items: this.props.toolbarItems, onClick: this.props.onToolbarClick })
+					this.props.rightView,
+					React.createElement(zn.react.ButtonGroup, { className: 'zr-flex', items: __props.toolbarItems, onClick: __props.onToolbarClick })
 				)
 			),
 			React.createElement(
@@ -65,3 +62,14 @@ module.exports = React.createClass({
 		);
 	}
 });
+
+Page.defaultProps = {
+	icon: 'fa-angle-left',
+	height: 32,
+	end: 32,
+	flex: false,
+	canBack: true,
+	loading: false
+};
+
+module.exports = Page;

@@ -7,18 +7,42 @@
     display: flex;
     flex-direction: column;
     .page-header{
+
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        align-items: flex-end;
+        align-items: center;
         padding: 0px 4px;
         font-weight: bold;
         color: #5b5b5b;
         /*box-shadow: 0 1px 3px 0 rgba(0,37,55,.05);border-bottom: 2px solid #5b5b5b;*/
         box-shadow: 0 1px 3px 0 #9e9e9e;
+        box-shadow: 0 1px 3px 0 #f1f1f1;
+        &>div{
+            flex: 1;
+        }
 
         .header-left{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
             line-height: 30px;
+        }
+
+        .header-center{
+            height: 100%;
+            font-size: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            word-break: keep-all;
+        }
+
+        .header-right{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
         }
 
         .back{
@@ -37,7 +61,6 @@
         position: relative;
         overflow: auto;
         width: 100%;
-        height: 100%;
         padding: 5px;
         flex: 1;
     }

@@ -53,7 +53,8 @@ var Route = React.createClass({
 		this.state.active = false;
 		return this.setState({
 			className: animation,
-			onOut: onOut
+			onOut: onOut,
+			view: null
 		}), this;
 	},
 	render: function render() {

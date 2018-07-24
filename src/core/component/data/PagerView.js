@@ -66,7 +66,7 @@ module.exports = React.createClass({
 		return (
 			<div className={zn.react.classname("zr-pager-view", this.props.className)} data-fixed={this.props.dataFixed}>
 				<div className="content-view">
-					<View {...this.props} onData={this.__onTableData} dataHandler={this.__dataHandler} ref="view" />
+					<View showLoading={true} {...this.props} onFilter={()=>this.setState({current: 1})} className={this.props.viewClassName} dataHandler={this.__dataHandler} ref="view" />
 				</div>
 				<div className="action-view">
 					<zn.react.Icons className="ios" items={this.props.toolbarItems} onClick={this.props.onToolbarClick} />

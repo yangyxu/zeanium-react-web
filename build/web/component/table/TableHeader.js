@@ -40,11 +40,10 @@ module.exports = React.createClass({
 					break;
 			}
 		}
-
 		//width={(item.width?item.width:0)}
 		return React.createElement(
 			'th',
-			{ key: index, className: 'text-align-' + (item.textAlign || 'left') },
+			{ key: index, className: 'text-align-' + (item.textAlign || 'left'), style: { color: !!item.required ? '#F44336' : '' } },
 			_content
 		);
 	},

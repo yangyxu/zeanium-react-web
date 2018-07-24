@@ -1,0 +1,43 @@
+.zr-number-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    .col-item{
+        flex-grow: 1;
+        background-color: #FFF;
+        border-radius: 3px;
+        margin: 3px;
+        padding: 3px;
+        &:hover{
+            box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    .number-item{
+        margin: 5px;
+        width: 30%;
+        padding: 20px !important;
+        .value{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            .detail{
+                .count{
+                    font-size: 24px;
+                    font-weight: bold;
+                }
+                .tip{
+                    font-size: 12px;
+                }
+            }
+            .icon{
+                font-size: 34px;
+                color: #F1F1F1;
+            }
+        }
+    }
+}

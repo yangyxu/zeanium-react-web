@@ -9,7 +9,6 @@ module.exports = React.createClass({
 		};
 	},
 	getInitialState:function(){
-		this._items = {};
 		return {
 
 		}
@@ -21,7 +20,6 @@ module.exports = React.createClass({
 		this.search(this.props.filterData);
 	},
 	search: function (data){
-		//console.log(data);
 		data && this.props.onFilterSearch(data, this);
 	},
 	__onFilterChange: function (value, item){
@@ -34,25 +32,36 @@ module.exports = React.createClass({
 			}
 		}
 	},
+	__onFilterOptChange: function (opt, name){
+		if(this.props.filterData[name]){
+			this.props.filterData[name].opt = opt;
+		} else {
+			this.props.filterData[name] = {
+				key: name,
+				opt: opt
+			}
+		}
+
+		this.props.onFilter && this.props.onFilter(this.validate());
+	},
 	__onFilterItemChange: function (value, input){
 		this.props.onFilter && this.props.onFilter(this.validate(), input);
 	},
 	validate: function (){
-		var _value = {};
-		zn.each(this._items, function (item, name){
+		var _value = {}, _ref = null;
+		for(var key in this.refs){
+			_ref = this.refs[key];
 			//if(item.state.opt && item.validate()){
-			if(item.state.opt){
-				_value[name.split('_')[0]] = {
-					opt: item.state.opt,
-					value: item.validate()
+
+			if(_ref.state.opt){
+				_value[key.split('_convert')[0]] = {
+					opt: _ref.state.opt,
+					value: _ref.validate()
 				};
 			}
-		});
+		}
 
 		return _value;
-	},
-	__onFilterItemDidMount: function (item){
-		this._items[item.props.name] = item;
 	},
 	__onFilterItemCancle: function (){
 		this.props.onFilter && this.props.onFilter(this.validate());
@@ -82,9 +91,10 @@ module.exports = React.createClass({
 									popoverWidth={80}
 									opts={['like','=']}
 									name={item.name}
+									ref={item.name}
 									{..._filter}
+									onOptChange={(opt)=>this.__onFilterOptChange(opt, item.name)}
 									onCancle={this.__onFilterItemCancle}
-									onDidMount={this.__onFilterItemDidMount}
 									{..._events} />;
 				}else {
 					_content = null;

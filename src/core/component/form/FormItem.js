@@ -1,5 +1,4 @@
 var React = require('react');
-var RTList = require('../basic/RTList');
 var RTFlexItem = require('../basic/RTFlexItem');
 
 module.exports = React.createClass({
@@ -21,31 +20,44 @@ module.exports = React.createClass({
 			if(this.refs.input.setValue){
 				this.refs.input.setValue(this.props.value);
 			}else {
-				zn.toast.error('The FormItem input component has not setValue method.');
+				zn.notification.error('The FormItem input component ' + this.props.title + ' has not setValue method.');
 			}
 		}
-		this.props.onFormItemDidMount && this.props.onFormItemDidMount(this);
 	},
-	validate: function (){
+	validate: function (callback){
 		if(!this.refs.input){
-			return zn.toast.error('Form item input component is undefined.'), false;
+			return zn.notification.error('Form item input component ' + this.props.title + ' is undefined.'), false;
 		}
 		var _value = this.refs.input.getValue();
-		if(this.props.required && (_value == '' || _value == null || _value == undefined)){
+		if(this.props.required && (_value === '' || _value === null || _value === undefined)){
 			this.setState({
 				status: 'danger'
 			});
-			return zn.toast.error(this.props.error || ((this.props.title||'字段')+'是必填项.')), null;
-		}else {
-			this.setState({
-				status: 'success'
-			});
+			var _msg = this.props.error || ((this.props.title||'字段')+'是必填项.');
+			if(zn.react.isMobile()){
+				zn.notification.error(_msg);
+			}else {
+				zn.notification.error(_msg)
+			}
+			return false;
 		}
 
-		return _value;
+		var _callback = callback && callback(_value, this);
+		if(_callback == false){
+			return this.setState({
+				status: 'danger'
+			}), false;
+		}
+
+		return this.setState({
+			status: 'success'
+		}), _value;
 	},
-	__onInputChange: function (value, rtlist){
-		this.props.onChange && this.props.onChange(value, rtlist, this);
+	__onInputChange: function (value, input){
+		if(value==null){
+			return;
+		}
+		this.props.onChange && this.props.onChange(value, input, this);
 	},
 	render: function(){
 		var _input = null,
@@ -60,14 +72,22 @@ module.exports = React.createClass({
 			_input = _type;
 		}
 
+		if(_type=='FormTitle'){
+			return _input && <_input {...this.props} ref="input" className={this.props.inputClassName||''} onChange={this.__onInputChange} />;
+		}
+
 		return (
 			<RTFlexItem
 				{...this.props}
 				className={zn.react.classname('zr-form-item', this.props.className, this.state.status, this.props.required?'required':'')} >
-				{this.props.icon && <div className="icon"><i className={"fa " + this.props.icon} /></div>}
-				{this.props.title && <div className="title">{this.props.title}</div>}
-				{_input && <_input ref="input" {...this.props} className={this.props.inputClassName||''} onChange={this.__onInputChange} />}
-				{this.props.suffix && <div className="suffix">{this.props.suffix}</div>}
+				<div className="zrfi-header">
+					{this.props.icon && <div className="icon"><i className={"fa " + this.props.icon} /></div>}
+					{this.props.title && <div className="title">{this.props.title}</div>}
+				</div>
+				<div className="zrfi-body">
+					{!!_input && <_input {...this.props} ref="input" className={this.props.inputClassName||''} onChange={this.__onInputChange} />}
+					{this.props.suffix && <span className="suffix">{this.props.suffix}</span>}
+				</div>
 			</RTFlexItem>
 		);
 	}
