@@ -40,7 +40,7 @@ module.exports = _extend({
 
         // Warn for every expression in require
         //wrappedContextCritical: true,
-        loaders: [
+        rules: [
             {
                 test: /\.js[x]?$/,
                 exclude: /(node_modules)/,
