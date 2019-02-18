@@ -1,6 +1,6 @@
 {
   "name": "zeanium-react-web",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Web page component(form, table, pager, loading, graph, dataview, animate, layout) for react.js, it support desktop page and mobile page. You can using the same api for different platform, it's easy to develop and deploy your app using the one code on different browser.",
   "main": "web.js",
   "scripts": {
@@ -33,7 +33,7 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
-    "raw-loader": "^1.0.1",
+    "raw-loader": "^1.0.0",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-tap-event-plugin": "^3.0.3",
