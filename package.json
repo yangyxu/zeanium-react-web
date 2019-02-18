@@ -1,45 +1,45 @@
 {
-  "name": "zeanium-react-web",
-  "version": "0.2.2",
-  "description": "Web page component(form, table, pager, loading, graph, dataview, animate, layout) for react.js, it support desktop page and mobile page. You can using the same api for different platform, it's easy to develop and deploy your app using the one code on different browser.",
-  "main": "web.js",
-  "scripts": {
-    "build": "babel src -d build",
-    "dist": "webpack --uglify",
-    "release": "npm run build & npm run dist"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/yangyxu/zeanium-react-web.git"
-  },
-  "keywords": [
-    "web component",
-    "javascript",
-    "oop",
-    "framework",
-    "form",
-    "table",
-    "graph"
-  ],
-  "author": "yangyxu",
-  "license": "MIT",
-  "dependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^8.0.5",
-    "babel-plugin-transform-remove-strict-mode": "0.0.2",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "css-loader": "^2.1.0",
-    "extract-text-webpack-plugin": "^3.0.2",
-    "less": "^3.9.0",
-    "less-loader": "^4.1.0",
-    "raw-loader": "^1.0.0",
-    "react": "^16.8.2",
-    "react-dom": "^16.8.2",
-    "react-tap-event-plugin": "^3.0.3",
-    "style-loader": "^0.23.1",
-    "url-loader": "^1.1.2",
-    "webpack": "^4.29.4",
-    "zeanium": "^1.1.29"
+    "name": "zeanium-react-web",
+    "version": "0.2.3",
+    "description": "Web page component(form, table, pager, loading, graph, dataview, animate, layout) for react.js, it support desktop page and mobile page. You can using the same api for different platform, it's easy to develop and deploy your app using the one code on different browser.",
+    "main": "web.js",
+    "scripts": {
+      "build": "babel src -d build",
+      "dist": "webpack --uglify",
+      "release": "npm run build & npm run dist"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/yangyxu/zeanium-react-web.git"
+    },
+    "keywords": [
+      "web component",
+      "javascript",
+      "oop",
+      "framework",
+      "form",
+      "table",
+      "graph"
+    ],
+    "author": "yangyxu",
+    "license": "MIT",
+    "dependencies": {
+      "babel-core": "^6.13.2",
+      "babel-loader": "^6.2.4",
+      "babel-preset-es2015": "^6.24.1",
+      "babel-preset-react": "^6.24.1",
+      "babel-plugin-transform-remove-strict-mode": "0.0.2",
+      "css-loader": "^0.23.1",
+      "extract-text-webpack-plugin": "^1.0.1",
+      "less": "^2.7.1",
+      "less-loader": "^2.2.3",
+      "raw-loader": "^0.5.1",
+      "react": "^15.4.1",
+      "react-dom": "^15.4.1",
+      "react-tap-event-plugin": "^2.0.1",
+      "style-loader": "^0.13.1",
+      "url-loader": "^0.5.7",
+      "webpack": "^1.15.0",
+      "zeanium": "^1.1.29"
+    }
   }
-}
