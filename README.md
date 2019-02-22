@@ -1,6 +1,14 @@
 # zeanium-react-web
 React组件、支持Web(桌面网页应用)/Wap(手机网页应用)的前端UI开发框架
 
+npm install -g @babel/core @babel/cli
+
+
+```
++ @babel/core@7.3.3
++ @babel/cli@7.2.3
+```
+
 ## 介绍
 
 zeanium-react-web是基于[zeanium](https://github.com/yangyxu/zeanium)和React的前端UI组件库, 可以同时支持桌面网页应用开发和手机网页应用开发.

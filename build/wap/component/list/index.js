@@ -1,3 +1,5 @@
+"use strict";
+
 module.exports = zn.arrayValueToObject(['List'], function (value) {
-    return require('./' + value + '.js');
+  return require('./' + value + '.js');
 });

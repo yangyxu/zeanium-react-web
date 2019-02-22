@@ -1,4 +1,5 @@
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 var webpack = require('webpack');
 var fs = require('fs');
 var path = require('path');
@@ -37,15 +38,9 @@ function initConfig(base) {
     var _plugins = [
         new ExtractTextPlugin("[name].css")
     ];
-    if(uglifyIndex !== -1){
-        _plugins.push(new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        }));
-    }
     var _config = {
         context: path.join(dirname, 'src'),
+        mode: 'production',
         entry: {
             "index": ['./index.js']
         },
@@ -53,8 +48,18 @@ function initConfig(base) {
             path: path.join(dirname, 'dist'),
             filename: '[name].js'
         },
-        plugins: _plugins
+        plugins: _plugins,
+        optimization: {
+            minimizer: []
+        }
     };
+    if(uglifyIndex !== -1){
+        _config.optimization.minimizer.push(new UglifyJsPlugin({
+            uglifyOptions: {
+                compress: false
+            }
+        }));
+    }
     if(base){
         var _dir = fs.readdirSync(base);
         if(!_dir.length){

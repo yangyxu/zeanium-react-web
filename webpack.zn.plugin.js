@@ -1,22 +1,24 @@
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 var webpack = require('webpack');
 var path = require('path');
 var argv = process.argv;
 var uglifyIndex = argv.indexOf('--uglify'),
-    plugins = [
-        new ExtractTextPlugin("[name].css")
-    ];
+    minimizer = [];
 
 if(uglifyIndex!=-1){
-    plugins.push(new webpack.optimize.UglifyJsPlugin({
-        compress: {
-            warnings: false
-        }
-    }));
+    minimizer.push([
+        new UglifyJsPlugin({
+            uglifyOptions: {
+                compress: false
+            }
+        })
+    ]);
 }
 
 module.exports = {
     context: path.join(process.cwd(), 'web', 'src'),
+    mode: 'production',
     entry: {
         "index": ["./index.js"]
     },
@@ -28,7 +30,12 @@ module.exports = {
         path: path.join(process.cwd(), 'web', 'dist'),
         filename: '[name].js'
     },
-    plugins: plugins,
+    plugins: [
+        new ExtractTextPlugin("[name].css")
+    ],
+    optimization: {
+        minimizer: minimizer
+    },
     module: {
         // Disable handling of unknown requires
         unknownContextRegExp: /$^/,
@@ -40,13 +47,13 @@ module.exports = {
 
         // Warn for every expression in require
         //wrappedContextCritical: true,
-        loaders: [
+        rules: [
             {
                 test: /\.js[x]?$/,
                 exclude: /(node_modules|bower_components)/,
-                loader: 'babel',
+                loader: 'babel-loader',
                 query: {
-                    presets: ['es2015','react'],
+                    presets: ['env','react'],
                     plugins:[
                         "transform-remove-strict-mode"
                     ]

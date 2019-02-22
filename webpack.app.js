@@ -1,4 +1,5 @@
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 var webpack = require('webpack');
 var path = require('path');
 var config = require('./webpack.init.js');
@@ -18,6 +19,7 @@ var _extend = function (target){
 
 module.exports = _extend({
     context: path.join(process.cwd(), 'src'),
+    mode: 'production',
     entry: {
         "index": ['_entry.js']
     },
@@ -40,16 +42,15 @@ module.exports = _extend({
 
         // Warn for every expression in require
         //wrappedContextCritical: true,
-        loaders: [
+        rules: [
             {
                 test: /\.js[x]?$/,
                 exclude: /(node_modules)/,
-                loader: 'babel',
-                query: {
-                    presets: ['es2015','react'],
-                    plugins:[
-                        "transform-remove-strict-mode"
-                    ]
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                      presets: ["@babel/preset-env","@babel/preset-react"]
+                    }
                 }
             },
             {
@@ -67,11 +68,15 @@ module.exports = _extend({
         ]
     },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        }),
         new ExtractTextPlugin("[name].css")
-    ]
+    ],
+    optimization: {
+        minimizer: [
+            new UglifyJsPlugin({
+                uglifyOptions: {
+                    compress: false
+                }
+            })
+        ]
+    }
 }, config);
