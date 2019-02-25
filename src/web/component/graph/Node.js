@@ -1,5 +1,5 @@
+require('./Node.less');
 var React = require('react');
-var ReactDOM = require('react-dom');
 var Link = require('./Link');
 
 module.exports = React.createClass({

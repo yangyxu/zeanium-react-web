@@ -1,8 +1,8 @@
 "use strict";
 
-var React = require('react');
+require('./Link.less');
 
-var ReactDOM = require('react-dom');
+var React = require('react');
 
 module.exports = React.createClass({
   displayName: 'Link',

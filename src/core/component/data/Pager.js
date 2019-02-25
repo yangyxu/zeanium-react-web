@@ -1,7 +1,8 @@
+require('./Pager.less');
 var React = require('react');
 
 var Page = React.createClass({
-	displayName: 'Page',
+	displayName: 'Pager',
 	getDefaultProps: function (){
 		return {
 			className: ''

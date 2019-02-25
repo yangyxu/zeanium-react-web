@@ -1,3 +1,4 @@
+require('./AutoComplete.less');
 var React = require('react');
 var ListView = require('../data/ListView');
 

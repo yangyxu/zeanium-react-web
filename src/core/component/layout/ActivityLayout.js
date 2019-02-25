@@ -1,3 +1,5 @@
+//require('./ActivityLayout.less');
+//require('./BasicLayout.less');
 var React = require('react');
 
 module.exports = React.createClass({

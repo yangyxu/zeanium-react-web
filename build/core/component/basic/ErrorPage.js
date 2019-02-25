@@ -1,5 +1,7 @@
 "use strict";
 
+require('./ErrorPage.less');
+
 var React = require('react');
 
 module.exports = React.createClass({

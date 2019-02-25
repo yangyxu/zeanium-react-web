@@ -1,14 +1,14 @@
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-var webpack = require('webpack');
+var optimizeCss = require('optimize-css-assets-webpack-plugin');
 var path = require('path');
 var config = require('./webpack.init.js');
-var _extend = function (target){
+var _overwrite = function (target){
     var _target = target||{};
-    for (var i = 1, _len = arguments.length; i < _len; i++) {
+    for(var i = 1, _len = arguments.length; i < _len; i++){
         var _args = arguments[i];
-        for (var _key in _args) {
-            if (_args.hasOwnProperty(_key)) {
+        for(var _key in _args){
+            if(_args.hasOwnProperty(_key) && _target[_key]===undefined){
                 _target[_key] = _args[_key];
             }
         }
@@ -17,15 +17,16 @@ var _extend = function (target){
     return _target;
 }
 
-module.exports = _extend({
+module.exports = _overwrite({
     context: path.join(process.cwd(), 'src'),
-    mode: 'production',
+    mode: process.env.NODE_ENV || 'production',
     entry: {
-        "index": ['_entry.js']
+        "index": '_entry.js'
     },
     output: {
         path: path.join(process.cwd(), 'dist'),
-        filename: '[name].js'
+        filename: '[name].js',
+        chunkFilename: '[name].js'
     },
     externals: {
         "react": "React",
@@ -47,36 +48,63 @@ module.exports = _extend({
                 test: /\.js[x]?$/,
                 exclude: /(node_modules)/,
                 use: {
-                    loader: 'babel-loader',
-                    options: {
-                      presets: ["@babel/preset-env","@babel/preset-react"]
-                    }
+                    loader: 'babel-loader'
                 }
             },
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: [
+                        {
+                            loader: "css-loader"
+                        }
+                    ]
+                })
             },
 			{
-				test:/\.less$/,
-				loader:ExtractTextPlugin.extract('style-loader','raw-loader!less-loader')
-			},
+                test:/\.less$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: ["raw-loader", "less-loader"]
+                })
+            },
+            {
+                test: /\.scss$/,
+                use: ExtractTextPlugin.extract({
+                  fallback: 'style-loader',
+                  use: ['css-loader', 'sass-loader']
+                })
+            },
             {
                 test: /\.(jpe?g|png|gif|svg)$/,
-                loader: 'url-loader?limit=8192'
+                use: [
+                    { loader: 'file-loader' },
+                    { loader: 'url-loader' }
+                ]
             }
         ]
     },
     plugins: [
-        new ExtractTextPlugin("[name].css")
+        new ExtractTextPlugin({ filename: "[name].css", disable: false, allChunks: true }),
+        new optimizeCss({
+            assetNameRegExp: /\.style\.css$/g,
+            cssProcessor: require('cssnano'),
+            cssProcessorOptions: { discardComments: { removeAll: true } },
+            canPrint: true
+        })
     ],
+    performance: {
+        hints: process.env.NODE_ENV === 'production' ? "warning" : false
+    },
     optimization: {
         minimizer: [
             new UglifyJsPlugin({
                 uglifyOptions: {
                     compress: false
                 }
-            })
+            }),
+            new optimizeCss({ })
         ]
     }
 }, config);

@@ -1,3 +1,4 @@
+require('./Modals.less');
 var ReactDOM = require('react-dom');
 var Animate = require('../basic/Animate.js');
 

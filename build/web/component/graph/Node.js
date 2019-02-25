@@ -1,8 +1,8 @@
 "use strict";
 
-var React = require('react');
+require('./Node.less');
 
-var ReactDOM = require('react-dom');
+var React = require('react');
 
 var Link = require('./Link');
 

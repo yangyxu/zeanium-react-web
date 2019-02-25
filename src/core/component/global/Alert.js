@@ -1,3 +1,4 @@
+require('./Alert.less');
 var React = require('react');
 
 var Alert = React.createClass({

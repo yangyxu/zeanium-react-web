@@ -1,3 +1,4 @@
+require('./Preloader.less');
 var React = require('react');
 var Preloader = React.createClass({
 	displayName:'Preloader',

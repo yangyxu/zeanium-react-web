@@ -1,3 +1,4 @@
+require('./Form.less');
 var React = require('react');
 var FormItem = require('./FormItem');
 var ButtonGroup = require('../basic/ButtonGroup');

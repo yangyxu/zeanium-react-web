@@ -1,3 +1,4 @@
+require('./FixedPage.less');
 var React = require('react');
 var ButtonGroup = require('./ButtonGroup');
 var FixedLayout = require('../layout/FixedLayout');

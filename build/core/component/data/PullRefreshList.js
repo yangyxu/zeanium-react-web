@@ -1,5 +1,7 @@
 "use strict";
 
+require('./PullRefreshList.less');
+
 var React = require('react');
 
 var DownPuller = require('../basic/DownPuller.js');

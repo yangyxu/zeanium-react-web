@@ -2,6 +2,12 @@
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
+require('./FormItem.less');
+
+require('./FormItem.Wap.Inline.less');
+
+require('./FormItem.Web.Inline.less');
+
 var React = require('react');
 
 var RTFlexItem = require('../basic/RTFlexItem');

@@ -7,6 +7,10 @@ npm install -g @babel/core @babel/cli
 ```
 + @babel/core@7.3.3
 + @babel/cli@7.2.3
+
+"@babel/core": "^7.3.3",
+"@babel/preset-env": "^7.3.1",
+"@babel/preset-react": "^7.0.0",
 ```
 
 ## 介绍

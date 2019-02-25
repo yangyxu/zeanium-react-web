@@ -1,3 +1,4 @@
+require('./FilterItem.less');
 var React = require('react');
 var OPTS = {
 	'=': { text: '等于', value: '=', icon: 'fa-exchange' },

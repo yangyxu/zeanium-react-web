@@ -1,5 +1,7 @@
 "use strict";
 
+require('./Animate.less');
+
 var React = require('react');
 
 var ReactDOM = require('react-dom');

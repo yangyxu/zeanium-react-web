@@ -1,3 +1,4 @@
+require('./Tree.less');
 var React = require('react');
 var Checkbox = require('../form/Checkbox');
 var RTList = require('../basic/RTList');

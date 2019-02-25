@@ -1,5 +1,7 @@
 "use strict";
 
+require('./Group.less');
+
 var React = require('react');
 
 module.exports = React.createClass({

@@ -1,3 +1,4 @@
+require('./TabBar.less');
 var React = require('react');
 var TabBarItem = React.createClass({
 	displayName:'TabBarItem',

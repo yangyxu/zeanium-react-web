@@ -1,5 +1,7 @@
 "use strict";
 
+require('./Notification.less');
+
 var React = require('react');
 
 var ReactDOM = require('react-dom');

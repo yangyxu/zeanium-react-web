@@ -1,6 +1,6 @@
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-var webpack = require('webpack');
+var optimizeCss = require('optimize-css-assets-webpack-plugin');
 var fs = require('fs');
 var path = require('path');
 var dirname = process.cwd(),
@@ -40,13 +40,18 @@ function initConfig(base) {
     ];
     var _config = {
         context: path.join(dirname, 'src'),
-        mode: 'production',
+        mode: process.env.NODE_ENV || 'production',
         entry: {
-            "index": ['./index.js']
+            "index": './index.js'
         },
         output: {
             path: path.join(dirname, 'dist'),
-            filename: '[name].js'
+            filename: '[name].js',
+            chunkFilename: '[name].js'
+        },
+        externals: {
+            "react": "React",
+            "react-dom": "ReactDOM"
         },
         plugins: _plugins,
         optimization: {
@@ -59,6 +64,13 @@ function initConfig(base) {
                 compress: false
             }
         }));
+        _config.plugins.push(new optimizeCss({
+            assetNameRegExp: /\.style\.css$/g,
+            cssProcessor: require('cssnano'),
+            cssProcessorOptions: { discardComments: { removeAll: true } },
+            canPrint: true
+        }));
+        _config.optimization.minimizer.push(new optimizeCss({ }));
     }
     if(base){
         var _dir = fs.readdirSync(base);

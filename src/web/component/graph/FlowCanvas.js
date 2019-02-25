@@ -1,3 +1,4 @@
+require('./FlowCanvas.less');
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Node = require('./Node');

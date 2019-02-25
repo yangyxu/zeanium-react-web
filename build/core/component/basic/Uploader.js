@@ -1,5 +1,7 @@
 "use strict";
 
+require('./Uploader.less');
+
 var React = require('react');
 
 var ReactDOM = require('react-dom');

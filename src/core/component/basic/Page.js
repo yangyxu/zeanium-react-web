@@ -1,3 +1,4 @@
+require('./Page.less');
 var React = require('react');
 
 var Page = React.createClass({

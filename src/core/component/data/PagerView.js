@@ -1,3 +1,4 @@
+require('./PagerView.less');
 var React = require('react');
 var Pager = require('./Pager');
 var ActivityLayout = require('../layout/ActivityLayout');

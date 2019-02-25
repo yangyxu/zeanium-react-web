@@ -1,3 +1,4 @@
+require('./DropdownSelector.less');
 var React = require('react');
 var Dropdown = require('../basic/Dropdown');
 module.exports = React.createClass({

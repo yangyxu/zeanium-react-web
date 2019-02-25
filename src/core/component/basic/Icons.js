@@ -1,3 +1,4 @@
+require('./Icons.less');
 var React = require('react');
 var Icon = require('./Icon');
 

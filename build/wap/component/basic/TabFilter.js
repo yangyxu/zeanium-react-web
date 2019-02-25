@@ -1,5 +1,7 @@
 "use strict";
 
+require('./TabFilter.less');
+
 var React = require('react');
 
 module.exports = React.createClass({

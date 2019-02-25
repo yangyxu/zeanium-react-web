@@ -1,3 +1,4 @@
+require('./WebRouter.less');
 var __toString = Object.prototype.toString;
 var React = require('react');
 var WebRouter = React.createClass({

@@ -1,5 +1,7 @@
 "use strict";
 
+require('./Image.less');
+
 var React = require('react');
 
 var LOADING = "";

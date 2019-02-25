@@ -1,3 +1,6 @@
+require('./FormItem.less');
+require('./FormItem.Wap.Inline.less');
+require('./FormItem.Web.Inline.less');
 var React = require('react');
 var RTFlexItem = require('../basic/RTFlexItem');
 
