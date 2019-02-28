@@ -8,7 +8,7 @@ var _overwrite = function (target){
     for(var i = 1, _len = arguments.length; i < _len; i++){
         var _args = arguments[i];
         for(var _key in _args){
-            if(_args.hasOwnProperty(_key) && _target[_key]===undefined){
+            if(_args.hasOwnProperty(_key) && _args[_key]!==undefined){
                 _target[_key] = _args[_key];
             }
         }
