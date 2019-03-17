@@ -42,7 +42,8 @@ module.exports = _overwrite({
         exprContextCritical: false,
 
         // Warn for every expression in require
-        //wrappedContextCritical: true,
+        wrappedContextRecursive: false,
+        wrappedContextCritical: true,
         rules: [
             {
                 test: /\.js[x]?$/,

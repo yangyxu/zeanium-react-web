@@ -29,8 +29,11 @@ module.exports = {
     },
     output: {
         path: path.join(process.cwd(), 'web', 'dist'),
-        chunkFilename: '[name].js',
-        filename: '[name].js'
+        //chunkFilename: '[name].js',
+        filename: '[name].js',
+        //library: "friendly",
+        libraryTarget: "this"
+        //libraryExport: "default"
     },
     externals: {
         "react": "React",
