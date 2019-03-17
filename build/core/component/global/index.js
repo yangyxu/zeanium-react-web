@@ -1,5 +1,9 @@
 "use strict";
 
+require('./ZRArrow.less');
+
+require('./ZRBorderArrow.less');
+
 zn.react.global = zn.Class({
   static: true,
   methods: {

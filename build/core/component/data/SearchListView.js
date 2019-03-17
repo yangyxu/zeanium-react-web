@@ -6,8 +6,6 @@ require('./SearchListView.less');
 
 var React = require('react');
 
-var ReactDOM = require('react-dom');
-
 var Search = require('../basic/Search');
 
 var ListView = require('./ListView');

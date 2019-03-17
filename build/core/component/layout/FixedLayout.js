@@ -1,7 +1,9 @@
 "use strict";
 
-//require('./FixedLayout.less');
-//require('./FlexLayout.less');
+require('./FixedLayout.less');
+
+require('./FlexLayout.less');
+
 var React = require('react');
 
 module.exports = React.createClass({
