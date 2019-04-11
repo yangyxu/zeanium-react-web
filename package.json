@@ -1,12 +1,13 @@
 {
   "name": "zeanium-react-web",
-  "version": "0.3.6",
+  "version": "0.4.0",
   "description": "Web page component(form, table, pager, loading, graph, dataview, animate, layout) for react.js, it support desktop page and mobile page. You can using the same api for different platform, it's easy to develop and deploy your app using the one code on different browser.",
   "main": "index.js",
   "scripts": {
-    "build": "babel src -d build",
-    "dist": "webpack --uglify",
-    "release": "npm run build & npm run dist"
+    "clean": "rimraf dist && rimraf build",
+    "build": "npm run clean && babel src -d build",
+    "dist": "npm run clean && webpack --uglify",
+    "release": "npm run clean && npm run build && npm run dist"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,7 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
     "babel-plugin-transform-remove-strict-mode": "0.0.2",
+    "create-react-class": "^15.6.3",
     "css-loader": "^2.1.0",
     "cssnano": "^4.1.10",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
@@ -39,12 +41,14 @@
     "raw-loader": "^1.0.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
+    "rimraf": "^2.6.3",
     "scss": "^0.2.4",
     "scss-loader": "0.0.1",
     "style-loader": "^0.23.1",
     "uglifyjs-webpack-plugin": "^2.1.1",
     "url-loader": "^1.1.2",
-    "webpack": "^4.29.5",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
     "zeanium": "^1.1.29"
   }
 }

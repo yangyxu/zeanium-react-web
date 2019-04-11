@@ -7,13 +7,11 @@ var uglifyIndex = argv.indexOf('--uglify'),
     minimizer = [];
 
 if(uglifyIndex!=-1){
-    minimizer.push([
-        new UglifyJsPlugin({
-            uglifyOptions: {
-                compress: false
-            }
-        })
-    ]);
+    minimizer.push(new UglifyJsPlugin({
+        uglifyOptions: {
+            compress: false
+        }
+    }));
     minimizer.push(new optimizeCss({ }));
 }
 
