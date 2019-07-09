@@ -4,10 +4,6 @@ var ReactDOM = require('react-dom');
 
 module.exports = React.createClass({
 	displayName:'Select',
-	propTypes: {
-		textKey: React.PropTypes.string,
-		valueKey: React.PropTypes.string
-	},
 	getDefaultProps: function () {
 		return {
 			dataType: 'int',

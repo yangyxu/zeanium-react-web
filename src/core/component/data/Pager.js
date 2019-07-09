@@ -51,20 +51,11 @@ module.exports = React.createClass({
 			className: ''
 		};
 	},
-	propTypes: {
-		current: React.PropTypes.number.isRequired,
-        total: React.PropTypes.number.isRequired,
-        visiblePages: React.PropTypes.number.isRequired,
-        titles: React.PropTypes.object,
-        onPageChanged: React.PropTypes.func,
-        onPageSizeChanged: React.PropTypes.func
-	},
 	getInitialState: function (){
 		return {
 
 		}
 	},
-
 	componentWillReceiveProps: function (nextProps){
 
 	},

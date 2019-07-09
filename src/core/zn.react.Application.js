@@ -77,6 +77,7 @@ module.exports = zn.react.Application = zn.Class({
 
             this._routers = _routers;
             this._relativeRouters = _relativeRouters;
+            console.log(this._routers, this._relativeRouters);
             zn.react.session.setHome(this.get('home'))
                             .setMain(this.get('main'))
                             .setBasePath(this.get('path'));

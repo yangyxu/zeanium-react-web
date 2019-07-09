@@ -109,15 +109,17 @@ module.exports = zn.modal = zn.Class({
 			}else {
 				this.child = ReactDOM.render(content, this._dom);
 			}
-
 			this.content = this._dom.firstChild;
-			if(this.content.classList.contains('zr-animate')){
-				this.content = this.content.firstChild;
+			if(this.content){
+				if(this.content.classList.contains('zr-animate')){
+					this.content = this.content.firstChild;
+				}
+	
+				if(this.config.className){
+					this.content.classList.add(this.config.className);
+				}
 			}
-
-			if(this.config.className){
-				this.content.classList.add(this.config.className);
-			}
+			
 
 			if(this.config.showOverlay){
 				this.setClassName('overlay');
@@ -147,11 +149,13 @@ module.exports = zn.modal = zn.Class({
 			return this;
 		},
 		setContentStyles: function (styles){
-			if(typeof styles == 'function') {
-				styles = styles(this.content, this);
-			}
-			if(styles){
-				zn.dom.setStyles(this.content, styles)
+			if(this.content){
+				if(typeof styles == 'function') {
+					styles = styles(this.content, this);
+				}
+				if(styles){
+					zn.dom.setStyles(this.content, styles)
+				}
 			}
 
 			return this;
