@@ -16,7 +16,7 @@ module.exports = React.createClass({
     return {
       className: 'zr-steps',
       itemClassName: 'zr-steps-item',
-      float: 'none',
+      "float": 'none',
       disabled: false,
       value: null,
       textKey: 'text',
@@ -126,7 +126,7 @@ module.exports = React.createClass({
     return React.createElement(RTItem, _extends({
       className: this.props.itemClassName,
       disabled: this.props.disabled,
-      float: this.props.float
+      "float": this.props["float"]
     }, item, {
       checked: this.isCurrent(item, index),
       onClick: function onClick(self, event) {

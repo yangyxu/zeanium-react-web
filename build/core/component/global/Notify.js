@@ -44,11 +44,11 @@ var Notify = React.createClass({
   }
 });
 module.exports = zn.notify = zn.Class({
-  static: true,
+  "static": true,
   methods: {
     init: function init() {
       this._dom = zn.dom.createRootElement("div", {
-        class: 'zr-notify-container'
+        "class": 'zr-notify-container'
       });
     },
     open: function open(type, content, delay) {

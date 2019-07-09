@@ -15,7 +15,7 @@ var RadioItem = React.createClass({
   getDefaultProps: function getDefaultProps() {
     return {
       className: '',
-      float: 'none',
+      "float": 'none',
       checked: false,
       disabled: false
     };
@@ -47,7 +47,7 @@ var Radio = React.createClass({
   getDefaultProps: function getDefaultProps() {
     return {
       className: '',
-      float: 'none',
+      "float": 'none',
       value: null,
       valueKey: 'value',
       disabled: false
@@ -66,7 +66,7 @@ var Radio = React.createClass({
   __itemRender: function __itemRender(item, index, rtlist) {
     return React.createElement(RadioItem, _extends({
       disabled: this.props.disabled,
-      float: this.props.float
+      "float": this.props["float"]
     }, item, {
       onClick: this.__onRadioItemClick,
       checked: this.state.value === item[this.props.valueKey]

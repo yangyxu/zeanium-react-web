@@ -46,11 +46,11 @@ var Notification = React.createClass({
   }
 });
 module.exports = zn.notification = zn.Class({
-  static: true,
+  "static": true,
   methods: {
     init: function init() {
       this._dom = zn.dom.createRootElement("div", {
-        class: 'zr-notification-container'
+        "class": 'zr-notification-container'
       });
     },
     open: function open(type, content, delay) {

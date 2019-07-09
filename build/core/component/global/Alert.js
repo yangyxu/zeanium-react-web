@@ -21,9 +21,13 @@ var Alert = React.createClass({
   __onClick: function __onClick(item, index) {
     zn.modal.close();
 
-    var _result = this.props.onClick && this.props.onClick(item, index, this);
+    if (this.props.onClick) {
+      this.props.onClick(item, index, this);
+    }
 
-    _result = item.onClick && item.onClick(item, index, this);
+    if (item.onClick) {
+      item.onClick(item, index, this);
+    }
   },
   render: function render() {
     return React.createElement("div", {

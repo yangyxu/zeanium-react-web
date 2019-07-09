@@ -15,7 +15,7 @@ module.exports = React.createClass({
   getDefaultProps: function getDefaultProps() {
     return {
       className: '',
-      float: 'none',
+      "float": 'none',
       disabled: false
     };
   },
@@ -25,7 +25,7 @@ module.exports = React.createClass({
   __itemRender: function __itemRender(item, index, rtlist) {
     return React.createElement(Button, _extends({
       disabled: this.props.disabled,
-      float: this.props.float,
+      "float": this.props["float"],
       onClick: this.__onItemClick
     }, item));
   },

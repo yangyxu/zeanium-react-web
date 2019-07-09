@@ -68,11 +68,11 @@ var Tooltip = React.createClass({
   }
 });
 zn.tooltip = zn.Class({
-  static: true,
+  "static": true,
   methods: {
     init: function init() {
       this._dom = zn.dom.createRootElement("div", {
-        class: "zr-tooltip-container"
+        "class": "zr-tooltip-container"
       });
       window.addEventListener('mouseover', this.__onWindowMouseOver.bind(this), true);
       window.addEventListener('resize', this.__onWindowResize.bind(this), false);

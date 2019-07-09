@@ -13,7 +13,7 @@ module.exports = React.createClass({
   getDefaultProps: function getDefaultProps() {
     return {
       className: '',
-      float: 'none',
+      "float": 'none',
       checked: false,
       disabled: false
     };

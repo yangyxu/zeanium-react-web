@@ -27,11 +27,11 @@ var Toast = React.createClass({
   }
 });
 module.exports = zn.toast = zn.Class({
-  static: true,
+  "static": true,
   methods: {
     init: function init() {
       this._dom = zn.dom.createRootElement("div", {
-        class: "zr-toast-container"
+        "class": "zr-toast-container"
       });
     },
     open: function open(type, content, delay) {

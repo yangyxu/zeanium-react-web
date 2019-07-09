@@ -8,6 +8,7 @@
     "clean": "rimraf dist && rimraf build",
     "build": "npm run clean && babel src -d build",
     "dist": "npm run clean && webpack --uglify",
+    "package": "rimraf dist && webpack --uglify",
     "release": "npm run clean && npm run build && npm run dist"
   },
   "repository": {

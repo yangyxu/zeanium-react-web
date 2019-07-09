@@ -9,11 +9,11 @@ var ReactDOM = require('react-dom');
 var Animate = require('../basic/Animate.js');
 
 module.exports = zn.modal = zn.Class({
-  static: true,
+  "static": true,
   methods: {
     init: function init() {
       this._dom = zn.dom.createRootElement("div", {
-        class: "zr-modal"
+        "class": "zr-modal"
       });
       zn.dom.on(this._dom, 'click', function (event) {
         if (this.config.isMode && event.target.classList.contains('zr-modal')) {
@@ -26,8 +26,8 @@ module.exports = zn.modal = zn.Class({
     },
     active: function active(value) {
       if (value) {
-        if (this.child && this.child.in) {
-          this.child.in();
+        if (this.child && this.child["in"]) {
+          this.child["in"]();
         }
 
         this.animate('modal-in', 'modal-out');
@@ -129,7 +129,7 @@ module.exports = zn.modal = zn.Class({
         showOverlay: true
       }, config);
 
-      if (this.config.in && this.config.out) {
+      if (this.config["in"] && this.config.out) {
         this.child = ReactDOM.render(React.createElement(Animate, _extends({}, config, {
           onOut: this.__out
         }), content), this._dom);
@@ -139,12 +139,14 @@ module.exports = zn.modal = zn.Class({
 
       this.content = this._dom.firstChild;
 
-      if (this.content.classList.contains('zr-animate')) {
-        this.content = this.content.firstChild;
-      }
+      if (this.content) {
+        if (this.content.classList.contains('zr-animate')) {
+          this.content = this.content.firstChild;
+        }
 
-      if (this.config.className) {
-        this.content.classList.add(this.config.className);
+        if (this.config.className) {
+          this.content.classList.add(this.config.className);
+        }
       }
 
       if (this.config.showOverlay) {
@@ -174,12 +176,14 @@ module.exports = zn.modal = zn.Class({
       return this;
     },
     setContentStyles: function setContentStyles(styles) {
-      if (typeof styles == 'function') {
-        styles = styles(this.content, this);
-      }
+      if (this.content) {
+        if (typeof styles == 'function') {
+          styles = styles(this.content, this);
+        }
 
-      if (styles) {
-        zn.dom.setStyles(this.content, styles);
+        if (styles) {
+          zn.dom.setStyles(this.content, styles);
+        }
       }
 
       return this;

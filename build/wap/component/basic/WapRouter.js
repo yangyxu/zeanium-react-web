@@ -45,7 +45,7 @@ var Route = React.createClass({
       active: active
     }), this;
   },
-  in: function _in(animation, onIn) {
+  "in": function _in(animation, onIn) {
     this.state.animating = true;
     this.state.active = true;
     return this.setState({
@@ -152,7 +152,7 @@ var Router = React.createClass({
     }
 
     if (_page && this.currentRequest) {
-      _page.renderRequest(this.currentRequest).in(_in, function (page) {
+      _page.renderRequest(this.currentRequest)["in"](_in, function (page) {
         if (this.currentPage) {
           this.currentPage.setState({
             animating: false

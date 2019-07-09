@@ -12,16 +12,12 @@ var RTItem = require('./RTItem.js');
 
 module.exports = React.createClass({
   displayName: 'RTList',
-  propTypes: {
-    textKey: React.PropTypes.string,
-    valueKey: React.PropTypes.string,
-    fireIndex: 0
-  },
   getDefaultProps: function getDefaultProps() {
     return {
       active: true,
       textKey: 'text',
-      valueKey: 'value'
+      valueKey: 'value',
+      fireIndex: 0
     };
   },
   getInitialState: function getInitialState() {

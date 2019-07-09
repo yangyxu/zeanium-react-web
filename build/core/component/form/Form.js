@@ -262,7 +262,7 @@ module.exports = React.createClass({
         return React.createElement(FormItem, _extends({
           disabled: this.props.disabled,
           readonly: this.props.readonly,
-          float: this.props.float,
+          "float": this.props["float"],
           value: this.state.value[item.name] || '',
           onChange: this.props.onChange
         }, item, {

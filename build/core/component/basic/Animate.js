@@ -10,7 +10,7 @@ module.exports = React.createClass({
   displayName: 'Animate',
   getDefaultProps: function getDefaultProps() {
     return {
-      in: 'zn-animate-move-from-right',
+      "in": 'zn-animate-move-from-right',
       out: 'zn-animate-move-to-right',
       onTop: true,
       className: null,
@@ -44,11 +44,11 @@ module.exports = React.createClass({
       }
     }.bind(this));
   },
-  in: function _in(animation, onIn) {
+  "in": function _in(animation, onIn) {
     this.state.animating = true;
     this.state.active = true;
     return this.setState({
-      animation: animation || this.props.in
+      animation: animation || this.props["in"]
     }), this;
   },
   out: function out(animation, onOut) {

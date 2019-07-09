@@ -7,11 +7,11 @@ var ReactDOM = require('react-dom');
 var Animate = require('../basic/Animate.js');
 
 module.exports = zn.modals = zn.Class({
-  static: true,
+  "static": true,
   methods: {
     init: function init() {
       this._dom = zn.dom.createRootElement("div", {
-        class: "zr-modals"
+        "class": "zr-modals"
       });
       this._modals = [];
     },

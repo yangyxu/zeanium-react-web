@@ -6,7 +6,7 @@ module.exports = zn.react.Application = zn.Class({
       var _props = {},
           _methods = {
         init: function init(argv) {
-          this.super(argv);
+          this["super"](argv);
           this.sets(argv);
         }
       };
@@ -87,6 +87,7 @@ module.exports = zn.react.Application = zn.Class({
 
       this._routers = _routers;
       this._relativeRouters = _relativeRouters;
+      console.log(this._routers, this._relativeRouters);
       zn.react.session.setHome(this.get('home')).setMain(this.get('main')).setBasePath(this.get('path'));
       zn.http.setHost(this.get('host'), this.get('port'));
     },

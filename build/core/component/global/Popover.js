@@ -140,11 +140,11 @@ var Popover = React.createClass({
   }
 });
 module.exports = zn.popover = zn.Class({
-  static: true,
+  "static": true,
   methods: {
     init: function init() {
       this._dom = zn.dom.createRootElement("div", {
-        class: "zr-popover-container"
+        "class": "zr-popover-container"
       });
       zn.react.global.onJump(function () {
         this.close();

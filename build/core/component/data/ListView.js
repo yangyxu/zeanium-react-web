@@ -142,7 +142,7 @@ var ListView = React.createClass({
 
     return React.createElement(RTItem, _extends({
       disabled: this.props.disabled,
-      float: this.props.float
+      "float": this.props["float"]
     }, item, {
       className: zn.react.classname(this.props.itemClassName, item.className),
       checked: this.isCurrent(item, index),
@@ -177,7 +177,7 @@ var ListView = React.createClass({
 ListView.defaultProps = {
   className: 'zr-list-view-default',
   itemClassName: '',
-  float: 'none',
+  "float": 'none',
   filterValue: null,
   disabled: false,
   value: null,

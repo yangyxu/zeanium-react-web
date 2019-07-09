@@ -41,7 +41,7 @@ module.exports = React.createClass({
       style: this.props.style,
       "data-checked": this.props.checked,
       "data-disabled": this.props.disabled,
-      "data-float": this.props.float
+      "data-float": this.props["float"]
     }, this.props.attrs, {
       onClick: this.__onClick
     }), this.props.children);

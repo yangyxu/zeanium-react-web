@@ -20,11 +20,11 @@ var Preloader = React.createClass({
   }
 });
 module.exports = zn.preloader = zn.Class({
-  static: true,
+  "static": true,
   methods: {
     init: function init() {
       this._dom = zn.dom.createRootElement("div", {
-        class: "zr-preloader-container"
+        "class": "zr-preloader-container"
       });
     },
     open: function open(argv, overlay) {

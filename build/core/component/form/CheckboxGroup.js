@@ -13,7 +13,7 @@ module.exports = React.createClass({
   getDefaultProps: function getDefaultProps() {
     return {
       className: '',
-      float: 'none',
+      "float": 'none',
       value: ',',
       valueKey: 'value',
       disabled: false
@@ -47,7 +47,7 @@ module.exports = React.createClass({
     //console.log(this.state.value);
     return React.createElement(Checkbox, _extends({
       disabled: this.props.disabled,
-      float: this.props.float
+      "float": this.props["float"]
     }, item, {
       onChecked: this.__onCheckboxChecked,
       checked: this.state.value.indexOf(item[this.props.valueKey]) !== -1

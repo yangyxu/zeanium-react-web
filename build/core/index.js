@@ -1,5 +1,11 @@
 "use strict";
 
+var React = require('react');
+
+if (!React.createClass) {
+  React.createClass = require('create-react-class');
+}
+
 require('./zn.react.js');
 
 require('./zn.react.Application.js');
