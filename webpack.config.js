@@ -101,11 +101,12 @@ module.exports = _overwrite({
     },
     optimization: {
         minimizer: [
+            /*
             new UglifyJsPlugin({
                 uglifyOptions: {
                     compress: false
                 }
-            }),
+            }),*/
             new optimizeCss({ })
         ]
     }

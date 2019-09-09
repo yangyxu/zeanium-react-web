@@ -18,6 +18,7 @@ var _overwrite = function (target){
 }
 
 module.exports = _overwrite({
+    //devtool: "source-map",
     context: path.join(process.cwd(), 'src'),
     mode: process.env.NODE_ENV || 'production',
     entry: {
