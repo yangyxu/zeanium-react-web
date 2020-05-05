@@ -163,7 +163,7 @@ var SliderItem = React.createClass({
     return {};
   },
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: "slider-item"
     }, this.props.children);
   }
@@ -382,9 +382,9 @@ var Slider = React.createClass({
   __onTransitionEnd: function __onTransitionEnd() {},
   render: function render() {
     var _transitionX = 1;
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: "zr-slider "
-    }, React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "slider-views " + "",
       onTransitionEnd: this.__onTransitionEnd,
       style: {
@@ -392,7 +392,7 @@ var Slider = React.createClass({
       }
     }, React.Children.map(this.props.children, function (child, index) {
       return child;
-    })), React.createElement("div", {
+    })), /*#__PURE__*/React.createElement("div", {
       className: "slider-dots"
     }));
   }
@@ -684,9 +684,9 @@ module.exports = React.createClass({
     });
   },
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: "zr-line-lock"
-    }, React.createElement("canvas", {
+    }, /*#__PURE__*/React.createElement("canvas", {
       ref: "canvas",
       width: this.props.width,
       height: this.props.height
@@ -773,30 +773,30 @@ module.exports = React.createClass({
   render: function render() {
     var _this2 = this;
 
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       "data-active": this.state.active,
       "data-hang": this.state.hang,
       className: 'zr-list-filter ' + this.props.className,
       style: zn.extend({
         height: this.props.height
       }, this.props.style)
-    }, React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "filter-background"
-    }), React.createElement("div", {
+    }), /*#__PURE__*/React.createElement("div", {
       className: "filter-header"
     }, this.props.items.map(function (item, index) {
       var _this = this;
 
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         onClick: function onClick() {
           return _this.fireClick(index);
         },
         className: "filter-item " + (this.state.currIndex == index ? 'curr' : ''),
         key: index
-      }, React.createElement("span", null, item.title), React.createElement("i", {
+      }, /*#__PURE__*/React.createElement("span", null, item.title), /*#__PURE__*/React.createElement("i", {
         className: "fa fa-angle-down"
       }));
-    }.bind(this))), React.createElement("div", {
+    }.bind(this))), /*#__PURE__*/React.createElement("div", {
       className: "filter-body",
       onClick: function onClick() {
         return _this2.setState({
@@ -805,7 +805,7 @@ module.exports = React.createClass({
           currIndex: null
         });
       }
-    }, React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "filter-view"
     }, this.state.currView)));
   }
@@ -1014,25 +1014,25 @@ module.exports = React.createClass({
   __downRender: function __downRender() {
     switch (this.state.step) {
       case 2:
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           className: "tip down-refresh"
-        }, React.createElement("i", {
+        }, /*#__PURE__*/React.createElement("i", {
           className: "fa fa-angle-down"
-        }), React.createElement("span", null, "\u4E0B\u62C9\u5237\u65B0"));
+        }), /*#__PURE__*/React.createElement("span", null, "\u4E0B\u62C9\u5237\u65B0"));
 
       case 3:
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           className: "tip down-refresh"
-        }, React.createElement("i", {
+        }, /*#__PURE__*/React.createElement("i", {
           className: "fa fa-angle-up"
-        }), React.createElement("span", null, "\u91CA\u653E\u52A0\u8F7D"));
+        }), /*#__PURE__*/React.createElement("span", null, "\u91CA\u653E\u52A0\u8F7D"));
 
       case 4:
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           className: "tip down-refresh"
-        }, React.createElement("i", {
+        }, /*#__PURE__*/React.createElement("i", {
           className: "fa fa-spinner zr-self-loading"
-        }), React.createElement("span", null, "\u6B63\u5728\u52A0\u8F7D\u4E2D..."));
+        }), /*#__PURE__*/React.createElement("span", null, "\u6B63\u5728\u52A0\u8F7D\u4E2D..."));
     }
 
     return null;
@@ -1040,25 +1040,25 @@ module.exports = React.createClass({
   __upRender: function __upRender() {
     switch (this.state.step) {
       case 5:
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           className: "tip up-refresh"
-        }, React.createElement("i", {
+        }, /*#__PURE__*/React.createElement("i", {
           className: "fa fa-spinner zr-self-loading"
-        }), React.createElement("span", null, "\u6B63\u5728\u52A0\u8F7D\u4E2D..."));
+        }), /*#__PURE__*/React.createElement("span", null, "\u6B63\u5728\u52A0\u8F7D\u4E2D..."));
     }
 
     if (this._touching && this.state.yValue < 0) {
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: "tip up-refresh"
-      }, React.createElement("i", {
+      }, /*#__PURE__*/React.createElement("i", {
         className: "fa fa-angle-up"
-      }), React.createElement("span", null, "\u4E0A\u62C9\u52A0\u8F7D\u66F4\u591A..."));
+      }), /*#__PURE__*/React.createElement("span", null, "\u4E0A\u62C9\u52A0\u8F7D\u66F4\u591A..."));
     }
   },
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: "zr-pull-refresh " + this.props.className
-    }, this.__downRender(), React.createElement("div", {
+    }, this.__downRender(), /*#__PURE__*/React.createElement("div", {
       className: "content",
       style: this.__getContentStyles()
     }, this.props.children), this.__upRender());
@@ -1096,12 +1096,12 @@ var TabBarItem = React.createClass({
     this.props.onClick && this.props.onClick();
   },
   render: function render() {
-    return React.createElement("li", {
+    return /*#__PURE__*/React.createElement("li", {
       className: this.props.selected ? 'curr' : '',
       onClick: this.__onClick
-    }, React.createElement("div", null, React.createElement("i", {
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("i", {
       className: 'icon fa ' + this.props.icon
-    })), React.createElement("div", null, React.createElement("span", {
+    })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
       className: "title"
     }, this.props.title)));
   }
@@ -1131,14 +1131,14 @@ module.exports = React.createClass({
     }
   },
   render: function render() {
-    return React.createElement("ul", {
+    return /*#__PURE__*/React.createElement("ul", {
       className: zn.react.classname('zr-tab-bar')
     }, this.props.items.map(function (item, index) {
       var _this = this;
 
       item.index = index;
       item.selected = this.state.index === index;
-      return React.createElement(TabBarItem, _extends({}, item, {
+      return /*#__PURE__*/React.createElement(TabBarItem, _extends({}, item, {
         key: index,
         onClick: function onClick() {
           return _this.__onClick(item);
@@ -1174,11 +1174,11 @@ module.exports = React.createClass({
   },
   componentDidMount: function componentDidMount() {},
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: "zr-tab-filter"
-    }, React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "keys"
-    }), React.createElement("div", {
+    }), /*#__PURE__*/React.createElement("div", {
       className: "value"
     }));
   }
@@ -1261,9 +1261,9 @@ var Route = React.createClass({
   render: function render() {
     var _classname = zn.react.classname("zr-route zn-page", this.state.className, this.state.active || this.state.animating ? 'zn-page-current' : '');
 
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: _classname
-    }, this.state.view && React.createElement(this.state.view, {
+    }, this.state.view && /*#__PURE__*/React.createElement(this.state.view, {
       request: this.state.request
     }));
   }
@@ -1374,11 +1374,11 @@ var Router = React.createClass({
     }
   },
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname("zr-router zn-perspective", this.props.className)
-    }, React.createElement(Route, {
+    }, /*#__PURE__*/React.createElement(Route, {
       ref: "page0"
-    }), React.createElement(Route, {
+    }), /*#__PURE__*/React.createElement(Route, {
       ref: "page1"
     }));
   }
@@ -1436,7 +1436,7 @@ module.exports = React.createClass({
   },
   render: function render() {
     s;
-    return React.createElement(zn.react.RTList, this.props.data);
+    return /*#__PURE__*/React.createElement(zn.react.RTList, this.props.data);
   }
 });
 

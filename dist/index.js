@@ -136,7 +136,7 @@ module.exports = React.createClass({
     this.props.onClick && this.props.onClick(this, event);
   },
   render: function render() {
-    return React.createElement("div", _extends({
+    return /*#__PURE__*/React.createElement("div", _extends({
       className: zn.react.classname('zr-item', this.props.className),
       style: this.props.style,
       "data-checked": this.props.checked,
@@ -154,7 +154,7 @@ module.exports = React.createClass({
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 __webpack_require__(164);
 
@@ -311,11 +311,11 @@ module.exports = React.createClass({
     }
 
     if (!_content) {
-      _content = React.createElement(RTItem, _extends({}, item, {
+      _content = /*#__PURE__*/React.createElement(RTItem, _extends({}, item, {
         onClick: function onClick(self, event) {
           return _this.__onItemClick(item, index, self, event);
         }
-      }), React.createElement("span", null, this.getItemText(item)));
+      }), /*#__PURE__*/React.createElement("span", null, this.getItemText(item)));
     }
 
     return _content;
@@ -332,11 +332,11 @@ module.exports = React.createClass({
     }
 
     if (this.state.loading && this.props.showLoading) {
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         style: {
           textAlign: 'center'
         }
-      }, React.createElement("i", {
+      }, /*#__PURE__*/React.createElement("i", {
         className: "fa fa-spinner zr-self-loading"
       }));
     }
@@ -345,15 +345,15 @@ module.exports = React.createClass({
       var _view = this.props.emptyView;
 
       if (!_view) {
-        _view = React.createElement("div", {
+        _view = /*#__PURE__*/React.createElement("div", {
           className: "zr-empty-view"
-        }, React.createElement("span", null, "\u6682\u65E0\u6570\u636E"));
+        }, /*#__PURE__*/React.createElement("span", null, "\u6682\u65E0\u6570\u636E"));
       }
 
       return null;
     }
 
-    return React.createElement("div", _extends({}, this.props.attrs, {
+    return /*#__PURE__*/React.createElement("div", _extends({}, this.props.attrs, {
       style: this.props.style,
       className: zn.react.classname('zr-list', this.props.className)
     }), this.state.data && this.state.data.map && this.state.data.map(this.__itemRender));
@@ -427,7 +427,7 @@ module.exports = React.createClass({
 
     _children = _children.slice(0);
     this._children = _children;
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname("zr-dropdown", this.props.className),
       style: this.props.style
     }, _children[0]);
@@ -497,7 +497,7 @@ module.exports = React.createClass({
     }), this;
   },
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname("zr-animate", this.state.active || this.state.animating ? 'active' : '', !!this.props.onTop && this.state.animation ? 'ontop' : '', this.props.className, this.state.animation)
     }, this.props.children);
   }
@@ -632,22 +632,22 @@ var ListView = React.createClass({
   __itemRender: function __itemRender(item, index, rtlist) {
     var _this = this;
 
-    var _content = React.createElement("div", {
+    var _content = /*#__PURE__*/React.createElement("div", {
       style: {
         display: 'flex'
       }
-    }, !!item.icon && React.createElement("i", {
+    }, !!item.icon && /*#__PURE__*/React.createElement("i", {
       className: 'fa ' + item.icon,
       style: {
         padding: 3
       }
-    }), React.createElement("span", null, item[this.props.textKey]));
+    }), /*#__PURE__*/React.createElement("span", null, item[this.props.textKey]));
 
     if (this.props.itemRender) {
       _content = this.props.itemRender(item, index, this);
     }
 
-    return React.createElement(RTItem, _extends({
+    return /*#__PURE__*/React.createElement(RTItem, _extends({
       disabled: this.props.disabled,
       "float": this.props["float"]
     }, item, {
@@ -674,7 +674,7 @@ var ListView = React.createClass({
     }
   },
   render: function render() {
-    return React.createElement(RTList, _extends({}, this.props, {
+    return /*#__PURE__*/React.createElement(RTList, _extends({}, this.props, {
       onEachItem: this.__onEachItem,
       className: zn.react.classname('zr-list-view', this.props.className, this.props.noborder ? 'noborder' : ''),
       itemRender: this.__itemRender
@@ -743,7 +743,7 @@ module.exports = React.createClass({
     var _content = this.props.contentRender && this.props.contentRender(this);
 
     if (!_content) {
-      _content = React.createElement("span", null, this.props.text || '');
+      _content = /*#__PURE__*/React.createElement("span", null, this.props.text || '');
     }
 
     return _content;
@@ -757,17 +757,17 @@ module.exports = React.createClass({
     });
   },
   render: function render() {
-    return React.createElement(RTItem, _extends({}, this.props, {
+    return /*#__PURE__*/React.createElement(RTItem, _extends({}, this.props, {
       className: 'zr-checkbox ' + this.props.className,
       checked: this.state.checked,
       onClick: this.__onClick
-    }), React.createElement("input", {
+    }), /*#__PURE__*/React.createElement("input", {
       name: this.props.name,
       type: "checkbox",
       defaultChecked: this.state.checked
-    }), React.createElement("span", {
+    }), /*#__PURE__*/React.createElement("span", {
       className: "mark"
-    }, React.createElement("i", {
+    }, /*#__PURE__*/React.createElement("i", {
       className: "icon fa fa-check"
     })), this.__renderContent());
   }
@@ -800,14 +800,14 @@ module.exports = React.createClass({
     this.props.onClick && this.props.onClick(props, btn, this, event);
   },
   __itemRender: function __itemRender(item, index, rtlist) {
-    return React.createElement(Button, _extends({
+    return /*#__PURE__*/React.createElement(Button, _extends({
       disabled: this.props.disabled,
       "float": this.props["float"],
       onClick: this.__onItemClick
     }, item));
   },
   render: function render() {
-    return React.createElement(RTList, _extends({}, this.props, {
+    return /*#__PURE__*/React.createElement(RTList, _extends({}, this.props, {
       className: 'zr-button-group ' + this.props.className,
       itemRender: this.__itemRender
     }));
@@ -1013,33 +1013,33 @@ module.exports = React.createClass({
   __downRender: function __downRender() {
     switch (this.state.step) {
       case 2:
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           className: "tip down-refresh"
-        }, React.createElement("i", {
+        }, /*#__PURE__*/React.createElement("i", {
           className: "fa fa-angle-down"
-        }), React.createElement("span", null, "\u4E0B\u62C9\u5237\u65B0"));
+        }), /*#__PURE__*/React.createElement("span", null, "\u4E0B\u62C9\u5237\u65B0"));
 
       case 3:
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           className: "tip down-refresh"
-        }, React.createElement("i", {
+        }, /*#__PURE__*/React.createElement("i", {
           className: "fa fa-angle-up"
-        }), React.createElement("span", null, "\u91CA\u653E\u52A0\u8F7D"));
+        }), /*#__PURE__*/React.createElement("span", null, "\u91CA\u653E\u52A0\u8F7D"));
 
       case 4:
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           className: "tip down-refresh"
-        }, React.createElement("i", {
+        }, /*#__PURE__*/React.createElement("i", {
           className: "fa fa-spinner zr-self-loading"
-        }), React.createElement("span", null, "\u6B63\u5728\u52A0\u8F7D\u4E2D..."));
+        }), /*#__PURE__*/React.createElement("span", null, "\u6B63\u5728\u52A0\u8F7D\u4E2D..."));
     }
 
     return null;
   },
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: "zr-down-puller " + this.props.className
-    }, this.__downRender(), React.createElement("div", {
+    }, this.__downRender(), /*#__PURE__*/React.createElement("div", {
       className: "content",
       style: this.__getContentStyles()
     }, this.props.children));
@@ -1050,7 +1050,7 @@ module.exports = React.createClass({
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 __webpack_require__(232);
 
@@ -1167,16 +1167,16 @@ module.exports = React.createClass({
     ReactDOM.findDOMNode(this).reset();
   },
   render: function render() {
-    return React.createElement("form", {
+    return /*#__PURE__*/React.createElement("form", {
       className: zn.react.classname("zr-ajax-uploader", this.props.className),
       style: this.props.style,
       "data-loading": this.state.loading,
       action: zn.http.fixURL(this.props.action || ''),
       encType: "multipart/form-data",
       method: "POST"
-    }, this.props.children, this.props.size && React.createElement("span", {
+    }, this.props.children, this.props.size && /*#__PURE__*/React.createElement("span", {
       className: "size"
-    }, this.props.size), React.createElement("input", {
+    }, this.props.size), /*#__PURE__*/React.createElement("input", {
       multiple: this.props.multiple,
       className: "input",
       type: "file",
@@ -1316,7 +1316,7 @@ module.exports = React.createClass({
     if (_render) {
       return _render;
     } else {
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: "activity-bar"
       });
     }
@@ -1333,15 +1333,15 @@ module.exports = React.createClass({
     var _styles = this.__getStyles(); //h, v
 
 
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname("zr-basic-layout", "zr-activity-layout", "direction-" + this.props.direction, this.props.className)
-    }, React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "layout-header",
       style: _styles.header
-    }, _children[0]), !!this.props.barWidth && React.createElement("div", {
+    }, _children[0]), !!this.props.barWidth && /*#__PURE__*/React.createElement("div", {
       className: "layout-body",
       style: _styles.body
-    }, this.__bodyRender()), React.createElement("div", {
+    }, this.__bodyRender()), /*#__PURE__*/React.createElement("div", {
       className: "layout-footer",
       style: _styles.footer
     }, _children[1]));
@@ -1422,15 +1422,15 @@ module.exports = React.createClass({
     var _styles = this.__getStyles(); //h, v
 
 
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname("zr-basic-layout", "zr-fixed-layout", "direction-" + this.props.direction, this.props.className)
-    }, React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "layout-header",
       style: _styles.header
-    }, _children[0]), React.createElement("div", {
+    }, _children[0]), /*#__PURE__*/React.createElement("div", {
       className: "layout-body",
       style: _styles.body
-    }, _children[1]), React.createElement("div", {
+    }, _children[1]), /*#__PURE__*/React.createElement("div", {
       className: "layout-footer",
       style: _styles.footer
     }, _children[2]));
@@ -1480,9 +1480,9 @@ module.exports = React.createClass({
   },
   __renderChildren: function __renderChildren() {
     if (!this.props.children) {
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: "btn"
-      }, !!this.props.icon && React.createElement("i", {
+      }, !!this.props.icon && /*#__PURE__*/React.createElement("i", {
         className: 'btn-icon fa ' + this.props.icon
       }), this.props.text);
     } else {
@@ -1495,7 +1495,7 @@ module.exports = React.createClass({
     }
   },
   render: function render() {
-    return React.createElement(RTItem, _extends({}, this.props, {
+    return /*#__PURE__*/React.createElement(RTItem, _extends({}, this.props, {
       attrs: zn.extend({
         "data-loading": this.state.loading,
         "data-tooltip": this.props.tooltip
@@ -1527,7 +1527,7 @@ module.exports = React.createClass({
     this.props.onClick && this.props.onClick(this, event);
   },
   render: function render() {
-    return React.createElement("i", {
+    return /*#__PURE__*/React.createElement("i", {
       "data-tooltip": this.props.tooltip,
       onClick: this.__onClick,
       className: zn.react.classname('zr-icon fa', this.props.className, this.props.icon),
@@ -1551,7 +1551,7 @@ var RTItem = __webpack_require__(2);
 module.exports = React.createClass({
   displayName: 'RTFlexItem',
   render: function render() {
-    return React.createElement(RTItem, _extends({}, this.props, {
+    return /*#__PURE__*/React.createElement(RTItem, _extends({}, this.props, {
       className: zn.react.classname('zr-flex-item', this.props.className)
     }), this.props.children);
   }
@@ -1642,16 +1642,16 @@ module.exports = React.createClass({
   render: function render() {
     var _this = this;
 
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname("zr-search", this.props.className, this.state.focus ? 'foucs' : ''),
       style: this.props.style
-    }, React.createElement("i", {
+    }, /*#__PURE__*/React.createElement("i", {
       onClick: this.__onIconClick,
       className: "search-icon fa " + (this.state.searching ? "searching" : "fa-search")
-    }), this.state.value && React.createElement("i", {
+    }), this.state.value && /*#__PURE__*/React.createElement("i", {
       className: "search-clear fa fa-times-circle",
       onClick: this.__onClearClick
-    }), React.createElement("input", _extends({}, this.props, {
+    }), /*#__PURE__*/React.createElement("input", _extends({}, this.props, {
       value: this.state.value,
       onFocus: this.__onInputFoucs,
       onBlur: this.__onInputBlur,
@@ -1704,29 +1704,29 @@ var Page = React.createClass({
       return null;
     }
 
-    return React.createElement("li", {
+    return /*#__PURE__*/React.createElement("li", {
       onClick: this.__onClick,
       className: 'page ' + this.props.className + ' ' + (this.props.isActive ? "active" : "") + ' ' + (this.props.isDisabled ? "" : "enabled")
-    }, React.createElement("span", null, this.props.children));
+    }, /*#__PURE__*/React.createElement("span", null, this.props.children));
   }
 });
 var TITLES = {
-  first: React.createElement("i", {
+  first: /*#__PURE__*/React.createElement("i", {
     className: "fa fa-step-backward"
   }),
-  prev: React.createElement("i", {
+  prev: /*#__PURE__*/React.createElement("i", {
     className: "fa fa-arrow-left"
   }),
-  prevSet: React.createElement("i", {
+  prevSet: /*#__PURE__*/React.createElement("i", {
     className: "fa fa-fast-backward"
   }),
-  nextSet: React.createElement("i", {
+  nextSet: /*#__PURE__*/React.createElement("i", {
     className: "fa fa-fast-forward"
   }),
-  next: React.createElement("i", {
+  next: /*#__PURE__*/React.createElement("i", {
     className: "fa fa-arrow-right"
   }),
-  last: React.createElement("i", {
+  last: /*#__PURE__*/React.createElement("i", {
     className: "fa fa-step-forward"
   })
 };
@@ -1833,7 +1833,7 @@ module.exports = React.createClass({
     return range(pair[0], pair[1]).map(function (pageIndex, index) {
       var _this = this;
 
-      return React.createElement(Page, {
+      return /*#__PURE__*/React.createElement(Page, {
         key: index,
         isActive: this.props.current === pageIndex,
         className: "btn-numbered-page",
@@ -1849,43 +1849,43 @@ module.exports = React.createClass({
   },
   render: function render() {
     var titles = this.getTitles;
-    return React.createElement("nav", {
+    return /*#__PURE__*/React.createElement("nav", {
       className: "zr-pager " + this.props.className
-    }, React.createElement("ul", {
+    }, /*#__PURE__*/React.createElement("ul", {
       className: "pages"
-    }, React.createElement(Page, {
+    }, /*#__PURE__*/React.createElement(Page, {
       className: "btn-first-page",
       key: "btn-first-page",
       isDisabled: this.isPrevDisabled(),
       onClick: this.handleFirstPage
-    }, titles('first')), React.createElement(Page, {
+    }, titles('first')), /*#__PURE__*/React.createElement(Page, {
       className: "btn-prev-page",
       key: "btn-prev-page",
       isDisabled: this.isPrevDisabled(),
       onClick: this.handlePreviousPage
-    }, titles('prev')), React.createElement(Page, {
+    }, titles('prev')), /*#__PURE__*/React.createElement(Page, {
       className: "btn-prev-more",
       key: "btn-prev-more",
       isHidden: this.isPrevMoreHidden(),
       onClick: this.handleMorePrevPages
-    }, titles('prevSet')), this.renderPages(this.visibleRange()), React.createElement(Page, {
+    }, titles('prevSet')), this.renderPages(this.visibleRange()), /*#__PURE__*/React.createElement(Page, {
       className: "btn-next-more",
       key: "btn-next-more",
       isHidden: this.isNextMoreHidden(),
       onClick: this.handleMoreNextPages
-    }, titles('nextSet')), React.createElement(Page, {
+    }, titles('nextSet')), /*#__PURE__*/React.createElement(Page, {
       className: "btn-next-page",
       key: "btn-next-page",
       isDisabled: this.isNextDisabled(),
       onClick: this.handleNextPage
-    }, titles('next')), React.createElement(Page, {
+    }, titles('next')), /*#__PURE__*/React.createElement(Page, {
       className: "btn-last-page",
       key: "btn-last-page",
       isDisabled: this.isNextDisabled(),
       onClick: this.handleLastPage
-    }, titles('last'))), !!this.props.total && React.createElement("span", {
+    }, titles('last'))), !!this.props.total && /*#__PURE__*/React.createElement("span", {
       className: "count"
-    }, this.props.current, " / ", this.props.total, " \u9875"), !!this.props.count && React.createElement("span", {
+    }, this.props.current, " / ", this.props.total, " \u9875"), !!this.props.count && /*#__PURE__*/React.createElement("span", {
       className: "count"
     }, this.props.count, " \u6761"));
   }
@@ -1915,9 +1915,9 @@ module.exports = React.createClass({
   render: function render() {
     var _this = this;
 
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: "zr-search-list-view zr-flex-layout"
-    }, React.createElement(Search, {
+    }, /*#__PURE__*/React.createElement(Search, {
       onSearch: function onSearch(value) {
         return _this.setState({
           filterValue: value
@@ -1925,7 +1925,7 @@ module.exports = React.createClass({
       },
       realtime: true,
       className: "search layout-header"
-    }), React.createElement(ListView, _extends({
+    }), /*#__PURE__*/React.createElement(ListView, _extends({
       filterValue: this.state.filterValue,
       className: "listview layout-header"
     }, this.props)));
@@ -1989,7 +1989,7 @@ module.exports = React.createClass({
       return _temp;
     }
 
-    return React.createElement("a", {
+    return /*#__PURE__*/React.createElement("a", {
       onClick: function onClick() {
         return _this.__onPreview(item);
       }
@@ -1997,7 +1997,7 @@ module.exports = React.createClass({
   },
   __renderPreviewFileByType: function __renderPreviewFileByType(type, value) {
     if (this.props.isImage) {
-      return React.createElement("img", {
+      return /*#__PURE__*/React.createElement("img", {
         width: "100%",
         height: "100%",
         src: zn.http.fixURL(value)
@@ -2009,7 +2009,7 @@ module.exports = React.createClass({
       case 'png':
       case 'jpeg':
       case 'gif':
-        return React.createElement("img", {
+        return /*#__PURE__*/React.createElement("img", {
           width: "100%",
           height: "100%",
           src: zn.http.fixURL(value)
@@ -2025,17 +2025,17 @@ module.exports = React.createClass({
       case 'aiff':
       case 'qt':
       case 'viv':
-        return React.createElement("video", {
+        return /*#__PURE__*/React.createElement("video", {
           width: "100%",
           height: "100%",
           preload: "auto",
           loop: "loop",
           autoplay: "autoplay",
           controls: "controls"
-        }, React.createElement("source", {
+        }, /*#__PURE__*/React.createElement("source", {
           src: zn.http.fixURL(value),
           type: "video/ogg"
-        }), React.createElement("source", {
+        }), /*#__PURE__*/React.createElement("source", {
           src: zn.http.fixURL(value),
           type: "video/mp4"
         }), "Your browser does not support the video tag.");
@@ -2046,7 +2046,7 @@ module.exports = React.createClass({
   },
   __renderFileByType: function __renderFileByType(type, value) {
     if (this.props.isImage) {
-      return React.createElement("img", {
+      return /*#__PURE__*/React.createElement("img", {
         src: zn.http.fixURL(value)
       });
     }
@@ -2056,7 +2056,7 @@ module.exports = React.createClass({
       case 'png':
       case 'jpeg':
       case 'gif':
-        return React.createElement("img", {
+        return /*#__PURE__*/React.createElement("img", {
           src: zn.http.fixURL(value)
         });
 
@@ -2070,13 +2070,13 @@ module.exports = React.createClass({
       case 'aiff':
       case 'qt':
       case 'viv':
-        return React.createElement("video", {
+        return /*#__PURE__*/React.createElement("video", {
           width: "96",
           height: "96"
-        }, React.createElement("source", {
+        }, /*#__PURE__*/React.createElement("source", {
           src: zn.http.fixURL(value),
           type: "video/ogg"
-        }), React.createElement("source", {
+        }), /*#__PURE__*/React.createElement("source", {
           src: zn.http.fixURL(value),
           type: "video/mp4"
         }), "Your browser does not support the video tag.");
@@ -2094,27 +2094,27 @@ module.exports = React.createClass({
 
     var _editable = this.props.editable && !this.props.disabled && !this.props.readonly;
 
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: "zr-file-uploader",
       style: this.props.style
-    }, _editable && React.createElement(AjaxUploader, _extends({}, this.props, {
+    }, _editable && /*#__PURE__*/React.createElement(AjaxUploader, _extends({}, this.props, {
       style: this.props.uploaderStyle,
       onChange: this.__onChange,
       onComplete: this.__onComplete
-    }), React.createElement("div", {
+    }), /*#__PURE__*/React.createElement("div", {
       className: "container"
-    }, React.createElement("i", {
+    }, /*#__PURE__*/React.createElement("i", {
       className: "icon fa fa-plus"
-    }))), React.createElement("ul", {
+    }))), /*#__PURE__*/React.createElement("ul", {
       className: "file-list"
     }, _values.map(function (item, index) {
       var _this2 = this;
 
       if (item) {
-        return React.createElement("li", {
+        return /*#__PURE__*/React.createElement("li", {
           key: index,
           className: "file"
-        }, _editable && React.createElement("i", {
+        }, _editable && /*#__PURE__*/React.createElement("i", {
           className: "fa fa-remove zr-hover-self-loading",
           onClick: function onClick() {
             return _this2.__onRemove(item, index);
@@ -2190,17 +2190,17 @@ module.exports = React.createClass({
       _src = zn.http.fixURL(this.state.value);
     }
 
-    return React.createElement(AjaxUploader, _extends({}, this.props, {
+    return /*#__PURE__*/React.createElement(AjaxUploader, _extends({}, this.props, {
       className: "zr-image-uploader",
       onChange: this.__onChange,
       onComplete: this.__onComplete,
       multipart: false
-    }), React.createElement("div", {
+    }), /*#__PURE__*/React.createElement("div", {
       className: "container"
-    }, !!_src ? React.createElement("img", {
+    }, !!_src ? /*#__PURE__*/React.createElement("img", {
       className: "img",
       src: _src
-    }) : React.createElement("i", {
+    }) : /*#__PURE__*/React.createElement("i", {
       className: "upload fa fa-plus"
     })));
   }
@@ -2302,30 +2302,30 @@ module.exports = React.createClass({
     }
 
     if (_type == 'FormTitle') {
-      return _input && React.createElement(_input, _extends({}, this.props, {
+      return _input && /*#__PURE__*/React.createElement(_input, _extends({}, this.props, {
         ref: "input",
         className: this.props.inputClassName || '',
         onChange: this.__onInputChange
       }));
     }
 
-    return React.createElement(RTFlexItem, _extends({}, this.props, {
+    return /*#__PURE__*/React.createElement(RTFlexItem, _extends({}, this.props, {
       className: zn.react.classname('zr-form-item', this.props.className, this.state.status, this.props.required ? 'required' : '')
-    }), React.createElement("div", {
+    }), /*#__PURE__*/React.createElement("div", {
       className: "zrfi-header"
-    }, this.props.icon && React.createElement("div", {
+    }, this.props.icon && /*#__PURE__*/React.createElement("div", {
       className: "icon"
-    }, React.createElement("i", {
+    }, /*#__PURE__*/React.createElement("i", {
       className: "fa " + this.props.icon
-    })), this.props.title && React.createElement("div", {
+    })), this.props.title && /*#__PURE__*/React.createElement("div", {
       className: "title"
-    }, this.props.title)), React.createElement("div", {
+    }, this.props.title)), /*#__PURE__*/React.createElement("div", {
       className: "zrfi-body"
-    }, !!_input && React.createElement(_input, _extends({}, this.props, {
+    }, !!_input && /*#__PURE__*/React.createElement(_input, _extends({}, this.props, {
       ref: "input",
       className: this.props.inputClassName || '',
       onChange: this.__onInputChange
-    })), this.props.suffix && React.createElement("span", {
+    })), this.props.suffix && /*#__PURE__*/React.createElement("span", {
       className: "suffix"
     }, this.props.suffix)));
   }
@@ -3633,7 +3633,7 @@ module.exports = zn.react.Application = zn.Class({
         return alert('只适合手机版本打开!'), false;
       }
 
-      var _view = view || this.__getRenderView() || React.createElement(_Router, {
+      var _view = view || this.__getRenderView() || /*#__PURE__*/React.createElement(_Router, {
         home: this.get('home'),
         routers: this._routers
       }),
@@ -3653,7 +3653,7 @@ module.exports = zn.react.Application = zn.Class({
 
 
       if (this.get('global')) {
-        _view = React.createElement("div", {
+        _view = /*#__PURE__*/React.createElement("div", {
           style: {
             width: '100%',
             height: '100%'
@@ -4568,6 +4568,12 @@ module.exports = zn.Class({
 /* 125 */
 /***/ (function(module, exports) {
 
+function _createForOfIteratorHelper(o) { if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) { var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var it, normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 module.exports = zn.Class({
   methods: {
     init: function init(argv) {
@@ -4611,28 +4617,19 @@ module.exports = zn.Class({
       }
 
       var _data = {};
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
+
+      var _iterator = _createForOfIteratorHelper(this._search.keys()),
+          _step;
 
       try {
-        for (var _iterator = this._search.keys()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
           var key = _step.value;
           _data[key] = this._search.get(key);
         }
       } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
+        _iterator.e(err);
       } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator["return"] != null) {
-            _iterator["return"]();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
+        _iterator.f();
       }
 
       return _data;
@@ -4657,7 +4654,7 @@ module.exports = zn.Class({
 /* 126 */
 /***/ (function(module, exports) {
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 module.exports = zn.react.session = zn.Class({
   "static": true,
@@ -4909,21 +4906,21 @@ var Alert = React.createClass({
     }
   },
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname('zr-alert', this.props.className),
       style: this.props.style
-    }, React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "alert-inner"
-    }, this.props.title && React.createElement("div", {
+    }, this.props.title && /*#__PURE__*/React.createElement("div", {
       className: "alert-title"
-    }, this.props.title), this.props.content && React.createElement("div", {
+    }, this.props.title), this.props.content && /*#__PURE__*/React.createElement("div", {
       className: "alert-content"
-    }, this.props.content)), React.createElement("div", {
+    }, this.props.content)), /*#__PURE__*/React.createElement("div", {
       className: "alert-btns"
     }, this.props.buttons.map(function (item, index) {
       var _this = this;
 
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         key: index,
         className: "alert-btn",
         onClick: function onClick() {
@@ -4935,7 +4932,7 @@ var Alert = React.createClass({
 });
 
 zn.alert = function (content, title, callback, props) {
-  zn.modal.open(React.createElement(Alert, _extends({
+  zn.modal.open( /*#__PURE__*/React.createElement(Alert, _extends({
     content: content,
     title: title,
     onClick: callback
@@ -4956,7 +4953,7 @@ zn.confirm = function (content, title, confirm, cancel, options) {
     confirm: '确定'
   }, options);
 
-  zn.modal.open(React.createElement(Alert, {
+  zn.modal.open( /*#__PURE__*/React.createElement(Alert, {
     content: content,
     title: title,
     buttons: [{
@@ -4978,12 +4975,12 @@ zn.confirm = function (content, title, confirm, cancel, options) {
 };
 
 zn.prompt = function (title, confirm, cancel) {
-  var _input = React.createElement("input", {
+  var _input = /*#__PURE__*/React.createElement("input", {
     className: "alert-input",
     type: "text"
   });
 
-  zn.modal.open(React.createElement(Alert, {
+  zn.modal.open( /*#__PURE__*/React.createElement(Alert, {
     content: _input,
     title: title,
     buttons: [{
@@ -5015,27 +5012,27 @@ var Dialog = React.createClass({
     };
   },
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname('zr-dialog', this.props.className),
       style: this.props.style
-    }, React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "dialog-header"
-    }, this.props.title && React.createElement("div", {
+    }, this.props.title && /*#__PURE__*/React.createElement("div", {
       className: "dialog-title"
-    }, this.props.title)), React.createElement("div", {
+    }, this.props.title)), /*#__PURE__*/React.createElement("div", {
       className: "dialog-body"
     }, this.props.content));
   }
 });
 
 zn.dialog = function (argv) {
-  return zn.modal.middle(React.createElement(Dialog, argv));
+  return zn.modal.middle( /*#__PURE__*/React.createElement(Dialog, argv));
 };
 
 zn.dialog.form = function (argv) {
   return zn.dialog({
     title: argv.title || '',
-    content: React.createElement(zn.react.Form, argv)
+    content: /*#__PURE__*/React.createElement(zn.react.Form, argv)
   });
 };
 
@@ -5104,12 +5101,12 @@ module.exports = zn.modal = zn.Class({
         closeable: true
       }, config);
 
-      return this.open(React.createElement("div", {
+      return this.open( /*#__PURE__*/React.createElement("div", {
         className: "modal-middle",
         style: zn.extend({
           visibility: 'hidden'
         }, _config.style)
-      }, content, _config.closeable && React.createElement("i", {
+      }, content, _config.closeable && /*#__PURE__*/React.createElement("i", {
         onClick: this.close.bind(this),
         className: "close fa fa-times zr-hover-self-loading"
       })), zn.extend({
@@ -5165,9 +5162,9 @@ module.exports = zn.modal = zn.Class({
       }, config));
     },
     full: function full(content, config) {
-      return this.open(React.createElement("div", {
+      return this.open( /*#__PURE__*/React.createElement("div", {
         className: "modal-full"
-      }, content, React.createElement("i", {
+      }, content, /*#__PURE__*/React.createElement("i", {
         onClick: this.close.bind(this),
         className: "close fa fa-times zr-hover-self-loading"
       })), config);
@@ -5179,7 +5176,7 @@ module.exports = zn.modal = zn.Class({
       }, config);
 
       if (this.config["in"] && this.config.out) {
-        this.child = ReactDOM.render(React.createElement(Animate, _extends({}, config, {
+        this.child = ReactDOM.render( /*#__PURE__*/React.createElement(Animate, _extends({}, config, {
           onOut: this.__out
         }), content), this._dom);
       } else {
@@ -5318,12 +5315,12 @@ module.exports = zn.modal = zn.Class({
         closeable: true
       }, config);
 
-      return this.open(React.createElement("div", {
+      return this.open( /*#__PURE__*/React.createElement("div", {
         className: "modal-middle",
         style: zn.extend({
           visibility: 'hidden'
         }, _config.style)
-      }, content, _config.closeable && React.createElement("i", {
+      }, content, _config.closeable && /*#__PURE__*/React.createElement("i", {
         onClick: this.close.bind(this),
         className: "close fa fa-times zr-hover-self-loading"
       })), zn.extend({
@@ -5370,9 +5367,9 @@ module.exports = zn.modal = zn.Class({
       }, config));
     },
     full: function full(content, config) {
-      return this.open(React.createElement("div", {
+      return this.open( /*#__PURE__*/React.createElement("div", {
         className: "modal-full"
-      }, content, React.createElement("i", {
+      }, content, /*#__PURE__*/React.createElement("i", {
         onClick: this.close.bind(this),
         className: "close fa fa-times zr-hover-self-loading"
       })), config);
@@ -5384,7 +5381,7 @@ module.exports = zn.modal = zn.Class({
       }, config);
 
       if (this.config["in"] && this.config.out) {
-        this.child = ReactDOM.render(React.createElement(Animate, _extends({}, config, {
+        this.child = ReactDOM.render( /*#__PURE__*/React.createElement(Animate, _extends({}, config, {
           onOut: this.__out
         }), content), this._dom);
       } else {
@@ -5490,7 +5487,7 @@ module.exports = zn.modals = zn.Class({
 
       var _dom = document.createElement('div');
 
-      var _modal = ReactDOM.render(React.createElement(Notify, {
+      var _modal = ReactDOM.render( /*#__PURE__*/React.createElement(Notify, {
         type: type,
         content: content,
         delay: delay
@@ -5547,15 +5544,15 @@ var Notification = React.createClass({
     }, false);
   },
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname('zr-notification notification-in', this.props.type)
-    }, React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "icon"
-    }, React.createElement("i", {
+    }, /*#__PURE__*/React.createElement("i", {
       className: "fa " + TYPE_ICONS[this.props.type || 'info']
-    })), React.createElement("div", {
+    })), /*#__PURE__*/React.createElement("div", {
       className: "content"
-    }, this.props.content), React.createElement("i", {
+    }, this.props.content), /*#__PURE__*/React.createElement("i", {
       className: "close fa fa-times",
       onClick: this.out
     }));
@@ -5572,7 +5569,7 @@ module.exports = zn.notification = zn.Class({
     open: function open(type, content, delay) {
       var _dom = document.createElement('div');
 
-      ReactDOM.render(React.createElement(Notification, {
+      ReactDOM.render( /*#__PURE__*/React.createElement(Notification, {
         type: type,
         content: content,
         delay: delay
@@ -5634,15 +5631,15 @@ var Notify = React.createClass({
     }, false);
   },
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname('zr-notify notify-in', this.props.type)
-    }, React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "icon"
-    }, React.createElement("i", {
+    }, /*#__PURE__*/React.createElement("i", {
       className: "fa " + TYPE_ICONS[this.props.type || 'info']
-    })), React.createElement("div", {
+    })), /*#__PURE__*/React.createElement("div", {
       className: "content"
-    }, this.props.content), React.createElement("i", {
+    }, this.props.content), /*#__PURE__*/React.createElement("i", {
       className: "close fa fa-times",
       onClick: this.out
     }));
@@ -5659,7 +5656,7 @@ module.exports = zn.notify = zn.Class({
     open: function open(type, content, delay) {
       var _dom = document.createElement('div');
 
-      ReactDOM.render(React.createElement(Notify, {
+      ReactDOM.render( /*#__PURE__*/React.createElement(Notify, {
         type: type,
         content: content,
         delay: delay
@@ -5829,10 +5826,10 @@ var Popover = React.createClass({
       _style.maxHeight = '240px';
     }
 
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname('zr-popover zr-arrow zr-arrow-color-white', this.state.arrowClassName, this.props.className),
       style: zn.extend(this.props.style, _style)
-    }, this.props.closeable && React.createElement("i", {
+    }, this.props.closeable && /*#__PURE__*/React.createElement("i", {
       className: "popover-close fa fa-close zr-hover-self-loading"
     }), this.props.content);
   }
@@ -5853,7 +5850,7 @@ module.exports = zn.popover = zn.Class({
         this.close('zn.popover:render');
       }
 
-      return this._popover = ReactDOM.render(React.createElement(Popover, _extends({}, options, {
+      return this._popover = ReactDOM.render( /*#__PURE__*/React.createElement(Popover, _extends({}, options, {
         content: content
       })), this._dom), this._popover;
     },
@@ -5912,11 +5909,11 @@ var Preloader = React.createClass({
     };
   },
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname('zr-preloader', this.props.className)
-    }, React.createElement("i", {
+    }, /*#__PURE__*/React.createElement("i", {
       className: "fa fa-spinner zr-self-loading"
-    }), React.createElement("span", null, this.props.content || this.props.title));
+    }), /*#__PURE__*/React.createElement("span", null, this.props.content || this.props.title));
   }
 });
 module.exports = zn.preloader = zn.Class({
@@ -5928,7 +5925,7 @@ module.exports = zn.preloader = zn.Class({
       });
     },
     open: function open(argv, overlay) {
-      zn.modal.open(React.createElement(Preloader, argv), {
+      zn.modal.open( /*#__PURE__*/React.createElement(Preloader, argv), {
         className: overlay ? 'overlay' : ''
       });
     },
@@ -6010,7 +6007,7 @@ var Toast = React.createClass({
     }, false);
   },
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname('zr-toast toast-in', this.props.type)
     }, this.props.content);
   }
@@ -6026,7 +6023,7 @@ module.exports = zn.toast = zn.Class({
     open: function open(type, content, delay) {
       var _dom = document.createElement('div');
 
-      ReactDOM.render(React.createElement(Toast, {
+      ReactDOM.render( /*#__PURE__*/React.createElement(Toast, {
         type: type,
         content: content,
         delay: delay
@@ -6120,7 +6117,7 @@ var Tooltip = React.createClass({
     }
   },
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname("zr-tooltip zr-arrow zr-arrow-color-black zr-arrow-placement-center", this.props.className),
       style: this.props.style
     }, this.props.content);
@@ -6156,7 +6153,7 @@ zn.tooltip = zn.Class({
       }
     },
     render: function render(content, options) {
-      this._tooltip = ReactDOM.render(React.createElement(Tooltip, _extends({}, options, {
+      this._tooltip = ReactDOM.render( /*#__PURE__*/React.createElement(Tooltip, _extends({}, options, {
         content: content
       })), this._dom);
     },
@@ -6309,7 +6306,7 @@ module.exports = React.createClass({
     };
   },
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: "zr-bubble"
     });
   }
@@ -6365,20 +6362,20 @@ module.exports = React.createClass({
     }
   },
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname('zr-card', this.props.className),
       style: zn.extend({
         width: this.props.width
       }, this.props.style)
-    }, React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "card-header"
-    }, this.props.icon && React.createElement("i", {
+    }, this.props.icon && /*#__PURE__*/React.createElement("i", {
       className: 'icon fa ' + this.props.icon
-    }), this.props.title && React.createElement("span", {
+    }), this.props.title && /*#__PURE__*/React.createElement("span", {
       className: "title"
-    }, this.props.title), this.props.rightRender && React.createElement("div", {
+    }, this.props.title), this.props.rightRender && /*#__PURE__*/React.createElement("div", {
       className: "right-content"
-    }, this.__rightRender())), React.createElement("div", {
+    }, this.__rightRender())), /*#__PURE__*/React.createElement("div", {
       className: "card-body"
     }, this.props.children));
   }
@@ -6407,13 +6404,13 @@ module.exports = React.createClass({
     };
   },
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       style: this.props.style,
       className: 'zr-data-loader ' + this.props.className
-    }, React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "loader",
       "data-loader": this.props.loader
-    }), React.createElement("div", {
+    }), /*#__PURE__*/React.createElement("div", {
       className: "content"
     }, this.props.content));
   }
@@ -6462,11 +6459,11 @@ module.exports = React.createClass({
     };
   },
   render: function render() {
-    return React.createElement(Dropdown, _extends({}, this.props, {
+    return /*#__PURE__*/React.createElement(Dropdown, _extends({}, this.props, {
       className: "zr-dropdown-list " + this.props.className
-    }), React.createElement("div", {
+    }), /*#__PURE__*/React.createElement("div", {
       className: "dropdown-list-trigger"
-    }, this.props.children), React.createElement(ListView, _extends({}, this.props, {
+    }, this.props.children), /*#__PURE__*/React.createElement(ListView, _extends({}, this.props, {
       onItemClick: this.__onListItemClick
     })));
   }
@@ -6513,15 +6510,15 @@ var React = __webpack_require__(0);
 module.exports = React.createClass({
   displayName: 'ErrorPage',
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: "zr-error-page"
-    }, React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "container"
-    }, React.createElement("h3", {
+    }, /*#__PURE__*/React.createElement("h3", {
       className: "title"
-    }, "ERROR: 404 Not Found"), React.createElement("div", {
+    }, "ERROR: 404 Not Found"), /*#__PURE__*/React.createElement("div", {
       className: "detail"
-    }, "URI: ", React.createElement("a", {
+    }, "URI: ", /*#__PURE__*/React.createElement("a", {
       href: '#' + this.props.request.path
     }, this.props.request.path))));
   }
@@ -6550,16 +6547,16 @@ module.exports = React.createClass({
       return new Date(m.ftime).getTime() - new Date(n.ftime).getTime();
     });
 
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname("zr-express-detail", this.props.className)
     }, _data.map(function (item, index) {
-      return React.createElement("ul", {
+      return /*#__PURE__*/React.createElement("ul", {
         className: "detail-item"
-      }, React.createElement("li", {
+      }, /*#__PURE__*/React.createElement("li", {
         className: "time"
-      }, item.ftime), React.createElement("li", {
+      }, item.ftime), /*#__PURE__*/React.createElement("li", {
         className: "dot"
-      }), React.createElement("li", {
+      }), /*#__PURE__*/React.createElement("li", {
         className: "context"
       }, item.context));
     }));
@@ -6586,7 +6583,7 @@ module.exports = React.createClass({
     return {};
   },
   __onPreview: function __onPreview(item) {
-    zn.modal.full(React.createElement("div", {
+    zn.modal.full( /*#__PURE__*/React.createElement("div", {
       style: {
         display: 'flex',
         alignItems: 'center',
@@ -6607,7 +6604,7 @@ module.exports = React.createClass({
       return _temp;
     }
 
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       onClick: function onClick() {
         return _this.__onPreview(item);
       }
@@ -6615,7 +6612,7 @@ module.exports = React.createClass({
   },
   __renderPreviewFileByType: function __renderPreviewFileByType(type, value) {
     if (this.props.isImage) {
-      return React.createElement("img", {
+      return /*#__PURE__*/React.createElement("img", {
         src: zn.http.fixURL(value)
       });
     }
@@ -6626,7 +6623,7 @@ module.exports = React.createClass({
       case 'png':
       case 'jpeg':
       case 'gif':
-        return React.createElement("img", {
+        return /*#__PURE__*/React.createElement("img", {
           src: zn.http.fixURL(value)
         });
 
@@ -6640,17 +6637,17 @@ module.exports = React.createClass({
       case 'aiff':
       case 'qt':
       case 'viv':
-        return React.createElement("video", {
+        return /*#__PURE__*/React.createElement("video", {
           width: "100%",
           height: "100%",
           preload: "auto",
           loop: "loop",
           autoplay: "autoplay",
           controls: "controls"
-        }, React.createElement("source", {
+        }, /*#__PURE__*/React.createElement("source", {
           src: zn.http.fixURL(value),
           type: "video/ogg"
-        }), React.createElement("source", {
+        }), /*#__PURE__*/React.createElement("source", {
           src: zn.http.fixURL(value),
           type: "video/mp4"
         }), "Your browser does not support the video tag.");
@@ -6664,14 +6661,14 @@ module.exports = React.createClass({
 
     var _file = value.split('/').pop();
 
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       onClick: function onClick(event) {
         return _this2.__onPreview(value);
       },
       className: "office-file"
-    }, React.createElement("i", {
+    }, /*#__PURE__*/React.createElement("i", {
       className: "icon fa fa-" + (type || 'file')
-    }), React.createElement("a", {
+    }), /*#__PURE__*/React.createElement("a", {
       target: "_blank",
       href: zn.http.fixURL(value) + "?download=true",
       onClick: function onClick(event) {
@@ -6683,7 +6680,7 @@ module.exports = React.createClass({
   },
   __renderFileByType: function __renderFileByType(type, value) {
     if (this.props.isImage) {
-      return React.createElement("img", {
+      return /*#__PURE__*/React.createElement("img", {
         src: zn.http.fixURL(value)
       });
     }
@@ -6709,7 +6706,7 @@ module.exports = React.createClass({
       case 'png':
       case 'jpeg':
       case 'gif':
-        return React.createElement("img", {
+        return /*#__PURE__*/React.createElement("img", {
           src: zn.http.fixURL(value)
         });
 
@@ -6738,7 +6735,7 @@ module.exports = React.createClass({
       return null;
     }
 
-    return React.createElement("li", {
+    return /*#__PURE__*/React.createElement("li", {
       className: "file"
     }, this.__renderContent(file));
   },
@@ -6749,10 +6746,10 @@ module.exports = React.createClass({
       _value = _value.split(',');
     }
 
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname("zr-files", this.props.className),
       style: this.props.style
-    }, React.createElement("ul", {
+    }, /*#__PURE__*/React.createElement("ul", {
       className: "files"
     }, _value.map(this.__fileRender)));
   }
@@ -6809,32 +6806,32 @@ module.exports = React.createClass({
       _begin += 10;
     }
 
-    return React.createElement(FixedLayout, {
+    return /*#__PURE__*/React.createElement(FixedLayout, {
       className: zn.react.classname('zr-fixed-page', zn.react.isMobile() ? 'page-mobile' : 'page-pc', this.props.className),
       direction: "top-bottom",
       begin: _begin,
       end: this.props.footerView ? this.props.end : 0,
       hStyle: this.props.hStyle,
       bStyle: this.props.bStyle
-    }, React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "page-header",
       style: {
         lineHeight: '30px'
       }
-    }, this.props.canBack && React.createElement("i", {
+    }, this.props.canBack && /*#__PURE__*/React.createElement("i", {
       className: "back fa " + this.props.icon,
       onClick: this.__onBack
-    }), React.createElement("div", {
+    }), /*#__PURE__*/React.createElement("div", {
       className: "title"
-    }, this.props.title), React.createElement("div", {
+    }, this.props.title), /*#__PURE__*/React.createElement("div", {
       className: "btns"
-    }, React.createElement(ButtonGroup, {
+    }, /*#__PURE__*/React.createElement(ButtonGroup, {
       className: "zr-flex",
       items: this.props.toolbarItems,
       onClick: this.props.onToolbarClick
-    }))), React.createElement("div", {
+    }))), /*#__PURE__*/React.createElement("div", {
       className: "page-body"
-    }, this.props.children), this.props.end && this.props.footerView && React.createElement("div", {
+    }, this.props.children), this.props.end && this.props.footerView && /*#__PURE__*/React.createElement("div", {
       className: "page-footer"
     }, this.props.footerView));
   }
@@ -6864,21 +6861,21 @@ module.exports = React.createClass({
   render: function render() {
     var _this = this;
 
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       "data-active": this.state.active,
       style: this.props.style,
       className: zn.react.classname("zr-group", this.props.className)
-    }, React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "g-header",
       on: true
-    }, React.createElement("span", {
+    }, /*#__PURE__*/React.createElement("span", {
       onClick: function onClick() {
         return _this.setState({
           active: !_this.state.active
         });
       },
       className: "title"
-    }, this.props.title)), React.createElement("div", {
+    }, this.props.title)), /*#__PURE__*/React.createElement("div", {
       className: "g-inner-content"
     }, this.props.children));
   }
@@ -6916,13 +6913,13 @@ module.exports = React.createClass({
   render: function render() {
     var _data = this.props.data || this.props.items || [];
 
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname('zr-icons', this.props.className)
     }, _data.map(function (item, index) {
       var _this = this;
 
       item.index = index;
-      return React.createElement(Icon, _extends({
+      return /*#__PURE__*/React.createElement(Icon, _extends({
         key: index,
         onClick: function onClick(icon, event) {
           return _this.__onClick(item, icon, event);
@@ -6985,7 +6982,7 @@ module.exports = React.createClass({
     }.bind(this));*/
   },
   render: function render() {
-    return React.createElement("img", {
+    return /*#__PURE__*/React.createElement("img", {
       className: zn.react.classname("zr-image", this.props.className),
       style: this.props.style,
       src: this.props.src
@@ -7020,7 +7017,7 @@ module.exports = React.createClass({
     if (this.props.data) {
       return this.props.children;
     } else {
-      return React.createElement(zn.react.DataLoader, this.props);
+      return /*#__PURE__*/React.createElement(zn.react.DataLoader, this.props);
     }
   }
 });
@@ -7063,35 +7060,35 @@ var Page = React.createClass({
     if (zn.react.isIOS()) {//_begin += 10;
     }
 
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname('zr-page', __props.className),
       style: __props.style
-    }, React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "page-header",
       style: {
         height: _begin
       }
-    }, React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "header-left"
-    }, __props.canBack && React.createElement("i", {
+    }, __props.canBack && /*#__PURE__*/React.createElement("i", {
       className: "back fa " + __props.icon,
       onClick: this.__onBack
-    }), React.createElement("span", {
+    }), /*#__PURE__*/React.createElement("span", {
       className: "title"
-    }, __props.title)), __props.headerCenter && React.createElement("div", {
+    }, __props.title)), __props.headerCenter && /*#__PURE__*/React.createElement("div", {
       className: "header-center"
-    }, __props.headerCenter), React.createElement("div", {
+    }, __props.headerCenter), /*#__PURE__*/React.createElement("div", {
       className: "header-right"
-    }, this.props.rightView, React.createElement(zn.react.ButtonGroup, {
+    }, this.props.rightView, /*#__PURE__*/React.createElement(zn.react.ButtonGroup, {
       className: "zr-flex",
       items: __props.toolbarItems,
       onClick: __props.onToolbarClick
-    }))), React.createElement("div", {
+    }))), /*#__PURE__*/React.createElement("div", {
       className: "page-body"
-    }, this.props.loading ? React.createElement(zn.react.DataLoader, {
+    }, this.props.loading ? /*#__PURE__*/React.createElement(zn.react.DataLoader, {
       loader: "timer",
       content: "\u52A0\u8F7D\u4E2D..."
-    }) : this.props.children), !this.props.loading && !!this.props.footerView && React.createElement("div", {
+    }) : this.props.children), !this.props.loading && !!this.props.footerView && /*#__PURE__*/React.createElement("div", {
       className: "page-footer"
     }, this.props.footerView));
   }
@@ -7131,10 +7128,10 @@ var Panel = React.createClass({
     this.props.onClose && this.props.onClose();
   },
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: "zr-panel  " + this.props.className,
       style: this.props.style
-    }, this.props.enableClose && React.createElement("i", {
+    }, this.props.enableClose && /*#__PURE__*/React.createElement("i", {
       onClick: this.props.onClose,
       className: "zr-panel-close fa fa-close"
     }), this.props.children);
@@ -7148,12 +7145,12 @@ Panel.Header = React.createClass({
     };
   },
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: "zr-panel-header " + this.props.className,
       style: this.props.style
-    }, this.props.icon && React.createElement("i", {
+    }, this.props.icon && /*#__PURE__*/React.createElement("i", {
       className: "icon fa " + this.props.icon
-    }), this.props.title && React.createElement("span", {
+    }), this.props.title && /*#__PURE__*/React.createElement("span", {
       className: "title"
     }, this.props.title), this.props.children);
   }
@@ -7166,7 +7163,7 @@ Panel.Body = React.createClass({
     };
   },
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: "zr-panel-body " + this.props.className,
       style: this.props.style
     }, this.props.children);
@@ -7260,36 +7257,36 @@ module.exports = React.createClass({
     }
   },
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: "zr-progress-ring " + this.props.className,
       "data-full": this.props.full,
       style: this.props.style
-    }, React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "progress-track",
       style: {
         borderColor: this.props.trackColor
       }
-    }), React.createElement("div", {
+    }), /*#__PURE__*/React.createElement("div", {
       className: "progress-left",
       style: zn.extend({
         borderColor: this.props.valueColor
       }, this.state.leftStyle)
-    }), React.createElement("div", {
+    }), /*#__PURE__*/React.createElement("div", {
       className: "progress-right",
       style: zn.extend({
         borderColor: this.props.valueColor
       }, this.state.rightStyle)
-    }), React.createElement("div", {
+    }), /*#__PURE__*/React.createElement("div", {
       className: "progress-cover",
       ref: "cover",
       style: zn.extend({
         borderColor: this.props.trackColor
       }, this.state.coverStyle)
-    }), React.createElement("div", {
+    }), /*#__PURE__*/React.createElement("div", {
       className: "progress-text"
-    }, React.createElement("span", {
+    }, /*#__PURE__*/React.createElement("span", {
       className: "progress-num"
-    }, (+this.props.value || 0).toFixed(1)), React.createElement("span", {
+    }, (+this.props.value || 0).toFixed(1)), /*#__PURE__*/React.createElement("span", {
       className: "progress-percent"
     }, "%")));
   }
@@ -7326,7 +7323,7 @@ var ReactDOM = __webpack_require__(1);
 var SliderItem = React.createClass({
   displayName: 'SliderItem',
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname('slider-item', this.props.className),
       style: this.props.style
     }, this.props.children);
@@ -7584,10 +7581,10 @@ var Slider = React.createClass({
       return;
     }
 
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: 'zr-slider ' + (this.props.loop ? '' : 'no-loop'),
       style: this.props.style
-    }, React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: 'slider-views ' + (this.state.sliding ? 'sliding' : ''),
       onTransitionEnd: this.__onTransitionEnd,
       style: {
@@ -7595,14 +7592,14 @@ var Slider = React.createClass({
       }
     }, _children.map(function (child, index) {
       _diff = index - _currentIndex;
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         key: index,
         className: _diff >= 0 && _diff <= 2 ? 'rs-item' : 'rs-hidden'
       }, child);
-    })), React.createElement("div", {
+    })), /*#__PURE__*/React.createElement("div", {
       className: "slider-dots"
     }, Array(_size - 2).fill(1).map(function (value, index) {
-      return React.createElement("i", {
+      return /*#__PURE__*/React.createElement("i", {
         className: 'dot ' + (index == _currentIndex ? 'curr' : ''),
         key: index
       });
@@ -7727,13 +7724,13 @@ module.exports = React.createClass({
     }
   },
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: "zr-timer"
-    }, !!this.state.hour && React.createElement("span", {
+    }, !!this.state.hour && /*#__PURE__*/React.createElement("span", {
       className: "hour"
-    }, this.__fixValue(this.state.hour) + ':'), React.createElement("span", {
+    }, this.__fixValue(this.state.hour) + ':'), /*#__PURE__*/React.createElement("span", {
       className: "minute"
-    }, this.__fixValue(this.state.minute) + ':'), React.createElement("span", {
+    }, this.__fixValue(this.state.minute) + ':'), /*#__PURE__*/React.createElement("span", {
       className: "second"
     }, this.__fixValue(this.state.second)));
   }
@@ -7758,7 +7755,7 @@ var React = __webpack_require__(0);
 module.exports = React.createClass({
   displayName: 'Title',
   render: function render() {
-    return React.createElement("div", _extends({
+    return /*#__PURE__*/React.createElement("div", _extends({
       className: zn.react.classname("zr-title", this.props.className, this.props.type)
     }, this.props.attrs), this.props.value);
   }
@@ -7855,18 +7852,18 @@ module.exports = React.createClass({
   __inputRender: function __inputRender(item, index) {
     var _this = this;
 
-    return React.createElement("li", {
+    return /*#__PURE__*/React.createElement("li", {
       key: index
-    }, React.createElement("a", {
+    }, /*#__PURE__*/React.createElement("a", {
       className: "input choose-file"
-    }, React.createElement("i", {
+    }, /*#__PURE__*/React.createElement("i", {
       className: "fa fa-file"
-    }), React.createElement("i", {
+    }), /*#__PURE__*/React.createElement("i", {
       className: "cancle fa fa-times",
       onClick: function onClick() {
         return _this.__onDeleteFile(item, index);
       }
-    }), React.createElement("span", null, this.state.placeholder), React.createElement("input", {
+    }), /*#__PURE__*/React.createElement("span", null, this.state.placeholder), /*#__PURE__*/React.createElement("input", {
       className: "input",
       type: "file",
       name: this.props.name,
@@ -7876,12 +7873,12 @@ module.exports = React.createClass({
   __fileRender: function __fileRender(item, index) {
     var _this2 = this;
 
-    return React.createElement("li", {
+    return /*#__PURE__*/React.createElement("li", {
       className: "file",
       key: index
-    }, React.createElement("img", {
+    }, /*#__PURE__*/React.createElement("img", {
       src: item
-    }), React.createElement("i", {
+    }), /*#__PURE__*/React.createElement("i", {
       className: "cancle fa fa-times",
       onClick: function onClick() {
         return _this2.__onDeleteFile(item, index);
@@ -7897,40 +7894,40 @@ module.exports = React.createClass({
 
     _hiddens['FORWORD_URL'] = window.location.origin + window.location.pathname + '_black.html'; //{this.state.uploading && <i className="cancle fa fa-times" onClick={this.__onUploadCancle} />}
 
-    return React.createElement("form", {
+    return /*#__PURE__*/React.createElement("form", {
       className: "zr-uploader",
       method: "POST",
       encType: "multipart/form-data",
       target: this._target,
       action: Store.fixURL(this.props.action || ''),
       style: this.props.style
-    }, React.createElement("iframe", {
+    }, /*#__PURE__*/React.createElement("iframe", {
       onLoad: this.__onIFrameLoad,
       className: "uploader-target",
       name: this._target
-    }), React.createElement("div", {
+    }), /*#__PURE__*/React.createElement("div", {
       className: "input choose-file"
-    }, React.createElement("i", {
+    }, /*#__PURE__*/React.createElement("i", {
       className: "icon fa fa-upload " + (this.state.uploading ? 'uploading' : '')
-    }),  false && false, React.createElement("span", {
+    }),  false && /*#__PURE__*/false, /*#__PURE__*/React.createElement("span", {
       className: "label"
-    }, this.state.placeholder), this.state.previewURL && React.createElement("img", {
+    }, this.state.placeholder), this.state.previewURL && /*#__PURE__*/React.createElement("img", {
       className: "preview",
       src: this.state.previewURL
-    }), React.createElement("input", {
+    }), /*#__PURE__*/React.createElement("input", {
       className: "input",
       type: "file",
       name: this.props.name || 'upload_file_' + new Date().getTime(),
       onChange: this.__onInputChange,
       onClick: this.__onInputClick
     })), Object.keys(_hiddens).map(function (hidden, index) {
-      return React.createElement("input", {
+      return /*#__PURE__*/React.createElement("input", {
         key: 'hidden_' + index,
         type: "hidden",
         name: hidden,
         value: _hiddens[hidden]
       });
-    }), React.createElement("ul", {
+    }), /*#__PURE__*/React.createElement("ul", {
       className: "files"
     }, this.state.files.map(this.__fileRender)));
   }
@@ -7958,11 +7955,11 @@ module.exports = React.createClass({
     return {};
   },
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname("zr-watcher", this.props.className)
-    }, React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "frame-face"
-    }), React.createElement("ul", null, new Array(48).map(function () {})));
+    }), /*#__PURE__*/React.createElement("ul", null, new Array(48).map(function () {})));
   }
 });
 
@@ -8008,7 +8005,7 @@ module.exports = React.createClass({
     dom.addEventListener("webkitAnimationEnd", this.__onAnimationEnd, false);
   },
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname("zr-web-speech", this.props.className)
     }, this.props.children);
   }
@@ -8102,12 +8099,12 @@ var CascaderItem = React.createClass({
     });
   },
   renderIcon: function renderIcon() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: "seps",
       style: {
         width: (this.props.parent.props.sep + 1) * 16
       }
-    }, this.__isTreeRow() && React.createElement("i", {
+    }, this.__isTreeRow() && /*#__PURE__*/React.createElement("i", {
       className: 'icon fa ' + (!!this.state.active ? 'fa-caret-down' : 'fa-caret-right'),
       onClick: this.__onIconClick
     }));
@@ -8156,9 +8153,9 @@ var CascaderItem = React.createClass({
     }
 
     if (this.props.parent.props.enableCheckbox) {
-      _content = React.createElement("div", {
+      _content = /*#__PURE__*/React.createElement("div", {
         className: "content"
-      }, React.createElement(Checkbox, {
+      }, /*#__PURE__*/React.createElement(Checkbox, {
         checked: this.props.checked,
         disabled: this.props.parent.props.disabled,
         onChange: function onChange(event, value) {
@@ -8173,7 +8170,7 @@ var CascaderItem = React.createClass({
     if (this.__isTreeRow() && this.state.active) {
       var _sep = this.props.parent.props.sep;
       _sep++;
-      return React.createElement(TreeListView, _extends({}, this.props.parent.props, {
+      return /*#__PURE__*/React.createElement(TreeListView, _extends({}, this.props.parent.props, {
         checked: this.props.parent.props.cascade ? this.state.checked : undefined,
         parentTreeMenu: this.props.parent,
         sep: _sep,
@@ -8183,9 +8180,9 @@ var CascaderItem = React.createClass({
     }
   },
   render: function render() {
-    return React.createElement(RTItem, {
+    return /*#__PURE__*/React.createElement(RTItem, {
       className: "zr-tree-list-view-item " + this.props.className
-    }, React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "item-row-title",
       "data-selected": this.state.selected,
       onClick: this.__onClick
@@ -8278,7 +8275,7 @@ var TreeListView = React.createClass({
         _checked = this.state.value.indexOf(',' + _itemValue) != -1;
       }
 
-      _content = React.createElement(TreeListViewItem, {
+      _content = /*#__PURE__*/React.createElement(TreeListViewItem, {
         key: index,
         checked: _checked,
         parent: this,
@@ -8294,7 +8291,7 @@ var TreeListView = React.createClass({
     return this.props.data.refresh(), this;
   },
   render: function render() {
-    return React.createElement(RTList, _extends({}, this.props, {
+    return /*#__PURE__*/React.createElement(RTList, _extends({}, this.props, {
       className: 'zr-tree-list-view ' + this.props.className,
       onClick: null,
       itemRender: this.__itemRender,
@@ -8391,12 +8388,12 @@ module.exports = React.createClass({
       pageIndex: this.state.current,
       pageSize: this.props.pageSize
     });
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname("zr-pager-view", this.props.className),
       "data-fixed": this.props.dataFixed
-    }, React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "content-view"
-    }, React.createElement(View, _extends({
+    }, /*#__PURE__*/React.createElement(View, _extends({
       showLoading: true
     }, this.props, {
       onFilter: function onFilter() {
@@ -8407,13 +8404,13 @@ module.exports = React.createClass({
       className: this.props.viewClassName,
       dataHandler: this.__dataHandler,
       ref: "view"
-    }))), React.createElement("div", {
+    }))), /*#__PURE__*/React.createElement("div", {
       className: "action-view"
-    }, React.createElement(zn.react.Icons, {
+    }, /*#__PURE__*/React.createElement(zn.react.Icons, {
       className: "ios",
       items: this.props.toolbarItems,
       onClick: this.props.onToolbarClick
-    }), React.createElement(Pager, {
+    }), /*#__PURE__*/React.createElement(Pager, {
       total: this.state.total,
       count: this.state.count,
       current: this.state.current,
@@ -8555,17 +8552,17 @@ module.exports = React.createClass({
     }
 
     if (!_view) {
-      _view = React.createElement("span", null, item.title);
+      _view = /*#__PURE__*/React.createElement("span", null, item.title);
     }
 
-    return React.createElement("li", {
+    return /*#__PURE__*/React.createElement("li", {
       className: "data-list-item",
       key: index
     }, _view);
   },
   __renderData: function __renderData() {
     if (this.state.data) {
-      return React.createElement("ul", {
+      return /*#__PURE__*/React.createElement("ul", {
         className: "data-list"
       }, !!this.state.data.map && this.state.data.map(this.__onItemRender));
     } else {
@@ -8573,13 +8570,13 @@ module.exports = React.createClass({
     }
   },
   __renderLoading: function __renderLoading() {
-    return React.createElement(zn.react.DataLoader, {
+    return /*#__PURE__*/React.createElement(zn.react.DataLoader, {
       loader: "timer",
       content: "\u52A0\u8F7D\u6570\u636E\u4E2D..."
     });
   },
   __renderNoData: function __renderNoData() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: "zr-no-data"
     }, "\u6682\u65E0\u6570\u636E");
   },
@@ -8613,30 +8610,30 @@ module.exports = React.createClass({
     var _this = this;
 
     if (this.state.loadingMore) {
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: "footer"
-      }, React.createElement("i", {
+      }, /*#__PURE__*/React.createElement("i", {
         className: "fa fa-spinner zr-self-loading"
-      }), React.createElement("span", null, "\u6B63\u5728\u52A0\u8F7D\u4E2D..."));
+      }), /*#__PURE__*/React.createElement("span", null, "\u6B63\u5728\u52A0\u8F7D\u4E2D..."));
     }
 
     if (this.state.data && this.state.data.length) {
       if (this.state.current < this.state.total) {
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           onClick: function onClick() {
             return _this.loadingMore();
           },
           className: "data-footer"
         }, "\u70B9\u51FB\u52A0\u8F7D\u66F4\u591A \u5171 (", this.state.current, "/", this.state.total, ") \u9875 ", this.state.count, " \u6761");
       } else {
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           className: "data-footer"
         }, "\u5171 (", this.state.current, "/", this.state.total, ") \u9875 ", this.state.count, " \u6761");
       }
     }
   },
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: "zr-paging-list " + this.props.className
     }, this.__render(), this.__renderFooter());
   }
@@ -8776,17 +8773,17 @@ module.exports = React.createClass({
     }
 
     if (!_view) {
-      _view = React.createElement("span", null, item.title);
+      _view = /*#__PURE__*/React.createElement("span", null, item.title);
     }
 
-    return React.createElement("li", {
+    return /*#__PURE__*/React.createElement("li", {
       className: "data-list-item",
       key: index
     }, _view);
   },
   __renderData: function __renderData() {
     if (this.state.data) {
-      return React.createElement("ul", {
+      return /*#__PURE__*/React.createElement("ul", {
         className: "data-list"
       }, !!this.state.data.map && this.state.data.map(this.__onItemRender));
     } else {
@@ -8794,13 +8791,13 @@ module.exports = React.createClass({
     }
   },
   __renderLoading: function __renderLoading() {
-    return React.createElement(zn.react.DataLoader, {
+    return /*#__PURE__*/React.createElement(zn.react.DataLoader, {
       loader: "timer",
       content: "\u52A0\u8F7D\u6570\u636E\u4E2D..."
     });
   },
   __renderNoData: function __renderNoData() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: "zr-no-data"
     }, "\u6682\u65E0\u6570\u636E");
   },
@@ -8834,33 +8831,33 @@ module.exports = React.createClass({
     var _this = this;
 
     if (this.state.loadingMore) {
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: "footer"
-      }, React.createElement("i", {
+      }, /*#__PURE__*/React.createElement("i", {
         className: "fa fa-spinner zr-self-loading"
-      }), React.createElement("span", null, "\u52A0\u8F7D\u4E2D..."));
+      }), /*#__PURE__*/React.createElement("span", null, "\u52A0\u8F7D\u4E2D..."));
     }
 
     if (this.state.data && this.state.data.length) {
       if (this.state.current < this.state.total) {
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           onClick: function onClick() {
             return _this.loadingMore();
           },
           className: "footer"
         }, "\u70B9\u51FB\u52A0\u8F7D\u66F4\u591A \u5F53\u524D (", this.state.current, "/", this.state.total, ") \u9875 ", this.state.count, " \u6761");
       } else {
-        return React.createElement("div", {
+        return /*#__PURE__*/React.createElement("div", {
           className: "footer"
         }, "\u5171 (", this.state.current, "/", this.state.total, ") \u9875 ", this.state.count, " \u6761");
       }
     }
   },
   render: function render() {
-    return React.createElement(DownPuller, {
+    return /*#__PURE__*/React.createElement(DownPuller, {
       ref: "owner",
       onDownPullEnd: this.__onDownPullEnd
-    }, React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "zr-pull-refresh-list " + this.props.className
     }, this.__render(), this.__renderFooter()));
   }
@@ -8999,13 +8996,13 @@ module.exports = React.createClass({
   __itemRender: function __itemRender(item, index, rtlist) {
     var _this = this;
 
-    var _content = React.createElement("span", null, item[this.props.textKey]);
+    var _content = /*#__PURE__*/React.createElement("span", null, item[this.props.textKey]);
 
     if (this.props.itemRender) {
       _content = this.props.itemRender(item, index, this);
     }
 
-    return React.createElement(RTItem, _extends({
+    return /*#__PURE__*/React.createElement(RTItem, _extends({
       className: this.props.itemClassName,
       disabled: this.props.disabled,
       "float": this.props["float"]
@@ -9025,7 +9022,7 @@ module.exports = React.createClass({
     }, callback);
   },
   render: function render() {
-    return React.createElement(RTList, _extends({}, this.props, {
+    return /*#__PURE__*/React.createElement(RTList, _extends({}, this.props, {
       className: 'zr-list-view ' + (this.props.noborder ? 'noborder' : '') + ' ' + this.props.className,
       itemRender: this.__itemRender
     }));
@@ -9149,26 +9146,26 @@ var TreeColumn = React.createClass({
 
     var _hasChildren = this.__hasChildren();
 
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname("zr-tree-column", this.props.className, this.state.selected ? 'column-selected' : '')
-    }, React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "inner-content",
       onClick: this.__onClick
-    }, React.createElement("span", {
+    }, /*#__PURE__*/React.createElement("span", {
       className: "tabs",
       style: {
         width: this.props.depth * 16
       }
-    }, !!_hasChildren && React.createElement("i", {
+    }, !!_hasChildren && /*#__PURE__*/React.createElement("i", {
       onClick: this.__onIconClick,
       className: "icon fa " + this.__getIconClassName()
-    })), this.props.parent.props.checkboxEnabled && React.createElement(Checkbox, {
+    })), this.props.parent.props.checkboxEnabled && /*#__PURE__*/React.createElement(Checkbox, {
       checked: this.props.checked,
       disabled: this.props.parent.props.disabled,
       onChange: function onChange(event, value) {
         return _this.__onCheckboxChange(value);
       }
-    }), this.__renderContent()), !!_hasChildren && React.createElement(Tree, _extends({}, this.props.parent.props, this.props, {
+    }), this.__renderContent()), !!_hasChildren && /*#__PURE__*/React.createElement(Tree, _extends({}, this.props.parent.props, this.props, {
       active: this.state.active,
       data: this.state.data
     })));
@@ -9272,7 +9269,7 @@ var Tree = React.createClass({
         _selected = this.props.value === _value;
       }
 
-      _content = React.createElement(TreeColumn, {
+      _content = /*#__PURE__*/React.createElement(TreeColumn, {
         parent: this,
         key: index,
         depth: this.props.depth + 1,
@@ -9290,7 +9287,7 @@ var Tree = React.createClass({
     return this.props.data.refresh && this.props.data.refresh(), this;
   },
   render: function render() {
-    return React.createElement(RTList, _extends({}, this.props, {
+    return /*#__PURE__*/React.createElement(RTList, _extends({}, this.props, {
       className: zn.react.classname("zr-tree", this.props.className),
       itemRender: this.__itemRender,
       onLoaded: this.__onLoaded
@@ -9361,12 +9358,12 @@ var TreeListViewItem = React.createClass({
     });
   },
   renderIcon: function renderIcon() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: "seps",
       style: {
         width: (this.props.parent.props.sep + 1) * 16
       }
-    }, this.__isTreeRow() && React.createElement("i", {
+    }, this.__isTreeRow() && /*#__PURE__*/React.createElement("i", {
       className: 'icon fa ' + (!!this.state.active ? 'fa-caret-down' : 'fa-caret-right'),
       onClick: this.__onIconClick
     }));
@@ -9415,9 +9412,9 @@ var TreeListViewItem = React.createClass({
     }
 
     if (this.props.parent.props.enableCheckbox) {
-      _content = React.createElement("div", {
+      _content = /*#__PURE__*/React.createElement("div", {
         className: "content"
-      }, React.createElement(Checkbox, {
+      }, /*#__PURE__*/React.createElement(Checkbox, {
         checked: this.props.checked,
         disabled: this.props.parent.props.disabled,
         onChange: function onChange(event, value) {
@@ -9432,7 +9429,7 @@ var TreeListViewItem = React.createClass({
     if (this.__isTreeRow() && this.state.active) {
       var _sep = this.props.parent.props.sep;
       _sep++;
-      return React.createElement(TreeListView, _extends({}, this.props.parent.props, {
+      return /*#__PURE__*/React.createElement(TreeListView, _extends({}, this.props.parent.props, {
         checked: this.props.parent.props.cascade ? this.state.checked : undefined,
         parentTreeMenu: this.props.parent,
         sep: _sep,
@@ -9442,9 +9439,9 @@ var TreeListViewItem = React.createClass({
     }
   },
   render: function render() {
-    return React.createElement(RTItem, {
+    return /*#__PURE__*/React.createElement(RTItem, {
       className: "zr-tree-list-view-item " + this.props.className
-    }, React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "item-row-title",
       "data-selected": this.state.selected,
       onClick: this.__onClick
@@ -9537,7 +9534,7 @@ var TreeListView = React.createClass({
         _checked = this.state.value.indexOf(',' + _itemValue) != -1;
       }
 
-      _content = React.createElement(TreeListViewItem, {
+      _content = /*#__PURE__*/React.createElement(TreeListViewItem, {
         key: index,
         checked: _checked,
         parent: this,
@@ -9553,7 +9550,7 @@ var TreeListView = React.createClass({
     return this.props.data.refresh(), this;
   },
   render: function render() {
-    return React.createElement(RTList, _extends({}, this.props, {
+    return /*#__PURE__*/React.createElement(RTList, _extends({}, this.props, {
       className: 'zr-tree-list-view ' + this.props.className,
       onClick: null,
       itemRender: this.__itemRender,
@@ -9697,7 +9694,7 @@ module.exports = React.createClass({
       _value = this.__filterData(_value);
 
       if (_value.length) {
-        zn.popover.render(React.createElement(ListView, _extends({}, this.props, {
+        zn.popover.render( /*#__PURE__*/React.createElement(ListView, _extends({}, this.props, {
           onClick: this.__onListItemClick,
           data: _value
         })), zn.extend({
@@ -9754,17 +9751,17 @@ module.exports = React.createClass({
     });
   },
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname("zr-auto-complete", this.props.className),
       style: this.props.style
-    }, React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "status"
-    }, this.state.loading && React.createElement("i", {
+    }, this.state.loading && /*#__PURE__*/React.createElement("i", {
       className: "fa fa-spinner zr-self-loading"
-    }), this.state.text && React.createElement("i", {
+    }), this.state.text && /*#__PURE__*/React.createElement("i", {
       className: "fa fa-times-circle",
       onClick: this.__onClearClick
-    })), React.createElement("input", {
+    })), /*#__PURE__*/React.createElement("input", {
       type: "text",
       value: this.state.text,
       name: this.props.name,
@@ -9829,7 +9826,7 @@ module.exports = React.createClass({
   __itemRender: function __itemRender(item, index, rtlist) {
     //console.log('Value: ', item[this.props.valueKey]);
     //console.log(this.state.value);
-    return React.createElement(Checkbox, _extends({
+    return /*#__PURE__*/React.createElement(Checkbox, _extends({
       disabled: this.props.disabled,
       "float": this.props["float"]
     }, item, {
@@ -9848,7 +9845,7 @@ module.exports = React.createClass({
     }.bind(this));
   },
   render: function render() {
-    return React.createElement(RTList, _extends({}, this.props, {
+    return /*#__PURE__*/React.createElement(RTList, _extends({}, this.props, {
       className: 'zr-checkbox-group ' + this.props.className,
       itemRender: this.__itemRender
     }));
@@ -9905,7 +9902,7 @@ module.exports = React.createClass({
 
     var _props = this.props.props || this.props;
 
-    return React.createElement(this.props.selector, _extends({}, _props, {
+    return /*#__PURE__*/React.createElement(this.props.selector, _extends({}, _props, {
       className: zn.react.classname("zr-dropdown-selector-selector-view", _props.selectorClassName || _props.className),
       style: _props.selectorStyle || _props.style,
       value: this.state.value,
@@ -9913,16 +9910,16 @@ module.exports = React.createClass({
     }));
   },
   render: function render() {
-    return React.createElement(Dropdown, _extends({}, this.props, {
+    return /*#__PURE__*/React.createElement(Dropdown, _extends({}, this.props, {
       popoverRender: this.__popoverRender,
       popoverWidth: '100%',
       popoverHeight: 200,
       className: zn.react.classname("zr-dropdown-selector", this.props.className)
-    }), React.createElement("div", {
+    }), /*#__PURE__*/React.createElement("div", {
       className: "zr-dropdown-selector-text-view"
-    }, React.createElement("span", {
+    }, /*#__PURE__*/React.createElement("span", {
       className: "text"
-    }, this.__textRender()), React.createElement("i", {
+    }, this.__textRender()), /*#__PURE__*/React.createElement("i", {
       className: "trigger fa fa-angle-down"
     })));
   }
@@ -9977,9 +9974,9 @@ module.exports = React.createClass({
   render: function render() {
     var _data = (this.props.value || '').split(' ');
 
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: "zr-date-time " + this.props.className
-    }, React.createElement("input", {
+    }, /*#__PURE__*/React.createElement("input", {
       type: "date",
       defaultValue: _data[0],
       ref: "date",
@@ -9987,7 +9984,7 @@ module.exports = React.createClass({
       name: this.props.name + '_date',
       required: this.props.required,
       onChange: this.__onChange
-    }), React.createElement("input", {
+    }), /*#__PURE__*/React.createElement("input", {
       type: "time",
       defaultValue: _data[1],
       ref: "time",
@@ -10028,10 +10025,10 @@ module.exports = React.createClass({
     return this;
   },
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname('zr-form-title', this.props.className),
       style: this.props.style
-    }, React.createElement("span", {
+    }, /*#__PURE__*/React.createElement("span", {
       className: "zf-title"
     }, this.props.title));
   }
@@ -10077,20 +10074,20 @@ var RadioItem = React.createClass({
     var _content = this.props.contentRender && this.props.contentRender(this);
 
     if (!_content) {
-      _content = React.createElement("span", null, this.props.text || '');
+      _content = /*#__PURE__*/React.createElement("span", null, this.props.text || '');
     }
 
     return _content;
   },
   render: function render() {
-    return React.createElement(RTItem, _extends({}, this.props, {
+    return /*#__PURE__*/React.createElement(RTItem, _extends({}, this.props, {
       className: 'zr-radio-item ' + this.props.className
-    }), React.createElement("input", {
+    }), /*#__PURE__*/React.createElement("input", {
       type: "radio",
       name: this.props.name,
       value: this.props.value,
       defaultChecked: this.props.checked
-    }), React.createElement("i", {
+    }), /*#__PURE__*/React.createElement("i", {
       className: "icon fa fa-circle"
     }), this.__renderContent());
   }
@@ -10117,7 +10114,7 @@ var Radio = React.createClass({
     }.bind(this));
   },
   __itemRender: function __itemRender(item, index, rtlist) {
-    return React.createElement(RadioItem, _extends({
+    return /*#__PURE__*/React.createElement(RadioItem, _extends({
       disabled: this.props.disabled,
       "float": this.props["float"]
     }, item, {
@@ -10137,7 +10134,7 @@ var Radio = React.createClass({
     }.bind(this));
   },
   render: function render() {
-    return React.createElement(RTList, _extends({}, this.props, {
+    return /*#__PURE__*/React.createElement(RTList, _extends({}, this.props, {
       className: 'zr-radio ' + this.props.className,
       itemRender: this.__itemRender
     }));
@@ -10182,7 +10179,7 @@ module.exports = React.createClass({
     }
   },
   render: function render() {
-    return React.createElement("textarea", {
+    return /*#__PURE__*/React.createElement("textarea", {
       className: zn.react.classname("zr-rich-editor", this.props.className),
       style: this.props.style,
       name: this.props.name
@@ -10248,7 +10245,7 @@ module.exports = React.createClass({
       return zn.toast.error('selector is null.'), false;
     }
 
-    return React.createElement(this.props.selector, _extends({}, this.props, {
+    return /*#__PURE__*/React.createElement(this.props.selector, _extends({}, this.props, {
       style: this.props.selectorStyle,
       value: this.state.value,
       onChange: this.__onSelectorChange
@@ -10257,21 +10254,21 @@ module.exports = React.createClass({
   render: function render() {
     var _this = this;
 
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname("zr-rich-selector", this.props.className),
       "data-active": this.state.active
-    }, React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", {
       className: "display-view",
       onClick: function onClick() {
         return _this.setState({
           active: !_this.state.active
         });
       }
-    }, React.createElement("span", {
+    }, /*#__PURE__*/React.createElement("span", {
       className: "text"
-    }, this.__textRender()), React.createElement("i", {
+    }, this.__textRender()), /*#__PURE__*/React.createElement("i", {
       className: "trigger fa fa-angle-down"
-    })), React.createElement("div", {
+    })), /*#__PURE__*/React.createElement("div", {
       className: "rich-selector zr-arrow zr-arrow-color-white zr-arrow-placement-left zr-arrow-direction-top zn-animate-scale-up"
     }, this.__selectorRender()));
   }
@@ -10424,7 +10421,7 @@ module.exports = React.createClass({
     var _value = this.__parseExp(item, this.props.valueKey),
         _text = this.__parseExp(item, this.props.textKey);
 
-    return React.createElement("option", {
+    return /*#__PURE__*/React.createElement("option", {
       key: index,
       value: _value
     }, _text);
@@ -10474,7 +10471,7 @@ module.exports = React.createClass({
     });
   },
   render: function render() {
-    return React.createElement("select", {
+    return /*#__PURE__*/React.createElement("select", {
       className: zn.react.classname("zr-select", this.state.selected ? '' : 'no-selected'),
       style: this.props.style,
       name: this.props.name,
@@ -10483,7 +10480,7 @@ module.exports = React.createClass({
       value: this.state.value,
       onChange: this.__onSelectChange,
       onClick: this.__onSelectClick
-    }, React.createElement("option", {
+    }, /*#__PURE__*/React.createElement("option", {
       value: "",
       disabled: true
     }, this.props.placeholder), this.state.data && this.state.data.map && this.state.data.map(this.__itemRender));
@@ -10548,7 +10545,7 @@ module.exports = React.createClass({
     zn.popover.close('Menu:item.click');
   },
   __popoverRender: function __popoverRender() {
-    return React.createElement(SearchListView, _extends({}, this.props, {
+    return /*#__PURE__*/React.createElement(SearchListView, _extends({}, this.props, {
       style: this.props.listStyle,
       className: zn.react.classname("zr-list-view-popover", this.props.listClassName),
       emptyView: true,
@@ -10557,18 +10554,18 @@ module.exports = React.createClass({
     }));
   },
   render: function render() {
-    return React.createElement(Dropdown, _extends({}, this.props, {
+    return /*#__PURE__*/React.createElement(Dropdown, _extends({}, this.props, {
       popoverRender: this.__popoverRender,
       popoverWidth: "100%",
       className: zn.react.classname("zr-menu", this.props.className)
-    }), React.createElement("div", {
+    }), /*#__PURE__*/React.createElement("div", {
       className: "menu-view"
-    }, this.props.editable ? React.createElement("input", {
+    }, this.props.editable ? /*#__PURE__*/React.createElement("input", {
       value: this.state.value,
       onChange: this.__onInputChange
-    }) : React.createElement("span", {
+    }) : /*#__PURE__*/React.createElement("span", {
       className: "text"
-    }, this.__textRender()), React.createElement("i", {
+    }, this.__textRender()), /*#__PURE__*/React.createElement("i", {
       className: "trigger fa fa-angle-down"
     })));
   }
@@ -10630,11 +10627,11 @@ module.exports = React.createClass({
     }), this;
   },
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname('zr-multi-input', this.props.className),
       style: this.props.style
     }, (this.props.data || []).map(function (item, index) {
-      return React.createElement("input", {
+      return /*#__PURE__*/React.createElement("input", {
         ref: index,
         key: index,
         placeholder: item,
@@ -10703,18 +10700,18 @@ module.exports = React.createClass({
     return null;
   },
   render: function render() {
-    return React.createElement(Dropdown, _extends({}, this.props, {
+    return /*#__PURE__*/React.createElement(Dropdown, _extends({}, this.props, {
       popoverRender: this.__popoverRender,
       popoverWidth: "100%",
       className: zn.react.classname("zr-order-code", this.props.className)
-    }), React.createElement("div", {
+    }), /*#__PURE__*/React.createElement("div", {
       className: "code-view"
-    }, this.props.editable ? React.createElement("input", {
+    }, this.props.editable ? /*#__PURE__*/React.createElement("input", {
       value: this.state.value,
       onChange: this.__onInputChange
-    }) : React.createElement("span", {
+    }) : /*#__PURE__*/React.createElement("span", {
       className: "text"
-    }, this.__textRender()), React.createElement("i", {
+    }, this.__textRender()), /*#__PURE__*/React.createElement("i", {
       className: "trigger fa fa-angle-down"
     })));
   }
@@ -10980,7 +10977,7 @@ module.exports = React.createClass({
   },
   __renderItems: function __renderItems(items) {
     if (items && items.length) {
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: "form-items"
       }, items.map(function (item, index) {
         item.index = index;
@@ -10989,7 +10986,7 @@ module.exports = React.createClass({
           return this.state.hiddens[item.name] = item.value != null ? this.__parseItemValue(item.value) : null, null;
         }
 
-        return React.createElement(FormItem, _extends({
+        return /*#__PURE__*/React.createElement(FormItem, _extends({
           disabled: this.props.disabled,
           readonly: this.props.readonly,
           "float": this.props["float"],
@@ -11005,10 +11002,10 @@ module.exports = React.createClass({
   },
   __renderGroups: function __renderGroups(groups) {
     if (groups && groups.length) {
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: "form-groups"
       }, groups.map(function (group, index) {
-        return React.createElement(zn.react.Group, group, this.__renderItems(group.items));
+        return /*#__PURE__*/React.createElement(zn.react.Group, group, this.__renderItems(group.items));
       }.bind(this)));
     }
   },
@@ -11022,7 +11019,7 @@ module.exports = React.createClass({
         };
       }
 
-      return React.createElement(ButtonGroup, _extends({}, _btns, {
+      return /*#__PURE__*/React.createElement(ButtonGroup, _extends({}, _btns, {
         className: zn.react.classname("form-buttons flex", this.props.buttonsClassName),
         onClick: this.__onBtnsClick
       }));
@@ -11031,13 +11028,13 @@ module.exports = React.createClass({
   render: function render() {
     if (this.props.sync) {
       var _hiddens = this.state.hiddens;
-      return React.createElement("form", {
+      return /*#__PURE__*/React.createElement("form", {
         className: zn.react.classname('zr-form', this.props.className),
         style: this.props.style,
         encType: "multipart/form-data",
         method: "POST"
       }, Object.keys(_hiddens).map(function (hidden, index) {
-        return React.createElement("input", {
+        return /*#__PURE__*/React.createElement("input", {
           key: 'hidden_' + hidden,
           type: "hidden",
           name: hidden,
@@ -11045,7 +11042,7 @@ module.exports = React.createClass({
         });
       }), this.__renderItems(this.props.items), this.__renderGroups(this.props.groups), this.__renderButtons());
     } else {
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         className: zn.react.classname('zr-form', this.props.className),
         style: this.props.style
       }, this.__renderItems(this.props.items), this.__renderGroups(this.props.groups), this.__renderButtons());
@@ -11135,7 +11132,7 @@ module.exports = React.createClass({
     this.props.onKeyUp && this.props.onKeyUp(event, this);
   },
   render: function render() {
-    return React.createElement("input", _extends({
+    return /*#__PURE__*/React.createElement("input", _extends({
       className: zn.react.classname('zr-input', this.props.className),
       required: this.props.required,
       style: this.props.style
@@ -11183,7 +11180,7 @@ module.exports = React.createClass({
     }), this;
   },
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname('zr-label', this.props.className),
       style: this.props.style,
       dangerouslySetInnerHTML: {
@@ -11232,7 +11229,7 @@ module.exports = React.createClass({
     this.props.onChange && this.props.onChange(event.target.value, this, event);
   },
   render: function render() {
-    return React.createElement("textarea", _extends({
+    return /*#__PURE__*/React.createElement("textarea", _extends({
       className: "zr-textarea " + this.props.className,
       required: this.props.required,
       placeholder: this.props.placeholder
@@ -11286,10 +11283,10 @@ module.exports = React.createClass({
   render: function render() {
     var _uuid = 'c_toggle_switch_input_' + new Date().getTime();
 
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: "zr-toggle-switch " + this.props.className + ' ' + (this.props.disabled ? 'disabled' : ''),
       "data-ts-color": this.props.color || 'red'
-    }, React.createElement("input", {
+    }, /*#__PURE__*/React.createElement("input", {
       ref: "input",
       id: _uuid,
       disabled: this.props.disabled,
@@ -11297,7 +11294,7 @@ module.exports = React.createClass({
       defaultChecked: this.props.value,
       onClick: this.__onInputClick,
       onChange: this.__onChange
-    }), React.createElement("label", {
+    }), /*#__PURE__*/React.createElement("label", {
       htmlFor: _uuid,
       className: "ts-helper"
     }));

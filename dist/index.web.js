@@ -328,12 +328,12 @@ module.exports = React.createClass({
     	 </svg>
     );
     */
-    return React.createElement("svg", {
+    return /*#__PURE__*/React.createElement("svg", {
       className: "zr-graph-link",
       version: "1.1",
       xmlns: "http://www.w3.org/2000/svg",
       style: this.state.svgStyle
-    }, React.createElement("defs", null, React.createElement("marker", {
+    }, /*#__PURE__*/React.createElement("defs", null, /*#__PURE__*/React.createElement("marker", {
       id: "Triangle",
       markerWidth: "20",
       markerHeight: "20",
@@ -342,10 +342,10 @@ module.exports = React.createClass({
       orient: "auto",
       markerUnits: "strokeWidth",
       viewBox: "0 0 50 50"
-    }, React.createElement("path", {
+    }, /*#__PURE__*/React.createElement("path", {
       d: "M0,0 L0,6 L9,3 z",
       fill: "#f00"
-    }))), React.createElement("line", {
+    }))), /*#__PURE__*/React.createElement("line", {
       className: "line",
       markerStart: "url(#Triangle)",
       x1: this.state.x1,
@@ -543,7 +543,7 @@ module.exports = React.createClass({
     return _temps;
   },
   __listItemRender: function __listItemRender(item, index) {
-    return React.createElement("span", null, React.createElement("i", {
+    return /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("i", {
       style: {
         width: 16,
         height: 16
@@ -552,7 +552,7 @@ module.exports = React.createClass({
     }), item.text);
   },
   __popoverRender: function __popoverRender() {
-    return React.createElement(zn.react.ListView, {
+    return /*#__PURE__*/React.createElement(zn.react.ListView, {
       itemRender: this.__listItemRender,
       data: this.__getData(),
       value: this.state.opt,
@@ -577,15 +577,15 @@ module.exports = React.createClass({
       _input = _type;
     }
 
-    return React.createElement(zn.react.RTFlexItem, _extends({}, this.props, {
+    return /*#__PURE__*/React.createElement(zn.react.RTFlexItem, _extends({}, this.props, {
       className: 'zr-filter-item ' + this.props.className + ' ' + this.state.status + ' ' + (this.props.fullWidth ? 'full' : '')
-    }), React.createElement(zn.react.Dropdown, {
+    }), /*#__PURE__*/React.createElement(zn.react.Dropdown, {
       className: "filter-dropdown",
       popoverRender: this.__popoverRender,
       popoverWidth: this.props.popoverWidth
-    }, React.createElement("i", {
+    }, /*#__PURE__*/React.createElement("i", {
       className: "filter-icon fa " + this.state.optIcon
-    })), _input && React.createElement(_input, _extends({
+    })), _input && /*#__PURE__*/React.createElement(_input, _extends({
       ref: "input"
     }, this.props, {
       disabled: this.state.disabled,
@@ -724,9 +724,9 @@ var WebRouter = React.createClass({
     this._handler.fireHashChange();
   },
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname("zr-url-router", this.props.className)
-    }, this.state.view && React.createElement(this.state.view, this.state.argv));
+    }, this.state.view && /*#__PURE__*/React.createElement(this.state.view, this.state.argv));
   }
 });
 module.exports = WebRouter;
@@ -804,12 +804,12 @@ module.exports = React.createClass({
   },
   __renderEditer: function __renderEditer() {
     if (this.props.editable) {
-      return React.createElement("div", null, React.createElement(zn.react.FormItem, {
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(zn.react.FormItem, {
         ref: "model",
         value: this.props.model,
         title: "Model:",
         type: "Input"
-      }), React.createElement(zn.react.FormItem, {
+      }), /*#__PURE__*/React.createElement(zn.react.FormItem, {
         ref: "fields",
         value: this.props.fields,
         title: "Fields:",
@@ -830,7 +830,7 @@ module.exports = React.createClass({
         title: value
       };
     });
-    return React.createElement(zn.react.Table, {
+    return /*#__PURE__*/React.createElement(zn.react.Table, {
       items: _items,
       showHeader: true,
       data: _data
@@ -838,12 +838,12 @@ module.exports = React.createClass({
   },
   __renderTables: function __renderTables() {
     if (this.state.data.length) {
-      return React.createElement("ul", {
+      return /*#__PURE__*/React.createElement("ul", {
         className: "xlsx-importer-list"
       }, this.state.data.map(function (item, index) {
-        return React.createElement("li", {
+        return /*#__PURE__*/React.createElement("li", {
           key: index
-        }, React.createElement(zn.react.Card, {
+        }, /*#__PURE__*/React.createElement(zn.react.Card, {
           title: item.title
         }, this.__renderSheet(item)));
       }.bind(this)));
@@ -854,18 +854,18 @@ module.exports = React.createClass({
     this.props.onError && this.props.onError(msg);
   },
   render: function render() {
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: "zr-xlsx-importer"
-    }, React.createElement(zn.react.AjaxUploader, _extends({}, this.props, {
+    }, /*#__PURE__*/React.createElement(zn.react.AjaxUploader, _extends({}, this.props, {
       hiddens: this.state.hiddens,
       className: "xlsx-importer-uploader",
       onChange: this.__onChange,
       onError: this.__onError,
       onComplete: this.__onComplete,
       multipart: false
-    }), React.createElement("div", {
+    }), /*#__PURE__*/React.createElement("div", {
       className: "container"
-    }, React.createElement("i", {
+    }, /*#__PURE__*/React.createElement("i", {
       className: "fa fa-file-excel-o"
     }), this.state.value)), this.__renderEditer(), this.__renderTables());
   }
@@ -1113,13 +1113,13 @@ module.exports = React.createClass({
   },
   render: function render() {
     zn.debug('FlowCanvas data: ', this.state);
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: zn.react.classname("zr-graph-flow-canvas", this.props.className)
     }, (this.state.nodes || []).map(function (node, index) {
       var _this = this;
 
       node.id = node.id || zn.uuid();
-      return React.createElement(Node, _extends({}, node, {
+      return /*#__PURE__*/React.createElement(Node, _extends({}, node, {
         key: node.id,
         index: index,
         canvas: this,
@@ -1139,12 +1139,12 @@ module.exports = React.createClass({
       }));
     }.bind(this)), this.state.links.map(function (link, index) {
       link.id = link.id || zn.uuid();
-      return React.createElement(Link, _extends({}, link, {
+      return /*#__PURE__*/React.createElement(Link, _extends({}, link, {
         key: link.id,
         render: this.props.linkRender,
         onLinkDidMount: this.__onLinkDidMount
       }));
-    }.bind(this)), React.createElement(Link, {
+    }.bind(this)), /*#__PURE__*/React.createElement(Link, {
       ref: "temp"
     }));
   }
@@ -1256,11 +1256,11 @@ module.exports = React.createClass({
   },
   __tableHeaderRender: function __tableHeaderRender(item, index, columnSize) {
     if (index == 0) {
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         style: {
           textAlign: 'center'
         }
-      }, React.createElement(zn.react.Icon, {
+      }, /*#__PURE__*/React.createElement(zn.react.Icon, {
         tooltip: "Add Row(Insert Last Row)",
         icon: "fa-plus",
         onClick: this.__onRowAdd
@@ -1271,11 +1271,11 @@ module.exports = React.createClass({
     var _this = this;
 
     if (item.type == "action") {
-      return React.createElement("div", {
+      return /*#__PURE__*/React.createElement("div", {
         style: {
           textAlign: 'center'
         }
-      }, React.createElement(zn.react.Icon, {
+      }, /*#__PURE__*/React.createElement(zn.react.Icon, {
         tooltip: "Delete Row(Delete This Row)",
         icon: "fa-minus",
         onClick: function onClick() {
@@ -1285,7 +1285,7 @@ module.exports = React.createClass({
     }
   },
   render: function render() {
-    return React.createElement(zn.react.Table, _extends({
+    return /*#__PURE__*/React.createElement(zn.react.Table, _extends({
       ref: "dstable"
     }, this.props, {
       singleSelect: false,
@@ -1410,20 +1410,20 @@ module.exports = React.createClass({
     }
 
     this._columnSize = _items.length;
-    return React.createElement("table", {
+    return /*#__PURE__*/React.createElement("table", {
       style: this.props.style,
       className: "zr-table " + this.props.className,
       "data-fixed": this.props.fixed,
       cellPadding: "0",
       cellSpacing: "0"
-    }, React.createElement(TableColgroup, _extends({}, this.props, {
+    }, /*#__PURE__*/React.createElement(TableColgroup, _extends({}, this.props, {
       items: _items
-    })), this.props.showHeader && React.createElement(TableHeader, _extends({}, this.props, {
+    })), this.props.showHeader && /*#__PURE__*/React.createElement(TableHeader, _extends({}, this.props, {
       items: _items,
       columnSize: this._columnSize,
       onCheckBoxChange: this.__onHeaderCheckBoxChange,
       onFilter: this.__onFilter
-    })), React.createElement(TableBody, _extends({
+    })), /*#__PURE__*/React.createElement(TableBody, _extends({
       ref: "body"
     }, this.props, {
       items: _items,
@@ -1553,7 +1553,7 @@ module.exports = React.createClass({
         _key;
 
     if (node) {
-      _node = React.createElement(Node, node);
+      _node = /*#__PURE__*/React.createElement(Node, node);
       this._nodes[_node.state.uuid] = _node;
       React.render(_node, this._dom);
     }
@@ -1721,7 +1721,7 @@ module.exports = React.createClass({
   },
   __editableRender: function __editableRender() {
     if (this.props.editable) {
-      return React.createElement("i", {
+      return /*#__PURE__*/React.createElement("i", {
         className: "manual-connect",
         onMouseUp: this.__onConnectMouseUp
       });
@@ -1737,7 +1737,7 @@ module.exports = React.createClass({
   render: function render() {
     var _this = this;
 
-    return React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       ref: function ref(_ref) {
         return _this._dom = _ref;
       },
@@ -1791,17 +1791,17 @@ module.exports = React.createClass({
     if (!_content) {
       switch (item.type) {
         case 'checkbox':
-          _content = React.createElement(zn.react.Checkbox, _extends({}, item, {
+          _content = /*#__PURE__*/React.createElement(zn.react.Checkbox, _extends({}, item, {
             onChange: this.__onCheckBoxChange
           }));
           break;
 
         default:
-          _content = React.createElement("div", {
+          _content = /*#__PURE__*/React.createElement("div", {
             onClick: function onClick() {
               return _this.__onColClick(item, index);
             }
-          }, React.createElement("span", null, item.title || item.name), this.props.sort && React.createElement("i", {
+          }, /*#__PURE__*/React.createElement("span", null, item.title || item.name), this.props.sort && /*#__PURE__*/React.createElement("i", {
             className: "sort fa fa-arrows-v"
           }));
           break;
@@ -1809,7 +1809,7 @@ module.exports = React.createClass({
     } //width={(item.width?item.width:0)}
 
 
-    return React.createElement("th", {
+    return /*#__PURE__*/React.createElement("th", {
       key: index,
       className: 'text-align-' + (item.textAlign || 'left'),
       style: {
@@ -1818,9 +1818,9 @@ module.exports = React.createClass({
     }, _content);
   },
   render: function render() {
-    return React.createElement("thead", null, React.createElement("tr", {
+    return /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", {
       className: "table-row thead"
-    }, (this.props.items || []).map(this.__itemRender)), this.props.enableFilter && React.createElement(TableFilter, this.props));
+    }, (this.props.items || []).map(this.__itemRender)), this.props.enableFilter && /*#__PURE__*/React.createElement(TableFilter, this.props));
   }
 });
 
@@ -1905,14 +1905,14 @@ module.exports = React.createClass({
 
     switch (item.type) {
       case 'checkbox':
-        _content = React.createElement(zn.react.Icon, {
+        _content = /*#__PURE__*/React.createElement(zn.react.Icon, {
           icon: "fa-filter"
         });
         break;
 
       case 'action':
         item.textAlign = 'center';
-        _content = React.createElement(zn.react.Icon, {
+        _content = /*#__PURE__*/React.createElement(zn.react.Icon, {
           onClick: this.__onFilter,
           icon: "fa-search"
         });
@@ -1935,7 +1935,7 @@ module.exports = React.createClass({
             };
           }
 
-          _content = React.createElement(zn.react.FilterItem, _extends({
+          _content = /*#__PURE__*/React.createElement(zn.react.FilterItem, _extends({
             popoverWidth: 80,
             opts: ['like', '='],
             name: item.name,
@@ -1953,14 +1953,14 @@ module.exports = React.createClass({
         break;
     }
 
-    return React.createElement("td", {
+    return /*#__PURE__*/React.createElement("td", {
       key: index,
       className: 'text-align-' + (item.textAlign || 'left'),
       width: item.width ? item.width : 0
     }, _content);
   },
   render: function render() {
-    return React.createElement("tr", {
+    return /*#__PURE__*/React.createElement("tr", {
       className: "table-row editable filter"
     }, (this.props.items || []).map(this.__itemRender));
   }
@@ -1971,7 +1971,7 @@ module.exports = React.createClass({
 /***/ 35:
 /***/ (function(module, exports, __webpack_require__) {
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 var React = __webpack_require__(0);
 
@@ -2145,17 +2145,17 @@ var TableBody = React.createClass({
   },
   render: function render() {
     if (this.state.loading) {
-      return React.createElement("tbody", null, React.createElement("tr", {
+      return /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", {
         style: {
           position: 'relative',
           height: 180
         }
-      }, React.createElement("td", {
+      }, /*#__PURE__*/React.createElement("td", {
         style: {
           position: 'absolute',
           width: '100%'
         }
-      }, React.createElement(zn.react.DataLoader, {
+      }, /*#__PURE__*/React.createElement(zn.react.DataLoader, {
         style: {
           width: 100
         },
@@ -2165,7 +2165,7 @@ var TableBody = React.createClass({
     }
 
     this.state.values = [];
-    return React.createElement("tbody", {
+    return /*#__PURE__*/React.createElement("tbody", {
       style: this.props.tbodyStyle
     }, this.state.data && this.state.data.map && this.state.data.map(function (item, index) {
       var _this2 = this;
@@ -2178,7 +2178,7 @@ var TableBody = React.createClass({
 
       var _value = item[this.props.valueKey];
       this.state.values.push(_value);
-      return _typeof(item) === 'object' ? React.createElement(TableRow, {
+      return _typeof(item) === 'object' ? /*#__PURE__*/React.createElement(TableRow, {
         index: index,
         key: index + '_' + zn.uuid(),
         data: item,
@@ -2369,7 +2369,7 @@ module.exports = React.createClass({
             this.state.exps[item.name] = _type.substring(1, _type.length - 1);
           }
 
-          _content = React.createElement("span", {
+          _content = /*#__PURE__*/React.createElement("span", {
             style: {
               padding: '0px 5px'
             }
@@ -2377,9 +2377,9 @@ module.exports = React.createClass({
         } else {
           if (_type == 'checkbox') {
             _value = _value == undefined ? this.props.checked : _value;
-            _content = this.state.editable ? React.createElement(zn.react.Icon, {
+            _content = this.state.editable ? /*#__PURE__*/React.createElement(zn.react.Icon, {
               icon: "fa-edit"
-            }) : React.createElement(zn.react.Checkbox, {
+            }) : /*#__PURE__*/React.createElement(zn.react.Checkbox, {
               onChange: this.__onCheckBoxChange,
               checked: _value
             });
@@ -2402,11 +2402,11 @@ module.exports = React.createClass({
           item.attrs = JSON.parse(item.props);
         }
 
-        _content = React.createElement("span", null, _value);
+        _content = /*#__PURE__*/React.createElement("span", null, _value);
 
         if (this.state.editable) {
           if (_Input == zn.react.Input) {
-            _content = React.createElement(_Input, _extends({}, item, {
+            _content = /*#__PURE__*/React.createElement(_Input, _extends({}, item, {
               value: _value,
               text: _value,
               onBlur: function onBlur(value, input, event) {
@@ -2414,7 +2414,7 @@ module.exports = React.createClass({
               }
             }));
           } else {
-            _content = React.createElement(_Input, _extends({}, item, {
+            _content = /*#__PURE__*/React.createElement(_Input, _extends({}, item, {
               value: _value,
               text: _value,
               onChange: function onChange(value, input, event) {
@@ -2426,14 +2426,14 @@ module.exports = React.createClass({
       }
     }
 
-    return React.createElement("td", {
+    return /*#__PURE__*/React.createElement("td", {
       key: index,
       title: _value,
       className: 'text-align-' + (item.textAlign || 'left')
     }, _content);
   },
   render: function render() {
-    return React.createElement("tr", {
+    return /*#__PURE__*/React.createElement("tr", {
       style: this.props.style,
       className: "table-row " + (this.state.editable ? 'editable' : '') + " " + (this.state.selected ? 'selected' : ''),
       onClick: this.__onRowClick
@@ -2451,8 +2451,8 @@ var React = __webpack_require__(0);
 module.exports = React.createClass({
   displayName: 'TableColgroup',
   render: function render() {
-    return React.createElement("colgroup", null, (this.props.items || []).map(function (item, index) {
-      return React.createElement("col", {
+    return /*#__PURE__*/React.createElement("colgroup", null, (this.props.items || []).map(function (item, index) {
+      return /*#__PURE__*/React.createElement("col", {
         key: index,
         style: {
           width: item.width
