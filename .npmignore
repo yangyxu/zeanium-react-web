@@ -4,7 +4,3 @@
 node_modules/*
 src/*
 package-lock.json
-webpack.app.js
-webpack.config.js
-webpack.init.js
-webpack.zn.plugin.js
