@@ -2032,11 +2032,17 @@ module.exports = React.createClass({
     }, this.__renderFileByType(item.split('.').pop().toLowerCase(), item));
   },
   __renderPreviewFileByType: function __renderPreviewFileByType(type, value) {
+    var _host = window.File_Uploader_Host;
+
+    if (!_host) {
+      _host = window.location.origin;
+    }
+
     if (this.props.isImage) {
       return /*#__PURE__*/React.createElement("img", {
         width: "100%",
         height: "100%",
-        src: zn.http.fixURL(value)
+        src: _host + value
       });
     }
 
@@ -2048,7 +2054,7 @@ module.exports = React.createClass({
         return /*#__PURE__*/React.createElement("img", {
           width: "100%",
           height: "100%",
-          src: zn.http.fixURL(value)
+          src: _host + value
         });
 
       case 'mp4':
@@ -2067,12 +2073,16 @@ module.exports = React.createClass({
           preload: "auto",
           loop: "loop",
           autoplay: "autoplay",
-          controls: "controls"
+          controls: "controls",
+          playsinline: "true",
+          "webkit-playsinline": "true",
+          "x5-video-player-type": "h5",
+          "x5-video-player-fullscreen": "true"
         }, /*#__PURE__*/React.createElement("source", {
-          src: zn.http.fixURL(value),
+          src: _host + value,
           type: "video/ogg"
         }), /*#__PURE__*/React.createElement("source", {
-          src: zn.http.fixURL(value),
+          src: _host + value,
           type: "video/mp4"
         }), "Your browser does not support the video tag.");
 
@@ -2081,9 +2091,15 @@ module.exports = React.createClass({
     }
   },
   __renderFileByType: function __renderFileByType(type, value) {
+    var _host = window.File_Uploader_Host;
+
+    if (!_host) {
+      _host = window.location.origin;
+    }
+
     if (this.props.isImage) {
       return /*#__PURE__*/React.createElement("img", {
-        src: zn.http.fixURL(value)
+        src: _host + value
       });
     }
 
@@ -2093,7 +2109,7 @@ module.exports = React.createClass({
       case 'jpeg':
       case 'gif':
         return /*#__PURE__*/React.createElement("img", {
-          src: zn.http.fixURL(value)
+          src: _host + value
         });
 
       case 'mp4':
@@ -2108,12 +2124,17 @@ module.exports = React.createClass({
       case 'viv':
         return /*#__PURE__*/React.createElement("video", {
           width: "96",
-          height: "96"
+          height: "96",
+          controls: "controls",
+          playsinline: "true",
+          "webkit-playsinline": "true",
+          "x5-video-player-type": "h5",
+          "x5-video-player-fullscreen": "true"
         }, /*#__PURE__*/React.createElement("source", {
-          src: zn.http.fixURL(value),
+          src: _host + value,
           type: "video/ogg"
         }), /*#__PURE__*/React.createElement("source", {
-          src: zn.http.fixURL(value),
+          src: _host + value,
           type: "video/mp4"
         }), "Your browser does not support the video tag.");
 
@@ -2126,6 +2147,12 @@ module.exports = React.createClass({
     this.forceUpdate();
   },
   render: function render() {
+    var _host = window.File_Uploader_Host;
+
+    if (!_host) {
+      _host = window.location.origin;
+    }
+
     var _values = this.state.value.split(',');
 
     var _editable = this.props.editable && !this.props.disabled && !this.props.readonly;
@@ -2220,10 +2247,16 @@ module.exports = React.createClass({
     }.bind(this));
   },
   render: function render() {
+    var _host = window.File_Uploader_Host;
+
+    if (!_host) {
+      _host = window.location.origin;
+    }
+
     var _src = this.state.value;
 
     if (_src.indexOf('/') == 0) {
-      _src = zn.http.fixURL(this.state.value);
+      _src = _host + this.state.value;
     }
 
     return /*#__PURE__*/React.createElement(AjaxUploader, _extends({}, this.props, {

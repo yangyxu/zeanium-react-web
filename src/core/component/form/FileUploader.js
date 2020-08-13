@@ -43,15 +43,19 @@ module.exports = React.createClass({
 		return <a onClick={()=>this.__onPreview(item)}>{this.__renderFileByType(item.split('.').pop().toLowerCase(), item)}</a>;
 	},
 	__renderPreviewFileByType: function (type, value){
+		var _host = window.File_Uploader_Host;
+		if(!_host){
+			_host = window.location.origin;
+		}
 		if(this.props.isImage){
-			return <img width="100%" height="100%" src={zn.http.fixURL(value)} />;
+			return <img width="100%" height="100%" src={_host + value} />;
 		}
 		switch (type) {
 			case 'jpg':
 			case 'png':
 			case 'jpeg':
 			case 'gif':
-				return <img width="100%" height="100%" src={zn.http.fixURL(value)} />;
+				return <img width="100%" height="100%" src={_host + value} />;
 			case 'mp4':
 			case 'mpg':
 			case 'mpeg':
@@ -62,9 +66,9 @@ module.exports = React.createClass({
 			case 'aiff':
 			case 'qt':
 			case 'viv':
-				return <video width="100%" height="100%" preload="auto" loop="loop" autoplay="autoplay" controls="controls">
-				  	<source src={zn.http.fixURL(value)} type="video/ogg" />
-				  	<source src={zn.http.fixURL(value)} type="video/mp4" />
+				return <video width="100%" height="100%" preload="auto" loop="loop" autoplay="autoplay"  controls="controls" playsinline="true"  webkit-playsinline="true"  x5-video-player-type='h5' x5-video-player-fullscreen='true'>
+				  	<source src={_host + value} type="video/ogg" />
+				  	<source src={_host + value} type="video/mp4" />
 					Your browser does not support the video tag.
 				</video>;
 			default:
@@ -72,15 +76,19 @@ module.exports = React.createClass({
 		}
 	},
 	__renderFileByType: function (type, value){
+		var _host = window.File_Uploader_Host;
+		if(!_host){
+			_host = window.location.origin;
+		}
 		if(this.props.isImage){
-			return <img src={zn.http.fixURL(value)} />;
+			return <img src={_host + value} />;
 		}
 		switch (type) {
 			case 'jpg':
 			case 'png':
 			case 'jpeg':
 			case 'gif':
-				return <img src={zn.http.fixURL(value)} />;
+				return <img src={_host + value} />;
 			case 'mp4':
 			case 'mpg':
 			case 'mpeg':
@@ -91,9 +99,9 @@ module.exports = React.createClass({
 			case 'aiff':
 			case 'qt':
 			case 'viv':
-				return <video width="96" height="96">
-				  	<source src={zn.http.fixURL(value)} type="video/ogg" />
-				  	<source src={zn.http.fixURL(value)} type="video/mp4" />
+				return <video width="96" height="96" controls="controls" playsinline="true"  webkit-playsinline="true"  x5-video-player-type='h5' x5-video-player-fullscreen='true'>
+				  	<source src={_host + value} type="video/ogg" />
+				  	<source src={_host + value} type="video/mp4" />
 					Your browser does not support the video tag.
 				</video>;
 			default:
@@ -105,6 +113,10 @@ module.exports = React.createClass({
 		this.forceUpdate();
 	},
 	render: function(){
+		var _host = window.File_Uploader_Host;
+		if(!_host){
+			_host = window.location.origin;
+		}
 		var _values = this.state.value.split(',');
 		var _editable = (this.props.editable && !this.props.disabled && !this.props.readonly);
 		return (

@@ -41,9 +41,13 @@ module.exports = React.createClass({
 		}.bind(this));
 	},
 	render:function(){
+		var _host = window.File_Uploader_Host;
+		if(!_host){
+			_host = window.location.origin;
+		}
 		var _src = this.state.value;
 		if(_src.indexOf('/')==0){
-			_src = zn.http.fixURL(this.state.value);
+			_src = _host + this.state.value;
 		}
 		return (
 			<AjaxUploader
