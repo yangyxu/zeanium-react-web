@@ -1071,7 +1071,8 @@ module.exports = React.createClass({
   },
   getInitialState: function getInitialState() {
     return {
-      loading: false
+      loading: false,
+      progress: 0
     };
   },
   __onInputChange: function __onInputChange(event) {
@@ -1121,20 +1122,34 @@ module.exports = React.createClass({
     this.props.onUploaderClick && this.props.onUploaderClick(event, this);
   },
   ajaxUpload: function ajaxUpload(data) {
+    if (!this.props.action) {
+      alert('Uploader action is not exist.');
+      return false;
+    }
+
     this.setState({
       loading: true
     });
+    var _host = window.File_Uploader_Host;
+
+    if (!_host) {
+      _host = window.location.origin;
+    }
+
     var xhr = new XMLHttpRequest();
     xhr.upload.addEventListener("progress", this.__ajaxUploadProgress, false);
     xhr.addEventListener("load", this.__ajaxUploadComplete, false);
     xhr.addEventListener("error", this.__ajaxUploadError, false);
     xhr.addEventListener("abort", this.__ajaxUploadAbort, false);
-    xhr.open("POST", zn.http.fixURL(this.props.action), "true");
+    xhr.open("POST", _host + this.props.action, "true");
     xhr.send(data);
   },
   __ajaxUploadProgress: function __ajaxUploadProgress(evt) {
     if (evt.lengthComputable) {
       evt.progress = Math.round(evt.loaded * 100 / evt.total);
+      this.setState({
+        progress: evt.progress
+      });
     }
 
     console.log(evt);
@@ -1142,8 +1157,18 @@ module.exports = React.createClass({
   },
   __ajaxUploadComplete: function __ajaxUploadComplete(evt) {
     this.reset();
+    var _text = evt.target.responseText;
 
-    var _data = JSON.parse(evt.target.responseText);
+    if (_text.indexOf('<!DOCTYPE HTML>') == 0) {
+      alert(_text);
+      return;
+    }
+
+    var _data = JSON.parse(_text);
+
+    this.setState({
+      progress: 0
+    });
 
     if (_data.status == 200) {
       this.props.onComplete && this.props.onComplete(_data.result, this);
@@ -1167,14 +1192,25 @@ module.exports = React.createClass({
     ReactDOM.findDOMNode(this).reset();
   },
   render: function render() {
+    var _host = window.File_Uploader_Host;
+
+    if (!_host) {
+      _host = window.location.origin;
+    }
+
     return /*#__PURE__*/React.createElement("form", {
       className: zn.react.classname("zr-ajax-uploader", this.props.className),
       style: this.props.style,
       "data-loading": this.state.loading,
-      action: zn.http.fixURL(this.props.action || ''),
+      action: _host + (this.props.action || ''),
       encType: "multipart/form-data",
       method: "POST"
-    }, this.props.children, this.props.size && /*#__PURE__*/React.createElement("span", {
+    }, !!this.state.progress && /*#__PURE__*/React.createElement("div", {
+      className: "progress--bar",
+      style: {
+        height: this.state.progress + '%'
+      }
+    }, this.state.progress, "%"), this.props.children, this.props.size && /*#__PURE__*/React.createElement("span", {
       className: "size"
     }, this.props.size), /*#__PURE__*/React.createElement("input", {
       multiple: this.props.multiple,
@@ -6611,9 +6647,15 @@ module.exports = React.createClass({
     }, this.__renderFileByType(item.split('.').pop().toLowerCase(), item));
   },
   __renderPreviewFileByType: function __renderPreviewFileByType(type, value) {
+    var _host = window.File_Uploader_Host;
+
+    if (!_host) {
+      _host = window.location.origin;
+    }
+
     if (this.props.isImage) {
       return /*#__PURE__*/React.createElement("img", {
-        src: zn.http.fixURL(value)
+        src: _host + value
       });
     }
 
@@ -6624,7 +6666,7 @@ module.exports = React.createClass({
       case 'jpeg':
       case 'gif':
         return /*#__PURE__*/React.createElement("img", {
-          src: zn.http.fixURL(value)
+          src: _host + value
         });
 
       case 'mp4':
@@ -6645,10 +6687,10 @@ module.exports = React.createClass({
           autoplay: "autoplay",
           controls: "controls"
         }, /*#__PURE__*/React.createElement("source", {
-          src: zn.http.fixURL(value),
+          src: _host + value,
           type: "video/ogg"
         }), /*#__PURE__*/React.createElement("source", {
-          src: zn.http.fixURL(value),
+          src: _host + value,
           type: "video/mp4"
         }), "Your browser does not support the video tag.");
 
@@ -6658,6 +6700,12 @@ module.exports = React.createClass({
   },
   __getFileTypeRender: function __getFileTypeRender(value, type) {
     var _this2 = this;
+
+    var _host = window.File_Uploader_Host;
+
+    if (!_host) {
+      _host = window.location.origin;
+    }
 
     var _file = value.split('/').pop();
 
@@ -6670,7 +6718,7 @@ module.exports = React.createClass({
       className: "icon fa fa-" + (type || 'file')
     }), /*#__PURE__*/React.createElement("a", {
       target: "_blank",
-      href: zn.http.fixURL(value) + "?download=true",
+      href: _host + value + "?download=true",
       onClick: function onClick(event) {
         return event.stopPropagation();
       },
@@ -6679,9 +6727,15 @@ module.exports = React.createClass({
     }, _file.substring(_file.length - 8, _file.length)));
   },
   __renderFileByType: function __renderFileByType(type, value) {
+    var _host = window.File_Uploader_Host;
+
+    if (!_host) {
+      _host = window.location.origin;
+    }
+
     if (this.props.isImage) {
       return /*#__PURE__*/React.createElement("img", {
-        src: zn.http.fixURL(value)
+        src: _host + value
       });
     }
 
@@ -6707,7 +6761,7 @@ module.exports = React.createClass({
       case 'jpeg':
       case 'gif':
         return /*#__PURE__*/React.createElement("img", {
-          src: zn.http.fixURL(value)
+          src: _host + value
         });
 
       case 'mp4':

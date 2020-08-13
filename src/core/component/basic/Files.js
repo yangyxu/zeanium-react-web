@@ -20,8 +20,12 @@ module.exports = React.createClass({
 		return <div onClick={()=>this.__onPreview(item)}>{this.__renderFileByType(item.split('.').pop().toLowerCase(), item)}</div>;
 	},
 	__renderPreviewFileByType: function (type, value){
+		var _host = window.File_Uploader_Host;
+		if(!_host){
+			_host = window.location.origin;
+		}
 		if(this.props.isImage){
-			return <img src={zn.http.fixURL(value)} />;
+			return <img src={_host + value} />;
 		}
 		switch (type) {
 			case 'bmp':
@@ -29,7 +33,7 @@ module.exports = React.createClass({
 			case 'png':
 			case 'jpeg':
 			case 'gif':
-				return <img src={zn.http.fixURL(value)} />;
+				return <img src={_host + value} />;
 			case 'mp4':
 			case 'mpg':
 			case 'mpeg':
@@ -41,8 +45,8 @@ module.exports = React.createClass({
 			case 'qt':
 			case 'viv':
 				return <video width="100%" height="100%" preload="auto" loop="loop" autoplay="autoplay" controls="controls">
-				  	<source src={zn.http.fixURL(value)} type="video/ogg" />
-				  	<source src={zn.http.fixURL(value)} type="video/mp4" />
+				  	<source src={_host + value} type="video/ogg" />
+				  	<source src={_host + value} type="video/mp4" />
 					Your browser does not support the video tag.
 				</video>;
 			default:
@@ -50,15 +54,23 @@ module.exports = React.createClass({
 		}
 	},
 	__getFileTypeRender: function (value, type){
+		var _host = window.File_Uploader_Host;
+		if(!_host){
+			_host = window.location.origin;
+		}
 		var _file = value.split('/').pop();
 		return <div onClick={(event)=>this.__onPreview(value)}  className="office-file">
 			<i className={"icon fa fa-"+(type||'file')} />
-			<a target="_blank" href={zn.http.fixURL(value)+"?download=true"} onClick={(event)=>event.stopPropagation()} data-tooltip={_file} className="name">{_file.substring(_file.length-8, _file.length)}</a>
+			<a target="_blank" href={_host + value + "?download=true"} onClick={(event)=>event.stopPropagation()} data-tooltip={_file} className="name">{_file.substring(_file.length-8, _file.length)}</a>
 		</div>;
 	},
 	__renderFileByType: function (type, value){
+		var _host = window.File_Uploader_Host;
+		if(!_host){
+			_host = window.location.origin;
+		}
 		if(this.props.isImage){
-			return <img src={zn.http.fixURL(value)} />;
+			return <img src={_host + value} />;
 		}
 		switch (type) {
 			case 'doc':
@@ -77,7 +89,7 @@ module.exports = React.createClass({
 			case 'png':
 			case 'jpeg':
 			case 'gif':
-				return <img src={zn.http.fixURL(value)} />;
+				return <img src={_host + value} />;
 			case 'mp4':
 			case 'mpg':
 			case 'mpeg':

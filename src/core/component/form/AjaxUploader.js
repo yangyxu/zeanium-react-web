@@ -15,7 +15,8 @@ module.exports = React.createClass({
 	},
 	getInitialState: function (){
 		return {
-			loading: false
+			loading: false,
+			progress: 0
 		};
 	},
 	__onInputChange: function (event){
@@ -58,25 +59,45 @@ module.exports = React.createClass({
 		this.props.onUploaderClick && this.props.onUploaderClick(event, this);
 	},
 	ajaxUpload: function (data){
+		if(!this.props.action){
+			alert('Uploader action is not exist.');
+			return false;
+		}
 		this.setState({ loading: true });
+		var _host = window.File_Uploader_Host;
+		if(!_host){
+			_host = window.location.origin;
+		}
+
 		var xhr = new XMLHttpRequest();
         xhr.upload.addEventListener("progress", this.__ajaxUploadProgress, false);
 		xhr.addEventListener("load", this.__ajaxUploadComplete, false);
 		xhr.addEventListener("error", this.__ajaxUploadError, false);
 		xhr.addEventListener("abort", this.__ajaxUploadAbort, false);
-		xhr.open("POST", zn.http.fixURL(this.props.action), "true");
+		xhr.open("POST", _host + this.props.action, "true");
 		xhr.send(data);
 	},
 	__ajaxUploadProgress: function (evt){
 		if (evt.lengthComputable) {
 			evt.progress = Math.round(evt.loaded * 100 / evt.total);
+			this.setState({
+				progress: evt.progress
+			});
 		}
 		console.log(evt);
 		this.props.onUploading && this.props.onUploading(evt, this);
 	},
 	__ajaxUploadComplete: function (evt){
 		this.reset();
-		var _data = JSON.parse(evt.target.responseText);
+		var _text = evt.target.responseText;
+		if(_text.indexOf('<!DOCTYPE HTML>') == 0){
+			alert(_text);
+			return;
+		}
+		var _data = JSON.parse(_text);
+		this.setState({
+			progress: 0
+		});
 		if(_data.status==200){
 			this.props.onComplete && this.props.onComplete(_data.result, this);
 		}else {
@@ -97,13 +118,21 @@ module.exports = React.createClass({
 		ReactDOM.findDOMNode(this).reset();
 	},
 	render: function(){
+		var _host = window.File_Uploader_Host;
+		if(!_host){
+			_host = window.location.origin;
+		}
+
 		return (
 			<form className={zn.react.classname("zr-ajax-uploader", this.props.className)}
 				style={this.props.style}
 				data-loading={this.state.loading}
-				action={zn.http.fixURL(this.props.action||'')}
+				action={_host + (this.props.action||'')}
 				encType="multipart/form-data"
 				method="POST">
+				{
+					!!this.state.progress && <div className="progress--bar" style={{height: this.state.progress + '%' }}>{this.state.progress}%</div>
+				}
 				{this.props.children}
 				{this.props.size && <span className="size">{this.props.size}</span>}
 				<input multiple={this.props.multiple} className="input" type="file" name={this.props.name||('upload_file_' + (new Date()).getTime())} onChange={this.__onInputChange} onClick={this.__onInputClick} />
